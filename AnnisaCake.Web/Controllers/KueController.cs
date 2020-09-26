@@ -101,6 +101,7 @@ namespace AnnisaCake.Web.Controllers
             //tes change git + dev
             // add comment for dev 2
             //buat crud
+            // this change by syamsul
             if (kue == null)
                 return HttpNotFound();
             return View(kue);
