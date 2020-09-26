@@ -98,7 +98,7 @@ namespace AnnisaCake.Web.Controllers
             kue kue = si_kue.kues.Find(id);
             kue.Kategoris = si_kue.categories.ToList<category>();
             ViewBag.pathImage = "../../Content/picCake/"+ kue.gambar;
-            //tes change git
+            //tes change git + dev
             if (kue == null)
                 return HttpNotFound();
             return View(kue);
