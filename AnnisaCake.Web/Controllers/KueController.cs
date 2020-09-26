@@ -99,6 +99,8 @@ namespace AnnisaCake.Web.Controllers
             kue.Kategoris = si_kue.categories.ToList<category>();
             ViewBag.pathImage = "../../Content/picCake/"+ kue.gambar;
             //tes change git + dev
+            // add comment for dev 2
+            //buat crud
             if (kue == null)
                 return HttpNotFound();
             return View(kue);
@@ -108,6 +110,7 @@ namespace AnnisaCake.Web.Controllers
         [HttpPost]
         public ActionResult EditKue(kue kue)
         {
+            //add crud alamat
             try
             {
                 if (kue.gambar != null) { 
