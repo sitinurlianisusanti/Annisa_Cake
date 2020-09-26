@@ -109,6 +109,7 @@ namespace AnnisaCake.Web.Controllers
         [HttpPost]
         public ActionResult EditKue(kue kue)
         {
+            //add crud alamat
             try
             {
                 if (kue.gambar != null) { 
