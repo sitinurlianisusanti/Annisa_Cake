@@ -100,6 +100,7 @@ namespace AnnisaCake.Web.Controllers
             ViewBag.pathImage = "../../Content/picCake/"+ kue.gambar;
             //tes change git + dev
             // add comment for dev 2
+            //buat crud
             if (kue == null)
                 return HttpNotFound();
             return View(kue);
