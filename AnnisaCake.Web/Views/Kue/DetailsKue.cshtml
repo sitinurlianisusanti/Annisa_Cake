@@ -1,0 +1,58 @@
+﻿@model AnnisaCake.Web.Models.kue
+
+@{
+    ViewBag.Title = "DetailsKue";
+}
+
+<h2>DetailsKue</h2>
+
+<div>
+    <h4>kue</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.gambar)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.gambar)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.nama_kue)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.nama_kue)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.harga)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.harga)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.stok)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.stok)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.category.nama_kategori)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.category.nama_kategori)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

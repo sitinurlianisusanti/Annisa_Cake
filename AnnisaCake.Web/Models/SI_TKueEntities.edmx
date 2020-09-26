@@ -1,0 +1,473 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="SI_TKueModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pass" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bahan_baku_keluar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tgl_keluar" Type="date" Nullable="false" />
+          <Property Name="id_bbmasuk" Type="int" Nullable="false" />
+          <Property Name="jumlah" Type="int" Nullable="false" />
+          <Property Name="satuan" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="deskripsi" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bahan_baku_Masuk">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="tgl_pembelian" Type="date" Nullable="false" />
+          <Property Name="bahan_baku" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="jumlah" Type="int" Nullable="false" />
+          <Property Name="satuan" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="harga" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama_kategori" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kranjang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id_pelanggan" Type="int" Nullable="false" />
+          <Property Name="id_kue" Type="int" Nullable="false" />
+          <Property Name="qty" Type="int" Nullable="false" />
+          <Property Name="harga" Type="int" Nullable="false" />
+          <Property Name="total_harga" Type="int" Nullable="false" />
+          <Property Name="total_bayar" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="kue">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="gambar" Type="varchar" MaxLength="50" />
+          <Property Name="nama_kue" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id_category" Type="int" Nullable="false" />
+          <Property Name="harga" Type="int" Nullable="false" />
+          <Property Name="stok" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="pelanggan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="nama" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="alamat" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="rt" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="rw" Type="char" MaxLength="5" Nullable="false" />
+          <Property Name="desa" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="kec" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="kab" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="provinsi" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="no_hp" Type="char" MaxLength="13" Nullable="false" />
+          <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="pass" Type="varchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__bahan_bak__id_bb__2FCF1A8A">
+          <End Role="bahan_baku_Masuk" Type="Self.bahan_baku_Masuk" Multiplicity="1" />
+          <End Role="bahan_baku_keluar" Type="Self.bahan_baku_keluar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bahan_baku_Masuk">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bahan_baku_keluar">
+              <PropertyRef Name="id_bbmasuk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__kranjang__id_kue__52593CB8">
+          <End Role="kue" Type="Self.kue" Multiplicity="1" />
+          <End Role="kranjang" Type="Self.kranjang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kue">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="kranjang">
+              <PropertyRef Name="id_kue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__kranjang__id_pel__5165187F">
+          <End Role="pelanggan" Type="Self.pelanggan" Multiplicity="1" />
+          <End Role="kranjang" Type="Self.kranjang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pelanggan">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="kranjang">
+              <PropertyRef Name="id_pelanggan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__kue__id_category__534D60F1">
+          <End Role="category" Type="Self.category" Multiplicity="1" />
+          <End Role="kue" Type="Self.kue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="kue">
+              <PropertyRef Name="id_category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Function Name="GetCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_GetAllKue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="SP_SelectCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <EntityContainer Name="SI_TKueModelStoreContainer">
+          <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bahan_baku_keluar" EntityType="Self.bahan_baku_keluar" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="bahan_baku_Masuk" EntityType="Self.bahan_baku_Masuk" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kranjang" EntityType="Self.kranjang" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="kue" EntityType="Self.kue" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="pelanggan" EntityType="Self.pelanggan" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__bahan_bak__id_bb__2FCF1A8A" Association="Self.FK__bahan_bak__id_bb__2FCF1A8A">
+            <End Role="bahan_baku_Masuk" EntitySet="bahan_baku_Masuk" />
+            <End Role="bahan_baku_keluar" EntitySet="bahan_baku_keluar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__kranjang__id_kue__52593CB8" Association="Self.FK__kranjang__id_kue__52593CB8">
+            <End Role="kue" EntitySet="kue" />
+            <End Role="kranjang" EntitySet="kranjang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__kranjang__id_pel__5165187F" Association="Self.FK__kranjang__id_pel__5165187F">
+            <End Role="pelanggan" EntitySet="pelanggan" />
+            <End Role="kranjang" EntitySet="kranjang" />
+          </AssociationSet>
+          <AssociationSet Name="FK__kue__id_category__534D60F1" Association="Self.FK__kue__id_category__534D60F1">
+            <End Role="category" EntitySet="category" />
+            <End Role="kue" EntitySet="kue" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="SI_TKueModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="admin">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+        </EntityType>
+        <EntityType Name="bahan_baku_keluar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tgl_keluar" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id_bbmasuk" Type="Int32" Nullable="false" />
+          <Property Name="jumlah" Type="Int32" Nullable="false" />
+          <Property Name="satuan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="deskripsi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="bahan_baku_Masuk" Relationship="Self.FK__bahan_bak__id_bb__2FCF1A8A" FromRole="bahan_baku_keluar" ToRole="bahan_baku_Masuk" />
+        </EntityType>
+        <EntityType Name="bahan_baku_Masuk">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tgl_pembelian" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="bahan_baku" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="jumlah" Type="Int32" Nullable="false" />
+          <Property Name="satuan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="harga" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="bahan_baku_keluar" Relationship="Self.FK__bahan_bak__id_bb__2FCF1A8A" FromRole="bahan_baku_Masuk" ToRole="bahan_baku_keluar" />
+        </EntityType>
+        <EntityType Name="category">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama_kategori" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="kues" Relationship="Self.FK__kue__id_category__534D60F1" FromRole="category" ToRole="kue" />
+        </EntityType>
+        <EntityType Name="kranjang">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="id_pelanggan" Type="Int32" Nullable="false" />
+          <Property Name="id_kue" Type="Int32" Nullable="false" />
+          <Property Name="qty" Type="Int32" Nullable="false" />
+          <Property Name="harga" Type="Int32" Nullable="false" />
+          <Property Name="total_harga" Type="Int32" Nullable="false" />
+          <Property Name="total_bayar" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="kue" Relationship="Self.FK__kranjang__id_kue__52593CB8" FromRole="kranjang" ToRole="kue" />
+          <NavigationProperty Name="pelanggan" Relationship="Self.FK__kranjang__id_pel__5165187F" FromRole="kranjang" ToRole="pelanggan" />
+        </EntityType>
+        <EntityType Name="kue">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="gambar" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="nama_kue" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="id_category" Type="Int32" Nullable="false" />
+          <Property Name="harga" Type="Int32" Nullable="false" />
+          <Property Name="stok" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="category" Relationship="Self.FK__kue__id_category__534D60F1" FromRole="kue" ToRole="category" />
+          <NavigationProperty Name="kranjangs" Relationship="Self.FK__kranjang__id_kue__52593CB8" FromRole="kue" ToRole="kranjang" />
+        </EntityType>
+        <EntityType Name="pelanggan">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="nama" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="alamat" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="rt" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="rw" Type="String" MaxLength="5" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="desa" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="kec" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="kab" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="provinsi" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="no_hp" Type="String" MaxLength="13" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="pass" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="kranjangs" Relationship="Self.FK__kranjang__id_pel__5165187F" FromRole="pelanggan" ToRole="kranjang" />
+        </EntityType>
+        <Association Name="FK__bahan_bak__id_bb__2FCF1A8A">
+          <End Role="bahan_baku_Masuk" Type="Self.bahan_baku_Masuk" Multiplicity="1" />
+          <End Role="bahan_baku_keluar" Type="Self.bahan_baku_keluar" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bahan_baku_Masuk">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="bahan_baku_keluar">
+              <PropertyRef Name="id_bbmasuk" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__kue__id_category__534D60F1">
+          <End Role="category" Type="Self.category" Multiplicity="1" />
+          <End Role="kue" Type="Self.kue" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="category">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="kue">
+              <PropertyRef Name="id_category" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__kranjang__id_kue__52593CB8">
+          <End Role="kue" Type="Self.kue" Multiplicity="1" />
+          <End Role="kranjang" Type="Self.kranjang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="kue">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="kranjang">
+              <PropertyRef Name="id_kue" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__kranjang__id_pel__5165187F">
+          <End Role="pelanggan" Type="Self.pelanggan" Multiplicity="1" />
+          <End Role="kranjang" Type="Self.kranjang" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="pelanggan">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="kranjang">
+              <PropertyRef Name="id_pelanggan" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="SI_TKueEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="admins" EntityType="Self.admin" />
+          <EntitySet Name="bahan_baku_keluar" EntityType="Self.bahan_baku_keluar" />
+          <EntitySet Name="bahan_baku_Masuk" EntityType="Self.bahan_baku_Masuk" />
+          <EntitySet Name="categories" EntityType="Self.category" />
+          <EntitySet Name="kranjangs" EntityType="Self.kranjang" />
+          <EntitySet Name="kues" EntityType="Self.kue" />
+          <EntitySet Name="pelanggans" EntityType="Self.pelanggan" />
+          <AssociationSet Name="FK__bahan_bak__id_bb__2FCF1A8A" Association="Self.FK__bahan_bak__id_bb__2FCF1A8A">
+            <End Role="bahan_baku_Masuk" EntitySet="bahan_baku_Masuk" />
+            <End Role="bahan_baku_keluar" EntitySet="bahan_baku_keluar" />
+          </AssociationSet>
+          <AssociationSet Name="FK__kue__id_category__534D60F1" Association="Self.FK__kue__id_category__534D60F1">
+            <End Role="category" EntitySet="categories" />
+            <End Role="kue" EntitySet="kues" />
+          </AssociationSet>
+          <AssociationSet Name="FK__kranjang__id_kue__52593CB8" Association="Self.FK__kranjang__id_kue__52593CB8">
+            <End Role="kue" EntitySet="kues" />
+            <End Role="kranjang" EntitySet="kranjangs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__kranjang__id_pel__5165187F" Association="Self.FK__kranjang__id_pel__5165187F">
+            <End Role="pelanggan" EntitySet="pelanggans" />
+            <End Role="kranjang" EntitySet="kranjangs" />
+          </AssociationSet>
+          <FunctionImport Name="GetCategory" ReturnType="Collection(SI_TKueModel.GetCategory_Result)" />
+          <FunctionImport Name="SP_GetAllKue" ReturnType="Collection(SI_TKueModel.SP_GetAllKue_Result)" />
+          <FunctionImport Name="SP_SelectCategory" ReturnType="Collection(String)" />
+        </EntityContainer>
+        <ComplexType Name="GetCategory_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="nama_kategori" Nullable="false" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="SP_GetAllKue_Result">
+          <Property Type="Int32" Name="id" Nullable="false" />
+          <Property Type="String" Name="gambar" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="nama_kategori" Nullable="false" MaxLength="50" />
+          <Property Type="String" Name="nama_kue" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="harga" Nullable="false" />
+          <Property Type="Int32" Name="stok" Nullable="false" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="SI_TKueModelStoreContainer" CdmEntityContainer="SI_TKueEntities">
+          <EntitySetMapping Name="admins">
+            <EntityTypeMapping TypeName="SI_TKueModel.admin">
+              <MappingFragment StoreEntitySet="admin">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bahan_baku_keluar">
+            <EntityTypeMapping TypeName="SI_TKueModel.bahan_baku_keluar">
+              <MappingFragment StoreEntitySet="bahan_baku_keluar">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tgl_keluar" ColumnName="tgl_keluar" />
+                <ScalarProperty Name="id_bbmasuk" ColumnName="id_bbmasuk" />
+                <ScalarProperty Name="jumlah" ColumnName="jumlah" />
+                <ScalarProperty Name="satuan" ColumnName="satuan" />
+                <ScalarProperty Name="deskripsi" ColumnName="deskripsi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="bahan_baku_Masuk">
+            <EntityTypeMapping TypeName="SI_TKueModel.bahan_baku_Masuk">
+              <MappingFragment StoreEntitySet="bahan_baku_Masuk">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="tgl_pembelian" ColumnName="tgl_pembelian" />
+                <ScalarProperty Name="bahan_baku" ColumnName="bahan_baku" />
+                <ScalarProperty Name="jumlah" ColumnName="jumlah" />
+                <ScalarProperty Name="satuan" ColumnName="satuan" />
+                <ScalarProperty Name="harga" ColumnName="harga" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="categories">
+            <EntityTypeMapping TypeName="SI_TKueModel.category">
+              <MappingFragment StoreEntitySet="category">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nama_kategori" ColumnName="nama_kategori" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kranjangs">
+            <EntityTypeMapping TypeName="SI_TKueModel.kranjang">
+              <MappingFragment StoreEntitySet="kranjang">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="id_pelanggan" ColumnName="id_pelanggan" />
+                <ScalarProperty Name="id_kue" ColumnName="id_kue" />
+                <ScalarProperty Name="qty" ColumnName="qty" />
+                <ScalarProperty Name="harga" ColumnName="harga" />
+                <ScalarProperty Name="total_harga" ColumnName="total_harga" />
+                <ScalarProperty Name="total_bayar" ColumnName="total_bayar" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="kues">
+            <EntityTypeMapping TypeName="SI_TKueModel.kue">
+              <MappingFragment StoreEntitySet="kue">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="gambar" ColumnName="gambar" />
+                <ScalarProperty Name="nama_kue" ColumnName="nama_kue" />
+                <ScalarProperty Name="id_category" ColumnName="id_category" />
+                <ScalarProperty Name="harga" ColumnName="harga" />
+                <ScalarProperty Name="stok" ColumnName="stok" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="pelanggans">
+            <EntityTypeMapping TypeName="SI_TKueModel.pelanggan">
+              <MappingFragment StoreEntitySet="pelanggan">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nama" ColumnName="nama" />
+                <ScalarProperty Name="alamat" ColumnName="alamat" />
+                <ScalarProperty Name="rt" ColumnName="rt" />
+                <ScalarProperty Name="rw" ColumnName="rw" />
+                <ScalarProperty Name="desa" ColumnName="desa" />
+                <ScalarProperty Name="kec" ColumnName="kec" />
+                <ScalarProperty Name="kab" ColumnName="kab" />
+                <ScalarProperty Name="provinsi" ColumnName="provinsi" />
+                <ScalarProperty Name="no_hp" ColumnName="no_hp" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="pass" ColumnName="pass" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="GetCategory" FunctionName="SI_TKueModel.Store.GetCategory">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SI_TKueModel.GetCategory_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="nama_kategori" ColumnName="nama_kategori" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_GetAllKue" FunctionName="SI_TKueModel.Store.SP_GetAllKue">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="SI_TKueModel.SP_GetAllKue_Result">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="gambar" ColumnName="gambar" />
+                <ScalarProperty Name="nama_kategori" ColumnName="nama_kategori" />
+                <ScalarProperty Name="nama_kue" ColumnName="nama_kue" />
+                <ScalarProperty Name="harga" ColumnName="harga" />
+                <ScalarProperty Name="stok" ColumnName="stok" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="SP_SelectCategory" FunctionName="SI_TKueModel.Store.SP_SelectCategory" />
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
