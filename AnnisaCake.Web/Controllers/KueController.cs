@@ -129,7 +129,7 @@ namespace AnnisaCake.Web.Controllers
                     kue.gambar = fileName;
                     filePath = Path.Combine(Server.MapPath("~/Content/picCake"), fileName);
 
-                    string filePath2 = Path.Combine(Server.MapPath("~/Content/picCake"), string.IsNullOrEmpty(kue2.gambar) ? "" : kue2.gambar);
+                    string filePath2 = Path.Combine(Server.MapPath("~/Content/picCake"), string.IsNullOrEmpty(kue2.id_gambar) ? "" : kue2.id_gambar);
                     if (System.IO.File.Exists(filePath2))
                     {
                         System.IO.File.Delete(filePath2);

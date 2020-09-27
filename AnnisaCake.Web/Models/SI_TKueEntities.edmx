@@ -64,6 +64,7 @@
           <Property Name="id_category" Type="int" Nullable="false" />
           <Property Name="harga" Type="int" Nullable="false" />
           <Property Name="stok" Type="int" Nullable="false" />
+          <Property Name="id_gambar" Type="nvarchar(max)" />
         </EntityType>
         <EntityType Name="pelanggan">
           <Key>
@@ -148,7 +149,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__kranjang__id_pel__5165187F">
+        <Association Name="FK__kranjang__id_pel__267ABA7A">
           <End Role="pelanggan" Type="Self.pelanggan" Multiplicity="1" />
           <End Role="kranjang" Type="Self.kranjang" Multiplicity="*" />
           <ReferentialConstraint>
@@ -255,7 +256,7 @@
             <End Role="kue" EntitySet="kue" />
             <End Role="kranjang" EntitySet="kranjang" />
           </AssociationSet>
-          <AssociationSet Name="FK__kranjang__id_pel__5165187F" Association="Self.FK__kranjang__id_pel__5165187F">
+          <AssociationSet Name="FK__kranjang__id_pel__267ABA7A" Association="Self.FK__kranjang__id_pel__267ABA7A">
             <End Role="pelanggan" EntitySet="pelanggan" />
             <End Role="kranjang" EntitySet="kranjang" />
           </AssociationSet>
@@ -355,6 +356,7 @@
           <NavigationProperty Name="category" Relationship="Self.FK__kue__id_category__534D60F1" FromRole="kue" ToRole="category" />
           <NavigationProperty Name="kranjangs" Relationship="Self.FK__kranjang__id_kue__52593CB8" FromRole="kue" ToRole="kranjang" />
           <NavigationProperty Name="pesanans" Relationship="SI_TKueModel.FK_pesanan_kue" FromRole="kue" ToRole="pesanan" />
+          <Property Name="id_gambar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="pelanggan">
           <Key>
@@ -660,6 +662,7 @@
           <EntitySetMapping Name="kues">
             <EntityTypeMapping TypeName="SI_TKueModel.kue">
               <MappingFragment StoreEntitySet="kue">
+                <ScalarProperty Name="id_gambar" ColumnName="id_gambar" />
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="gambar" ColumnName="gambar" />
                 <ScalarProperty Name="nama_kue" ColumnName="nama_kue" />
