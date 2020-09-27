@@ -58,6 +58,7 @@
     <EntitySetMapping Name="kues">
       <EntityTypeMapping TypeName="SI_TKueModel.kue">
         <MappingFragment StoreEntitySet="kue">
+          <ScalarProperty Name="id_gambar" ColumnName="id_gambar" />
           <ScalarProperty Name="id" ColumnName="id" />
           <ScalarProperty Name="gambar" ColumnName="gambar" />
           <ScalarProperty Name="nama_kue" ColumnName="nama_kue" />
@@ -102,6 +103,7 @@
           <ScalarProperty Name="nama_kue" ColumnName="nama_kue" />
           <ScalarProperty Name="harga" ColumnName="harga" />
           <ScalarProperty Name="stok" ColumnName="stok" />
+          <ScalarProperty Name="id_gambar" ColumnName="id_gambar" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>

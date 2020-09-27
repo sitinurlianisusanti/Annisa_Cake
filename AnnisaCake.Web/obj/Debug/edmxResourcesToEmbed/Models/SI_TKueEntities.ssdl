@@ -59,6 +59,7 @@
     <Property Name="id_category" Type="int" Nullable="false" />
     <Property Name="harga" Type="int" Nullable="false" />
     <Property Name="stok" Type="int" Nullable="false" />
+    <Property Name="id_gambar" Type="nvarchar(max)" />
   </EntityType>
   <EntityType Name="pelanggan">
     <Key>
@@ -143,7 +144,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK__kranjang__id_pel__5165187F">
+  <Association Name="FK__kranjang__id_pel__267ABA7A">
     <End Role="pelanggan" Type="Self.pelanggan" Multiplicity="1" />
     <End Role="kranjang" Type="Self.kranjang" Multiplicity="*" />
     <ReferentialConstraint>
@@ -250,7 +251,7 @@
       <End Role="kue" EntitySet="kue" />
       <End Role="kranjang" EntitySet="kranjang" />
     </AssociationSet>
-    <AssociationSet Name="FK__kranjang__id_pel__5165187F" Association="Self.FK__kranjang__id_pel__5165187F">
+    <AssociationSet Name="FK__kranjang__id_pel__267ABA7A" Association="Self.FK__kranjang__id_pel__267ABA7A">
       <End Role="pelanggan" EntitySet="pelanggan" />
       <End Role="kranjang" EntitySet="kranjang" />
     </AssociationSet>

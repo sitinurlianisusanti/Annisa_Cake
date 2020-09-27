@@ -67,6 +67,7 @@
     <NavigationProperty Name="category" Relationship="Self.FK__kue__id_category__534D60F1" FromRole="kue" ToRole="category" />
     <NavigationProperty Name="kranjangs" Relationship="Self.FK__kranjang__id_kue__52593CB8" FromRole="kue" ToRole="kranjang" />
     <NavigationProperty Name="pesanans" Relationship="SI_TKueModel.FK_pesanan_kue" FromRole="kue" ToRole="pesanan" />
+    <Property Name="id_gambar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="pelanggan">
     <Key>
@@ -198,6 +199,7 @@
     <Property Type="String" Name="nama_kue" Nullable="false" MaxLength="50" />
     <Property Type="Int32" Name="harga" Nullable="false" />
     <Property Type="Int32" Name="stok" Nullable="false" />
+    <Property Type="String" Name="id_gambar" Nullable="true" />
   </ComplexType>
   <EntityType Name="pesanan">
     <Key>
