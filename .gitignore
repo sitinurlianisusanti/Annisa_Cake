@@ -9,5 +9,12 @@
 */Debug/*
 
 #ignore web.config
-Web.Config
+**/Web.Config
 Web.*.Config
+**/bin/**
+**/obj/**
+/AnnisaCake.Web/Web.config
+/AnnisaCake.Web/bin/AnnisaCake.Web.dll
+/AnnisaCake.Web/bin/AnnisaCake.Web.dll.config
+/AnnisaCake.Web/bin/AnnisaCake.Web.dll
+/AnnisaCake.Web/bin/AnnisaCake.Web.dll.config
