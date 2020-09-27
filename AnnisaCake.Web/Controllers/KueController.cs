@@ -164,26 +164,29 @@ namespace AnnisaCake.Web.Controllers
                 return View();
             }
         }
-
-        // GET: Kue/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Kue/Delete/5
+        
+        
+        
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public JsonResult Delete(int id)
         {
             try
             {
-                // TODO: Add delete logic here
 
-                return RedirectToAction("Index");
+                kue kue = si_kue.kues.Find(id);
+
+                string filePath = Path.Combine(Server.MapPath("~/Content/picCake"), string.IsNullOrEmpty(kue.id_gambar) ? "" : kue.id_gambar);
+                if (System.IO.File.Exists(filePath))
+                {
+                    System.IO.File.Delete(filePath);
+                }
+                si_kue.kues.Remove(kue);
+                si_kue.SaveChanges();
+                return Json(new { message = "succes" });
             }
             catch
             {
-                return View();
+                return Json(new { message = "failed" });
             }
         }
     }

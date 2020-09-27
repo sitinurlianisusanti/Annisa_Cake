@@ -12,9 +12,12 @@
 **/Web.Config
 Web.*.Config
 **/bin/**
-**/obj/**
+**/obj/Debug/**
 /AnnisaCake.Web/Web.config
 /AnnisaCake.Web/bin/AnnisaCake.Web.dll
 /AnnisaCake.Web/bin/AnnisaCake.Web.dll.config
 /AnnisaCake.Web/bin/AnnisaCake.Web.dll
 /AnnisaCake.Web/bin/AnnisaCake.Web.dll.config
+/AnnisaCake.Web/Content/picCake/
+/AnnisaCake.Web/obj/Debug/
+/AnnisaCake.Web/bin/
