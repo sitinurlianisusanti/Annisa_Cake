@@ -80,3 +80,6 @@ E:\siti ns\TUGAS AKHIR\Aplikasi\AnnisaCake.Web\AnnisaCake.Web\obj\Debug\AnnisaCa
 E:\siti ns\TUGAS AKHIR\Aplikasi\AnnisaCake.Web\AnnisaCake.Web\obj\Debug\AnnisaCake.Web.dll
 E:\siti ns\TUGAS AKHIR\Aplikasi\AnnisaCake.Web\AnnisaCake.Web\obj\Debug\AnnisaCake.Web.pdb
 E:\siti ns\TUGAS AKHIR\Aplikasi\AnnisaCake.Web\AnnisaCake.Web\obj\Debug\AnnisaCake.Web.csprojAssemblyReference.cache
+E:\siti ns\RepoAnnisa_Cake\Annisa_Cake\AnnisaCake.Web\obj\Debug\AnnisaCake.Web.csprojAssemblyReference.cache
+E:\siti ns\RepoAnnisa_Cake\Annisa_Cake\AnnisaCake.Web\obj\Debug\AnnisaCake.Web.dll
+E:\siti ns\RepoAnnisa_Cake\Annisa_Cake\AnnisaCake.Web\obj\Debug\AnnisaCake.Web.pdb

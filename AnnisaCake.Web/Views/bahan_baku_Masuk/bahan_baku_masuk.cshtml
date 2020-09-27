@@ -1,0 +1,57 @@
+﻿@model IEnumerable<AnnisaCake.Web.Models.bahan_baku_Masuk>
+
+@{
+    ViewBag.Title = "bahan_baku_masuk";
+}
+
+<h2>bahan_baku_masuk</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.tgl_pembelian)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.bahan_baku)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.jumlah)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.satuan)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.harga)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.tgl_pembelian)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.bahan_baku)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.jumlah)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.satuan)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.harga)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.id })
+        </td>
+    </tr>
+}
+
+</table>

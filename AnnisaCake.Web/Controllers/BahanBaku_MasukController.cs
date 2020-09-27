@@ -7,28 +7,28 @@ using System.Web.Mvc;
 
 namespace AnnisaCake.Web.Controllers
 {
-    public class B_BakuMasukController : Controller
+    public class BahanBaku_MasukController : Controller
     {
-        public SI_TKueEntities si_kue = new SI_TKueEntities();
-        // GET: B_BakuMasuk
+        public SI_TKueEntities db = new SI_TKueEntities();
+        // GET: BahanBaku_Masuk
         public ActionResult BahanBaku_Masuk()
         {
-            return View();
+            return View(db.bahan_baku_Masuk.ToList());
         }
 
-        // GET: B_BakuMasuk/Details/5
+        // GET: BahanBaku_Masuk/Details/5
         public ActionResult Details(int id)
         {
             return View();
         }
 
-        // GET: B_BakuMasuk/Create
-        public ActionResult Create()
+        // GET: BahanBaku_Masuk/Create
+        public ActionResult CreateBahanBaku_Masuk()
         {
             return View();
         }
 
-        // POST: B_BakuMasuk/Create
+        // POST: BahanBaku_Masuk/Create
         [HttpPost]
         public ActionResult Create(FormCollection collection)
         {
@@ -44,13 +44,13 @@ namespace AnnisaCake.Web.Controllers
             }
         }
 
-        // GET: B_BakuMasuk/Edit/5
+        // GET: BahanBaku_Masuk/Edit/5
         public ActionResult Edit(int id)
         {
             return View();
         }
 
-        // POST: B_BakuMasuk/Edit/5
+        // POST: BahanBaku_Masuk/Edit/5
         [HttpPost]
         public ActionResult Edit(int id, FormCollection collection)
         {
@@ -66,13 +66,13 @@ namespace AnnisaCake.Web.Controllers
             }
         }
 
-        // GET: B_BakuMasuk/Delete/5
+        // GET: BahanBaku_Masuk/Delete/5
         public ActionResult Delete(int id)
         {
             return View();
         }
 
-        // POST: B_BakuMasuk/Delete/5
+        // POST: BahanBaku_Masuk/Delete/5
         [HttpPost]
         public ActionResult Delete(int id, FormCollection collection)
         {

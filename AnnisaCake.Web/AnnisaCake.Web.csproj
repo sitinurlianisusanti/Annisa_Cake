@@ -130,7 +130,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\B_BakuMasukController.cs" />
+    <Compile Include="Controllers\BahanBaku_MasukController.cs" />
+    <Compile Include="Controllers\bahan_baku_MasukController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KueController.cs" />
@@ -161,6 +162,9 @@
     <Compile Include="Models\pelanggan.cs">
       <DependentUpon>SI_TKueEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\pesanan.cs">
+      <DependentUpon>SI_TKueEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SI_TKueEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -177,6 +181,15 @@
       <DependentUpon>SI_TKueEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\SP_GetAllKue_Result.cs">
+      <DependentUpon>SI_TKueEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\toping.cs">
+      <DependentUpon>SI_TKueEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\transaksi.cs">
+      <DependentUpon>SI_TKueEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\ukuran_kue.cs">
       <DependentUpon>SI_TKueEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\ViewKue.cs" />
@@ -8278,11 +8291,19 @@
     <Content Include="Views\Kue\DetailsKue.cshtml" />
     <Content Include="Views\Kue\CreateKue.cshtml" />
     <Content Include="Views\Kue\EditKue.cshtml" />
+    <Content Include="Views\B_BakuMasuk\B_BakuMasuk.cshtml" />
+    <Content Include="Views\bahan_baku_Masuk\Create.cshtml" />
+    <Content Include="Views\bahan_baku_Masuk\Delete.cshtml" />
+    <Content Include="Views\bahan_baku_Masuk\Details.cshtml" />
+    <Content Include="Views\bahan_baku_Masuk\Edit.cshtml" />
+    <Content Include="Views\bahan_baku_Masuk\Index.cshtml" />
+    <Content Include="Views\bahan_baku_Masuk\bahan_baku_masuk.cshtml" />
+    <Content Include="Views\BahanBaku_Masuk\BahanBaku_Masuk.cshtml" />
+    <Content Include="Views\BahanBaku_Masuk\CreateBahanBaku_Masuk.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\picCake\" />
-    <Folder Include="Views\B_BakuMasuk\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

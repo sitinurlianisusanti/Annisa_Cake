@@ -1,0 +1,58 @@
+﻿@model AnnisaCake.Web.Models.bahan_baku_Masuk
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>bahan_baku_Masuk</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.tgl_pembelian)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.tgl_pembelian)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.bahan_baku)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.bahan_baku)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.jumlah)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.jumlah)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.satuan)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.satuan)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.harga)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.harga)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
