@@ -488,6 +488,7 @@
           <Property Type="String" Name="nama_kue" Nullable="false" MaxLength="50" />
           <Property Type="Int32" Name="harga" Nullable="false" />
           <Property Type="Int32" Name="stok" Nullable="false" />
+          <Property Type="String" Name="id_gambar" Nullable="true" />
         </ComplexType>
         <EntityType Name="pesanan">
           <Key>
@@ -707,6 +708,7 @@
                 <ScalarProperty Name="nama_kue" ColumnName="nama_kue" />
                 <ScalarProperty Name="harga" ColumnName="harga" />
                 <ScalarProperty Name="stok" ColumnName="stok" />
+                <ScalarProperty Name="id_gambar" ColumnName="id_gambar" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

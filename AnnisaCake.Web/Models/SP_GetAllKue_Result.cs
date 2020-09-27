@@ -19,5 +19,6 @@ namespace AnnisaCake.Web.Models
         public string nama_kue { get; set; }
         public int harga { get; set; }
         public int stok { get; set; }
+        public string id_gambar { get; set; }
     }
 }
