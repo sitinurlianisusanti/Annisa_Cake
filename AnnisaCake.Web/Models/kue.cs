@@ -25,6 +25,7 @@ namespace AnnisaCake.Web.Models
     
         public int id { get; set; }
         public string gambar { get; set; }
+        public string id_gambar { get; set; }
         public HttpPostedFileBase UploadFile { get; set; }
         public string nama_kue { get; set; }
         public int id_category { get; set; }

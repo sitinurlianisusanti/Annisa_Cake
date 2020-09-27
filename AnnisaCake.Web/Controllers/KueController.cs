@@ -36,7 +36,7 @@ namespace AnnisaCake.Web.Controllers
         }
 
         // GET: Kue/Create
-       
+
         public ActionResult CreateKue()
         {
             kue kue = new kue();
@@ -44,27 +44,32 @@ namespace AnnisaCake.Web.Controllers
             return View(kue);
         }
 
-    
+
         [HttpPost]
-        public ActionResult CreateKue(kue kue )
+        public ActionResult CreateKue(kue kue)
         {
             try
             {
                 // TODO: Add insert logic here
 
-               
+
                 string fileName = Path.GetFileNameWithoutExtension(kue.UploadFile.FileName);
                 string extension = Path.GetExtension(kue.UploadFile.FileName);
                 fileName = fileName + extension;
                 kue.gambar = "~/Content/picCake" + fileName;
-                fileName = Path.Combine(Server.MapPath("~/Content/picCake"), fileName);
-                kue.UploadFile.SaveAs(fileName);
-                if (ModelState.IsValid) 
+                string filePath = Path.Combine(Server.MapPath("~/Content/picCake"), fileName);
+                kue.id_gambar = Guid.NewGuid().ToString() + extension;
+                string newNameImage = Path.Combine(Server.MapPath("~/Content/picCake"), kue.id_gambar);
+                kue.UploadFile.SaveAs(filePath);
+                Directory.Move(filePath, newNameImage);
+
+                if (ModelState.IsValid)
                 {
-                    if (kue.UploadFile != null) 
+                    if (kue.UploadFile != null)
                     {
                         kue k = new kue();
                         k.gambar = kue.UploadFile.FileName;
+                        k.id_gambar = kue.id_gambar;
                         k.nama_kue = kue.nama_kue;
                         k.id_category = kue.id_category;
                         k.harga = kue.harga;
@@ -72,9 +77,9 @@ namespace AnnisaCake.Web.Controllers
                         si_kue.kues.Add(k);
                         si_kue.SaveChanges();
                         return RedirectToAction("Kue");
-                        
+
                     }
-                    
+
                 }
                 kue.Kategoris = si_kue.categories.ToList<category>();
 
@@ -90,18 +95,14 @@ namespace AnnisaCake.Web.Controllers
         public ActionResult EditKue(int? id)
         {
             //kue kue = new kue();
-           
-           
+
+
             if (id == null)
 
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             kue kue = si_kue.kues.Find(id);
             kue.Kategoris = si_kue.categories.ToList<category>();
-            ViewBag.pathImage = "../../Content/picCake/"+ kue.gambar;
-            //tes change git + dev
-            // add comment for dev 2
-            //buat crud
-            // this change by syamsul
+            ViewBag.pathImage = "../../Content/picCake/" + kue.id_gambar;
             if (kue == null)
                 return HttpNotFound();
             return View(kue);
@@ -109,33 +110,56 @@ namespace AnnisaCake.Web.Controllers
 
         // POST: Kue/Edit/5
         [HttpPost]
+        [Route("api/image")]
         public ActionResult EditKue(kue kue)
         {
-            //add crud alamat
             try
             {
-                if (kue.gambar != null) { 
-                
-                
+                string fileName;
+                string filePath;
+                string extension;
+                string newNameImage;
+                kue kue2 = si_kue.kues.Find(kue.id);
+
+                if (kue.UploadFile != null)
+                {
+                    fileName = Path.GetFileNameWithoutExtension(kue.UploadFile.FileName);
+                    extension = Path.GetExtension(kue.UploadFile.FileName);
+                    fileName = fileName + extension;
+                    kue.gambar = fileName;
+                    filePath = Path.Combine(Server.MapPath("~/Content/picCake"), fileName);
+
+                    string filePath2 = Path.Combine(Server.MapPath("~/Content/picCake"), string.IsNullOrEmpty(kue2.gambar) ? "" : kue2.gambar);
+                    if (System.IO.File.Exists(filePath2))
+                    {
+                        System.IO.File.Delete(filePath2);
+                    }
+                    kue.UploadFile.SaveAs(filePath);
+                    kue.id_gambar = Guid.NewGuid().ToString() + extension;
+                    newNameImage = Path.Combine(Server.MapPath("~/Content/picCake"), kue.id_gambar.ToString());
+                    Directory.Move(filePath, newNameImage);
                 }
-                string fileName = Path.GetFileNameWithoutExtension(kue.UploadFile.FileName);
-                string extension = Path.GetExtension(kue.UploadFile.FileName);
-                fileName = fileName + extension;
-                kue.gambar = "~/Content/picCake" + fileName;
-                fileName = Path.Combine(Server.MapPath("~/Content/picCake"), fileName);
-                kue.UploadFile.SaveAs(fileName);
+
+
                 if (ModelState.IsValid)
                 {
-                    si_kue.Entry(kue).State = EntityState.Modified;
+
+                    kue2.gambar = kue.UploadFile != null ? kue.UploadFile.FileName : kue2.gambar;
+                    kue2.id_gambar = kue.UploadFile != null ? kue.id_gambar : kue2.id_gambar;
+                    kue2.nama_kue = kue.nama_kue;
+                    kue2.id_category = kue.id_category;
+                    kue2.harga = kue.harga;
+                    kue2.stok = kue.stok;
+                    si_kue.Entry(kue2).State = EntityState.Modified;
                     si_kue.SaveChanges();
 
                     return RedirectToAction("Kue");
                 }
                 kue.Kategoris = si_kue.categories.ToList<category>();
-         
+
                 return View(kue);
             }
-            catch
+            catch (Exception ex)
             {
                 return View();
             }
@@ -153,6 +177,7 @@ namespace AnnisaCake.Web.Controllers
         {
             try
             {
+                // TODO: Add delete logic here
 
                 return RedirectToAction("Index");
             }
