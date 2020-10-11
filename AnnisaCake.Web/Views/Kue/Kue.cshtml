@@ -22,10 +22,8 @@
 <link href="~/Content/build/css/custom.min.css" rel="stylesheet">
 <style>
     .action {
-        width:30%
+        width: 30%
     }
-
-
 </style>
 
 <div class="row clearfix">
@@ -127,7 +125,10 @@
     <script src="~/Content/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
     <script src="~/Content/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
     <script src="~/Content/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-  
+
+    <!-- Custom Theme Scripts -->
+    <script src="~/Content/build/js/custom.min.js"></script>
+
 
 
     <script>
@@ -154,7 +155,7 @@
                  $('.bs-example-modal-sm').modal('hide');
                 alert("Error while deleting data");
              }
-            
+
 
             });
     });
@@ -177,7 +178,7 @@
                 <p>
                     Are you cure for deleted data ?
                 </p>
-                </div>
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-danger col-lg-3" id="btnContinueDelete"> Delete</button>
                 <button type="button" class="btn btn-primary col-lg-3 fc-corner-left" style="float: right;" data-dismiss="modal">Close</button>
