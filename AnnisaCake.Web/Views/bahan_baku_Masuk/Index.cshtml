@@ -4,54 +4,142 @@
     ViewBag.Title = "Index";
 }
 
+
+<!-- Bootstrap -->
+<link href="~/Content/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
+<!-- Font Awesome -->
+<link href="~/Content/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+<!-- NProgress -->
+<link href="~/Content/vendors/nprogress/nprogress.css" rel="stylesheet">
+<!-- iCheck -->
+<link href="~/Content/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+<!-- Datatables -->
+<link href="~/Content/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
+<link href="~/Content/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
+<link href="~/Content/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
+<link href="~/Content/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
+<link href="~/Content/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
+<!-- Custom Theme Style -->
+<link href="~/Content/build/css/custom.min.css" rel="stylesheet">
+<style>
+    .action {
+        width: 30%
+    }
+</style>
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.tgl_pembelian)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.bahan_baku)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.jumlah)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.satuan)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.harga)
-        </th>
-        <th></th>
-    </tr>
+<table id="datatable" class="table table-striped table-bordered dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable-buttons_info">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.tgl_pembelian)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.bahan_baku)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.jumlah)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.satuan)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.harga)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.tgl_pembelian)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.bahan_baku)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.jumlah)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.satuan)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.harga)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.id })
-        </td>
-    </tr>
-}
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.tgl_pembelian)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.bahan_baku)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.jumlah)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.satuan)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.harga)
+                </td>
+                <td>
+                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
+                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
+                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
+                </td>
+            </tr>
+
+        }
+    </tbody>
 
 </table>
+
+@section Scripts {
+
+
+    <!-- jQuery -->
+    <script src="~/Content/vendors/jquery/dist/jquery.min.js"></script>
+    <!-- Bootstrap -->
+    <script src="~/Content/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- FastClick -->
+    <script src="~/Content/vendors/fastclick/lib/fastclick.js"></script>
+    <!-- NProgress -->
+    <script src="~/Content/vendors/nprogress/nprogress.js"></script>
+    <!-- iCheck -->
+    <script src="~/Content/vendors/iCheck/icheck.min.js"></script>
+    <!-- Datatables -->
+    <script src="~/Content/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/Content/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+    <script src="~/Content/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+
+
+
+    <script>
+        function showPopUp(e) {
+            var id = e.value;
+            $('#item-to-delete').val(id);
+            $('.bs-example-modal-sm').modal('show');
+        }
+
+    $('#btnContinueDelete').click(function() {
+        var id = $('#item-to-delete').val();
+         $.ajax({
+            type: "POST",
+            url: '@Url.Action("Delete")',
+            data: JSON.stringify({ id: id }), //use id here
+            dataType: "json",
+            contentType: "application/json; charset=utf-8",
+            success: function () {
+                alert("Data has been deleted.");
+                $('.bs-example-modal-sm').modal('hide');
+                location.reload();
+            },
+             error: function () {
+                 $('.bs-example-modal-sm').modal('hide');
+                alert("Error while deleting data");
+             }
+
+
+            });
+    });
+    </script>
+}
