@@ -8,16 +8,25 @@
     <Property Name="username" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="pass" Type="varchar" MaxLength="50" Nullable="false" />
   </EntityType>
+  <EntityType Name="bahan_baku">
+    <Key>
+      <PropertyRef Name="id_bahan_baku" />
+    </Key>
+    <Property Name="id_bahan_baku" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nama_bahan_baku" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="satuan" Type="varchar" MaxLength="50" />
+    <Property Name="stok" Type="int" />
+  </EntityType>
   <EntityType Name="bahan_baku_keluar">
     <Key>
       <PropertyRef Name="id" />
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="tgl_keluar" Type="date" Nullable="false" />
-    <Property Name="id_bbmasuk" Type="int" Nullable="false" />
     <Property Name="jumlah" Type="int" Nullable="false" />
     <Property Name="satuan" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="deskripsi" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_bahan_baku" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="bahan_baku_Masuk">
     <Key>
@@ -25,7 +34,7 @@
     </Key>
     <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="tgl_pembelian" Type="date" Nullable="false" />
-    <Property Name="bahan_baku" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="id_bahan_baku" Type="int" Nullable="false" />
     <Property Name="jumlah" Type="int" Nullable="false" />
     <Property Name="satuan" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="harga" Type="int" Nullable="false" />
@@ -120,18 +129,6 @@
     <Property Name="id_toping" Type="char" MaxLength="10" Nullable="false" />
     <Property Name="harga" Type="bigint" Nullable="false" />
   </EntityType>
-  <Association Name="FK__bahan_bak__id_bb__2FCF1A8A">
-    <End Role="bahan_baku_Masuk" Type="Self.bahan_baku_Masuk" Multiplicity="1" />
-    <End Role="bahan_baku_keluar" Type="Self.bahan_baku_keluar" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="bahan_baku_Masuk">
-        <PropertyRef Name="id" />
-      </Principal>
-      <Dependent Role="bahan_baku_keluar">
-        <PropertyRef Name="id_bbmasuk" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK__kranjang__id_kue__52593CB8">
     <End Role="kue" Type="Self.kue" Multiplicity="1" />
     <End Role="kranjang" Type="Self.kranjang" Multiplicity="*" />
@@ -165,6 +162,30 @@
       </Principal>
       <Dependent Role="kue">
         <PropertyRef Name="id_category" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bahan_baku_keluar_bahan_baku">
+    <End Role="bahan_baku" Type="Self.bahan_baku" Multiplicity="1" />
+    <End Role="bahan_baku_keluar" Type="Self.bahan_baku_keluar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bahan_baku">
+        <PropertyRef Name="id_bahan_baku" />
+      </Principal>
+      <Dependent Role="bahan_baku_keluar">
+        <PropertyRef Name="id_bahan_baku" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bahan_baku_Masuk_bahan_baku">
+    <End Role="bahan_baku" Type="Self.bahan_baku" Multiplicity="1" />
+    <End Role="bahan_baku_Masuk" Type="Self.bahan_baku_Masuk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bahan_baku">
+        <PropertyRef Name="id_bahan_baku" />
+      </Principal>
+      <Dependent Role="bahan_baku_Masuk">
+        <PropertyRef Name="id_bahan_baku" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -233,6 +254,7 @@
   <Function Name="SP_SelectCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="SI_TKueModelStoreContainer">
     <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="bahan_baku" EntityType="Self.bahan_baku" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="bahan_baku_keluar" EntityType="Self.bahan_baku_keluar" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="bahan_baku_Masuk" EntityType="Self.bahan_baku_Masuk" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="category" EntityType="Self.category" Schema="dbo" store:Type="Tables" />
@@ -243,10 +265,6 @@
     <EntitySet Name="toping" EntityType="Self.toping" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="transaksi" EntityType="Self.transaksi" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ukuran_kue" EntityType="Self.ukuran_kue" Schema="dbo" store:Type="Tables" />
-    <AssociationSet Name="FK__bahan_bak__id_bb__2FCF1A8A" Association="Self.FK__bahan_bak__id_bb__2FCF1A8A">
-      <End Role="bahan_baku_Masuk" EntitySet="bahan_baku_Masuk" />
-      <End Role="bahan_baku_keluar" EntitySet="bahan_baku_keluar" />
-    </AssociationSet>
     <AssociationSet Name="FK__kranjang__id_kue__52593CB8" Association="Self.FK__kranjang__id_kue__52593CB8">
       <End Role="kue" EntitySet="kue" />
       <End Role="kranjang" EntitySet="kranjang" />
@@ -258,6 +276,14 @@
     <AssociationSet Name="FK__kue__id_category__534D60F1" Association="Self.FK__kue__id_category__534D60F1">
       <End Role="category" EntitySet="category" />
       <End Role="kue" EntitySet="kue" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bahan_baku_keluar_bahan_baku" Association="Self.FK_bahan_baku_keluar_bahan_baku">
+      <End Role="bahan_baku" EntitySet="bahan_baku" />
+      <End Role="bahan_baku_keluar" EntitySet="bahan_baku_keluar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bahan_baku_Masuk_bahan_baku" Association="Self.FK_bahan_baku_Masuk_bahan_baku">
+      <End Role="bahan_baku" EntitySet="bahan_baku" />
+      <End Role="bahan_baku_Masuk" EntitySet="bahan_baku_Masuk" />
     </AssociationSet>
     <AssociationSet Name="FK_pemesan" Association="Self.FK_pemesan">
       <End Role="pelanggan" EntitySet="pelanggan" />

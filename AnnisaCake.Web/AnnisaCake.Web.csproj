@@ -130,7 +130,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
-    <Compile Include="Controllers\BahanBaku_MasukController.cs" />
+    <Compile Include="Controllers\BahanBakuController.cs" />
     <Compile Include="Controllers\bahan_baku_MasukController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -139,6 +139,9 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\admin.cs">
+      <DependentUpon>SI_TKueEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\bahan_baku.cs">
       <DependentUpon>SI_TKueEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\bahan_baku_keluar.cs">
@@ -150,6 +153,7 @@
     <Compile Include="Models\category.cs">
       <DependentUpon>SI_TKueEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Column.cs" />
     <Compile Include="Models\GetCategory_Result.cs">
       <DependentUpon>SI_TKueEntities.tt</DependentUpon>
     </Compile>
@@ -194,6 +198,7 @@
     </Compile>
     <Compile Include="Models\ViewKue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Tools\Tools.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\.gitattributes" />
@@ -8291,15 +8296,15 @@
     <Content Include="Views\Kue\DetailsKue.cshtml" />
     <Content Include="Views\Kue\CreateKue.cshtml" />
     <Content Include="Views\Kue\EditKue.cshtml" />
-    <Content Include="Views\B_BakuMasuk\B_BakuMasuk.cshtml" />
     <Content Include="Views\bahan_baku_Masuk\Create.cshtml" />
     <Content Include="Views\bahan_baku_Masuk\Delete.cshtml" />
     <Content Include="Views\bahan_baku_Masuk\Details.cshtml" />
     <Content Include="Views\bahan_baku_Masuk\Edit.cshtml" />
     <Content Include="Views\bahan_baku_Masuk\Index.cshtml" />
     <Content Include="Views\bahan_baku_Masuk\bahan_baku_masuk.cshtml" />
-    <Content Include="Views\BahanBaku_Masuk\BahanBaku_Masuk.cshtml" />
-    <Content Include="Views\BahanBaku_Masuk\CreateBahanBaku_Masuk.cshtml" />
+    <Content Include="Views\BahanBaku\BahanBaku.cshtml" />
+    <Content Include="Views\BahanBaku\CreateBahanBaku.cshtml" />
+    <Content Include="Views\BahanBaku\EditBahanBaku.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

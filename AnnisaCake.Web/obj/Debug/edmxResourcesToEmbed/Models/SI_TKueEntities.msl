@@ -10,30 +10,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="bahan_baku_keluar">
-      <EntityTypeMapping TypeName="SI_TKueModel.bahan_baku_keluar">
-        <MappingFragment StoreEntitySet="bahan_baku_keluar">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="tgl_keluar" ColumnName="tgl_keluar" />
-          <ScalarProperty Name="id_bbmasuk" ColumnName="id_bbmasuk" />
-          <ScalarProperty Name="jumlah" ColumnName="jumlah" />
-          <ScalarProperty Name="satuan" ColumnName="satuan" />
-          <ScalarProperty Name="deskripsi" ColumnName="deskripsi" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="bahan_baku_Masuk">
-      <EntityTypeMapping TypeName="SI_TKueModel.bahan_baku_Masuk">
-        <MappingFragment StoreEntitySet="bahan_baku_Masuk">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="tgl_pembelian" ColumnName="tgl_pembelian" />
-          <ScalarProperty Name="bahan_baku" ColumnName="bahan_baku" />
-          <ScalarProperty Name="jumlah" ColumnName="jumlah" />
-          <ScalarProperty Name="satuan" ColumnName="satuan" />
-          <ScalarProperty Name="harga" ColumnName="harga" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="categories">
       <EntityTypeMapping TypeName="SI_TKueModel.category">
         <MappingFragment StoreEntitySet="category">
@@ -151,6 +127,40 @@
           <ScalarProperty Name="id_toping" ColumnName="id_toping" />
           <ScalarProperty Name="jenis_ukuran" ColumnName="jenis_ukuran" />
           <ScalarProperty Name="id_ukuran" ColumnName="id_ukuran" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bahan_baku">
+      <EntityTypeMapping TypeName="SI_TKueModel.bahan_baku">
+        <MappingFragment StoreEntitySet="bahan_baku">
+          <ScalarProperty Name="stok" ColumnName="stok" />
+          <ScalarProperty Name="satuan" ColumnName="satuan" />
+          <ScalarProperty Name="nama_bahan_baku" ColumnName="nama_bahan_baku" />
+          <ScalarProperty Name="id_bahan_baku" ColumnName="id_bahan_baku" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bahan_baku_Masuk">
+      <EntityTypeMapping TypeName="SI_TKueModel.bahan_baku_Masuk">
+        <MappingFragment StoreEntitySet="bahan_baku_Masuk">
+          <ScalarProperty Name="harga" ColumnName="harga" />
+          <ScalarProperty Name="satuan" ColumnName="satuan" />
+          <ScalarProperty Name="jumlah" ColumnName="jumlah" />
+          <ScalarProperty Name="id_bahan_baku" ColumnName="id_bahan_baku" />
+          <ScalarProperty Name="tgl_pembelian" ColumnName="tgl_pembelian" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bahan_baku_keluar">
+      <EntityTypeMapping TypeName="SI_TKueModel.bahan_baku_keluar">
+        <MappingFragment StoreEntitySet="bahan_baku_keluar">
+          <ScalarProperty Name="id_bahan_baku" ColumnName="id_bahan_baku" />
+          <ScalarProperty Name="deskripsi" ColumnName="deskripsi" />
+          <ScalarProperty Name="satuan" ColumnName="satuan" />
+          <ScalarProperty Name="jumlah" ColumnName="jumlah" />
+          <ScalarProperty Name="tgl_keluar" ColumnName="tgl_keluar" />
+          <ScalarProperty Name="id" ColumnName="id" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

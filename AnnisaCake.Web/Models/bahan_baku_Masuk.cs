@@ -14,20 +14,13 @@ namespace AnnisaCake.Web.Models
     
     public partial class bahan_baku_Masuk
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public bahan_baku_Masuk()
-        {
-            this.bahan_baku_keluar = new HashSet<bahan_baku_keluar>();
-        }
-    
         public int id { get; set; }
         public System.DateTime tgl_pembelian { get; set; }
-        public string bahan_baku { get; set; }
+        public int id_bahan_baku { get; set; }
         public int jumlah { get; set; }
         public string satuan { get; set; }
         public int harga { get; set; }
     
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<bahan_baku_keluar> bahan_baku_keluar { get; set; }
+        public virtual bahan_baku bahan_baku { get; set; }
     }
 }

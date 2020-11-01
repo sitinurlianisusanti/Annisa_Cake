@@ -6,13 +6,10 @@
     <edmx:Diagrams>
       <Diagram DiagramId="5d3b667ddf294bd9bdce673adc8e5201" Name="Diagram1">
         <EntityTypeShape EntityType="SI_TKueModel.admin" Width="1.5" PointX="6" PointY="0.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SI_TKueModel.bahan_baku_keluar" Width="1.5" PointX="9.5" PointY="0.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="SI_TKueModel.bahan_baku_Masuk" Width="1.5" PointX="7.75" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SI_TKueModel.category" Width="1.5" PointX="0.5" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SI_TKueModel.kranjang" Width="1.5" PointX="4.25" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SI_TKueModel.kue" Width="1.5" PointX="2.375" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="SI_TKueModel.pelanggan" Width="1.5" PointX="3" PointY="4" IsExpanded="true" />
-        <AssociationConnector Association="SI_TKueModel.FK__bahan_bak__id_bb__2FCF1A8A" ManuallyRouted="false" />
         <AssociationConnector Association="SI_TKueModel.FK__kue__id_category__534D60F1" ManuallyRouted="false" />
         <AssociationConnector Association="SI_TKueModel.FK__kranjang__id_kue__52593CB8" ManuallyRouted="false" />
         <AssociationConnector Association="SI_TKueModel.FK__kranjang__id_pel__5165187F" ManuallyRouted="false" />
@@ -25,6 +22,11 @@
         <AssociationConnector Association="SI_TKueModel.FK_pesanan_size" />
         <AssociationConnector Association="SI_TKueModel.FK_pesanan_toping" />
         <AssociationConnector Association="SI_TKueModel.FK_transaksi_pesanan" />
+        <EntityTypeShape EntityType="SI_TKueModel.bahan_baku" Width="1.5" PointX="1.125" PointY="8.75" />
+        <EntityTypeShape EntityType="SI_TKueModel.bahan_baku_Masuk" Width="1.5" PointX="3.375" PointY="12.5" />
+        <AssociationConnector Association="SI_TKueModel.FK_bahan_baku_Masuk_bahan_baku" />
+        <EntityTypeShape EntityType="SI_TKueModel.bahan_baku_keluar" Width="1.5" PointX="3.375" PointY="8.625" />
+        <AssociationConnector Association="SI_TKueModel.FK_bahan_baku_keluar_bahan_baku" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

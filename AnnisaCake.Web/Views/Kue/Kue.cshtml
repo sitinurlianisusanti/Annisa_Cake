@@ -4,28 +4,10 @@
     ViewBag.Title = "Kue";
 }
 
-<!-- Bootstrap -->
-<link href="~/Content/vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
-<!-- Font Awesome -->
-<link href="~/Content/vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-<!-- NProgress -->
-<link href="~/Content/vendors/nprogress/nprogress.css" rel="stylesheet">
-<!-- iCheck -->
-<link href="~/Content/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
-<!-- Datatables -->
-<link href="~/Content/vendors/datatables.net-bs/css/dataTables.bootstrap.min.css" rel="stylesheet">
-<link href="~/Content/vendors/datatables.net-buttons-bs/css/buttons.bootstrap.min.css" rel="stylesheet">
-<link href="~/Content/vendors/datatables.net-fixedheader-bs/css/fixedHeader.bootstrap.min.css" rel="stylesheet">
-<link href="~/Content/vendors/datatables.net-responsive-bs/css/responsive.bootstrap.min.css" rel="stylesheet">
-<link href="~/Content/vendors/datatables.net-scroller-bs/css/scroller.bootstrap.min.css" rel="stylesheet">
-<!-- Custom Theme Style -->
-<link href="~/Content/build/css/custom.min.css" rel="stylesheet">
 <style>
     .action {
-        width:30%
+        width: 30%
     }
-
-
 </style>
 
 <div class="row clearfix">
@@ -102,34 +84,6 @@
 
 
 @section Scripts {
-
-
-    <!-- jQuery -->
-    <script src="~/Content/vendors/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="~/Content/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="~/Content/vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="~/Content/vendors/nprogress/nprogress.js"></script>
-    <!-- iCheck -->
-    <script src="~/Content/vendors/iCheck/icheck.min.js"></script>
-    <!-- Datatables -->
-    <script src="~/Content/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script src="~/Content/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-  
-
-
     <script>
         function showPopUp(e) {
             var id = e.value;
@@ -145,16 +99,14 @@
             data: JSON.stringify({ id: id }), //use id here
             dataType: "json",
             contentType: "application/json; charset=utf-8",
-            success: function () {
+             success: function () {
                 alert("Data has been deleted.");
-                $('.bs-example-modal-sm').modal('hide');
                 location.reload();
             },
              error: function () {
-                 $('.bs-example-modal-sm').modal('hide');
                 alert("Error while deleting data");
              }
-            
+
 
             });
     });
@@ -177,9 +129,9 @@
                 <p>
                     Are you cure for deleted data ?
                 </p>
-                </div>
+            </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-danger col-lg-3" id="btnContinueDelete"> Delete</button>
+                <button type="button" class="btn btn-danger col-lg-3" id="btnContinueDelete" data-dismiss="modal"> Delete</button>
                 <button type="button" class="btn btn-primary col-lg-3 fc-corner-left" style="float: right;" data-dismiss="modal">Close</button>
             </div>
 

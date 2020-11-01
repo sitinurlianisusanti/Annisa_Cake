@@ -7,10 +7,10 @@
 <h2>Create</h2>
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         <h4>bahan_baku_Masuk</h4>
         <hr />
@@ -18,16 +18,19 @@
         <div class="form-group">
             @Html.LabelFor(model => model.tgl_pembelian, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.tgl_pembelian, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.tgl_pembelian, new { htmlAttributes = new { @class = "form-control", @type = "date" } })
                 @Html.ValidationMessageFor(model => model.tgl_pembelian, "", new { @class = "text-danger" })
             </div>
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.bahan_baku, htmlAttributes: new { @class = "control-label col-md-2" })
+            @Html.LabelFor(model => model.id_bahan_baku, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.bahan_baku, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.bahan_baku, "", new { @class = "text-danger" })
+                 @Html.DropDownListFor(model => model.id_bahan_baku,
+                    new SelectList(ViewBag.bahanBaku, "id_bahan_baku", "nama_bahan_baku"),
+                    "Select Bahan Baku",
+                    new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_bahan_baku, "", new { @class = "text-danger" })
             </div>
         </div>
 
@@ -42,7 +45,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.satuan, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.satuan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.satuan, new { htmlAttributes = new { @class = "form-control disable", @readonly = true } })
                 @Html.ValidationMessageFor(model => model.satuan, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -68,5 +71,26 @@
 </div>
 
 @section Scripts {
-    @Scripts.Render("~/bundles/jqueryval")
+    <script>
+        
+        $("#id_bahan_baku").change(function () {
+            var id = this.value;
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetSatuan")',
+                data: { idBahanBaku:id }, //use id here
+                dataType: "json",
+                success: function (x) {
+                    $("#satuan").val(x.satuan);
+                },
+                error: function (x) {
+                    console.log("Some thin error")
+                 }
+
+            });
+        });
+        
+
+
+    </script>
 }

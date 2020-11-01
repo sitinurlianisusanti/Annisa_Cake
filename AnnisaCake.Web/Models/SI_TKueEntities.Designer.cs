@@ -1,4 +1,4 @@
-﻿// T4 code generation is enabled for model 'E:\siti ns\RepoAnnisa_Cake\Annisa_Cake\AnnisaCake.Web\Models\SI_TKueEntities.edmx'. 
+﻿// T4 code generation is enabled for model 'C:\Ta siti\Annisa_Cake\AnnisaCake.Web\Models\SI_TKueEntities.edmx'. 
 // To enable legacy code generation, change the value of the 'Code Generation Strategy' designer
 // property to 'Legacy ObjectContext'. This property is available in the Properties Window when the model
 // is open in the designer.

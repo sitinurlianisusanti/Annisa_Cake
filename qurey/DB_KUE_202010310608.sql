@@ -1,0 +1,1 @@
+alter table kue add id_gambar varchar(50)

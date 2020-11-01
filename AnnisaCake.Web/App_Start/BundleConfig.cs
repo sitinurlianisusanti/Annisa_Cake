@@ -7,7 +7,40 @@ namespace AnnisaCake.Web
     {
         // For more information on bundling, visit https://go.microsoft.com/fwlink/?LinkId=301862
         public static void RegisterBundles(BundleCollection bundles)
-        {
+        { 
+            ////< !--Bootstrap-- >
+            //bundles.Add(new ScriptBundle("~/Content/css/").Include(
+            //    "~/Content/vendors/bootstrap/dist/css/bootstrap*"));
+            ////   < !--Font Awesome-- >
+            //bundles.Add(new ScriptBundle("~/Content/css/").Include(
+            //   "~/Content/vendors/font-awesome/css/font-awesome.min.css"));
+            ////      < !--NProgress-- >
+
+            //bundles.Add(new ScriptBundle("~/Content/css/").Include(
+            //               "~/Content/vendors/nprogress/nprogress.css"));
+            ////         < !--iCheck-- >
+
+            //bundles.Add(new ScriptBundle("~/Content/css/").Include(
+            //               "~/Content/vendors/iCheck/skins/flat/green.css"));
+            ////            < !--bootstrap - progressbar-- >
+
+            //bundles.Add(new ScriptBundle("~/Content/css/").Include(
+            //               "~/Content/vendors/bootstrap-progressbar/css/bootstrap-*"));
+            ////               < !--JQVMap-- >
+
+            //bundles.Add(new ScriptBundle("~/Content/css/").Include(
+            //               "~/Content/vendors/jqvmap/dist/jqvmap.min.css"));
+            ////                  < !--bootstrap - daterangepicker-- >
+
+            //bundles.Add(new ScriptBundle("~/Content/css/").Include(
+            //               "~/Content/vendors/bootstrap-daterangepicker/daterangepicker.css"));
+
+            ////                     < !--Custom Theme Style -->
+
+            //bundles.Add(new ScriptBundle("~/Content/css/").Include(
+            //               "~/Content/build/css/custom.min.css"));
+
+            // default
             bundles.Add(new ScriptBundle("~/bundles/jquery").Include(
                         "~/Scripts/jquery-{version}.js"));
 

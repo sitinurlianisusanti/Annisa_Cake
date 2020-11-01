@@ -31,115 +31,134 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table id="datatable" class="table table-striped table-bordered dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable-buttons_info">
+@Html.Hidden("item-to-delete", "", new { @id = "item-to-delete" })
+<table id="datatable2" class="table table-striped table-bordered dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable-buttons_info">
     <thead>
         <tr>
             <th>
-                @Html.DisplayNameFor(model => model.tgl_pembelian)
+                Tanggal Pembelian
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.bahan_baku)
+                Bahan Baku
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.jumlah)
+                Jumlah
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.satuan)
+                Satuan
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.harga)
+                Harga
             </th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>
-                    @Html.DisplayFor(modelItem => item.tgl_pembelian)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.bahan_baku)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.jumlah)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.satuan)
-                </td>
-                <td>
-                    @Html.DisplayFor(modelItem => item.harga)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.id }) |
-                    @Html.ActionLink("Details", "Details", new { id = item.id }) |
-                    @Html.ActionLink("Delete", "Delete", new { id = item.id })
-                </td>
-            </tr>
-
-        }
+        <tr></tr>
     </tbody>
-
 </table>
 
 @section Scripts {
 
-
-    <!-- jQuery -->
-    <script src="~/Content/vendors/jquery/dist/jquery.min.js"></script>
-    <!-- Bootstrap -->
-    <script src="~/Content/vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-    <!-- FastClick -->
-    <script src="~/Content/vendors/fastclick/lib/fastclick.js"></script>
-    <!-- NProgress -->
-    <script src="~/Content/vendors/nprogress/nprogress.js"></script>
-    <!-- iCheck -->
-    <script src="~/Content/vendors/iCheck/icheck.min.js"></script>
-    <!-- Datatables -->
-    <script src="~/Content/vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-    <script src="~/Content/vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-    <script src="~/Content/vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-
-
-
+    <script>
+        var table;
+        $(document).ready(function () {
+            table=$('#datatable2').DataTable({
+                ajax: {
+                    type: "GET",
+                    url: '@Url.Action("Index", new { methode = '2' })',
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8"
+                },
+                columns: [
+                    { "data": "tgl_pembelian", "autoWidth": true },
+                    { "data": "nama_bahan_baku", "autoWidth": true },
+                    { "data": "jumlah", "autoWidth": true },
+                    { "data": "satuan", "autoWidth": true },
+                    { "data": "harga", "autoWidth": true },
+                    {
+                        "data": "id", "autoWidth": true, "render": function (data) {
+                            return '<a class="btn btn-primary action" id=' + data + ' href="Edit?id='+data+'" >Edit</a>' +
+                                '<a class="delete_kue btn btn-danger action" id=' + data + '" onclick="showPopUp(this)">Delete</a>';
+                        }
+                    },
+                ]
+            })
+        })
+    </script>
     <script>
         function showPopUp(e) {
-            var id = e.value;
+            var id = e.id;
+            debugger
             $('#item-to-delete').val(id);
             $('.bs-example-modal-sm').modal('show');
         }
 
-    $('#btnContinueDelete').click(function() {
-        var id = $('#item-to-delete').val();
+        $('#btnContinueDelete').click(function () {
+            var id = parseInt( $('#item-to-delete').val());
+        debugger
          $.ajax({
             type: "POST",
             url: '@Url.Action("Delete")',
             data: JSON.stringify({ id: id }), //use id here
             dataType: "json",
             contentType: "application/json; charset=utf-8",
-            success: function () {
-                alert("Data has been deleted.");
-                $('.bs-example-modal-sm').modal('hide');
-                location.reload();
+
+             success: function () {
+                 table.ajax.reload();
+                 NotifSucces();
             },
              error: function () {
-                 $('.bs-example-modal-sm').modal('hide');
                 alert("Error while deleting data");
              }
 
 
             });
-    });
+     });
+
+        function NotifSucces() {
+            new PNotify({
+                title: 'Success',
+                text: 'Data has been deleted!',
+                type: 'success',
+                //notif non block
+                //nonblock: {
+                //    nonblock: true
+                //},
+                delay:'2000',
+                styling: 'bootstrap3'
+            });
+        }
     </script>
+
 }
+<div class="custom-notifications dsp_none">
+    <ul class="list-unstyled notifications clearfix" data-tabbed_notifications="notif-group"></ul>
+    <div class="clearfix"></div>
+    <div id="notif-group" class="tabbed_notifications"></div>
+</div>
+
+<div class="modal fade bs-example-modal-sm" tabindex="-1" role="dialog" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">×</span>
+                </button>
+                <h4 class="modal-title" id="myModalLabel2">Deleted Data </h4>
+            </div>
+            <div class="modal-body">
+                <p>
+                    Are you cure for deleted data ?
+                </p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-danger col-lg-3" id="btnContinueDelete" data-dismiss="modal"> Delete</button>
+                <button type="button" class="btn btn-primary col-lg-3 fc-corner-left" style="float: right;" data-dismiss="modal">Close</button>
+            </div>
+
+        </div>
+    </div>
+</div>
+

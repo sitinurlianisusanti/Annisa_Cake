@@ -16,11 +16,11 @@ namespace AnnisaCake.Web.Models
     {
         public int id { get; set; }
         public System.DateTime tgl_keluar { get; set; }
-        public int id_bbmasuk { get; set; }
         public int jumlah { get; set; }
         public string satuan { get; set; }
         public string deskripsi { get; set; }
+        public int id_bahan_baku { get; set; }
     
-        public virtual bahan_baku_Masuk bahan_baku_Masuk { get; set; }
+        public virtual bahan_baku bahan_baku { get; set; }
     }
 }
