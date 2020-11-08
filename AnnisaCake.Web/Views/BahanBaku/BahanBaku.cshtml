@@ -17,21 +17,21 @@
 <p>
     @Html.ActionLink("Create New", "CreateBahanBaku")
 </p>
-
-@Html.Hidden("item-to-delete", "", new { @id = "item-to-delete" })
 <div class="body">
     <div class="table-responsive">
-        <table id="datatable" class="table table-striped table-bordered dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable-buttons_info">
+        <table id="datatable2" class="table table-striped table-bordered dataTable no-footer dtr-inline" role="grid" aria-describedby="datatable-buttons_info">
             <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.nama_bahan_baku)
+                <tr><th>
+                        ID
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.satuan)
+                        Nama Bahan Baku
                     </th>
                     <th>
-                        @Html.DisplayNameFor(model => model.stok)
+                        Satuan
+                    </th>
+                    <th>
+                        Stok
                     </th>
                     <th>
 
@@ -39,28 +39,7 @@
                 </tr>
             </thead>
             <tbody>
-
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.nama_bahan_baku)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.satuan)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.stok)
-                        </td>
-                        <td class="col-lg-2">
-                            <center>
-                                @Html.ActionLink("Edit", "EditBahanBaku", new { idBahanBaku = item.id_bahan_baku }, new { @class = "btn btn-primary action " })
-                                @*@Html.ActionLink("Detail", "DetailsKue", new { id = item.id }, new { @class = "btn btn-primary action " })*@
-                                <button type="button" class="delete_kue btn btn-danger action" onclick="showPopUp(this)" value="@item.id_bahan_baku">Delete</button>
-                            </center>
-                        </td>
-                    </tr>
-                }
+                <tr></tr>
             </tbody>
 
         </table>
@@ -71,29 +50,57 @@
 @Html.Hidden("item-to-delete", "", new { @id = "item-to-delete" })
 @section Scripts {
     <script>
+        var table;
+        $(document).ready(function () {
+            table=$('#datatable2').DataTable({
+                ajax: {
+                    type: "GET",
+                    url: '@Url.Action("BahanBaku", new { methode = '2' })',
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8"
+                },
+                columns: [
+                    { "data": "id_bahan_baku", "autoWidth": true },
+                    { "data": "nama_bahan_baku", "autoWidth": true },
+                    { "data": "satuan", "autoWidth": true },
+                    { "data": "stok", "autoWidth": true },
+                    {
+                        "data": "id_bahan_baku", "autoWidth": true, "render": function (data) {
+                            return '<a class="btn btn-primary action" id=' + data + ' href="EditBahanBaku?idBahanBaku='+parseInt(data)+'" >Edit</a>' +
+                                '<a class="delete_kue btn btn-danger action" id=' + data + '" onclick="showPopUp(this)">Delete</a>';
+                        }
+                    },
+                ]
+            })
+        })
+    </script>
+    <script>
         function showPopUp(e) {
-            var id = e.value;
+            var id = e.id;
             $('#item-to-delete').val(id);
             $('.bs-example-modal-sm').modal('show');
         }
 
     $('#btnContinueDelete').click(function() {
-        var id = $('#item-to-delete').val();
-        debugger
+        var id = parseInt($('#item-to-delete').val());
          $.ajax({
             type: "POST",
             url: '@Url.Action("DeleteBahanBaku")',
             data: JSON.stringify({ idBahanBaku: id }), //use id here
             dataType: "json",
             contentType: "application/json; charset=utf-8",
-             success: function () {
-                $('.bs-example-modal-sm').modal('hide');
-                alert("Data has been deleted.");
-                location.reload();
+             success: function (respons) {
+                 if (respons.message == "succes") {
+                     table.ajax.reload();
+                     NotifSucces();
+                 }
+                 else {
+                     $('.bs-example-modal-sm').modal('hide');
+                     NotifFiled()
+                 }
             },
              error: function () {
-                 $('.bs-example-modal-sm').modal('hide');
-                alert("Error while deleting data");
+                 NotifFiled();
              }
 
 

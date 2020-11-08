@@ -12,8 +12,20 @@ namespace AnnisaCake.Web.Controllers
     {
         private SI_TKueEntities db = new SI_TKueEntities();
         // GET: BahanBaku
-        public ActionResult BahanBaku()
+        public ActionResult BahanBaku(int ?methode)
         {
+            if(methode !=null && methode == 2)
+            {
+                var data = db.bahan_baku.ToList();
+                var data2 = data.Select(x => new
+                {
+                    id_bahan_baku = x.id_bahan_baku,
+                    nama_bahan_baku = x.nama_bahan_baku,
+                    satuan = x.satuan,
+                    stok = x.stok
+                });
+                return Json(new { data = data2 }, JsonRequestBehavior.AllowGet);
+            }
             return View(db.bahan_baku.ToList());
         }
        
@@ -41,7 +53,8 @@ namespace AnnisaCake.Web.Controllers
                     // TODO: Add insert logic here
                     bahanBaku.stok = 0;
                     db.Entry(bahanBaku).State = EntityState.Added;
-                    db.bahan_baku.Add(bahanBaku);
+
+                db.bahan_baku.Add(bahanBaku);
                     db.SaveChanges();
                     return RedirectToAction("BahanBaku");
                 }

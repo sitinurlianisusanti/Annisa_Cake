@@ -11,24 +11,27 @@ namespace AnnisaCake.Web.Models
 {
     using System;
     using System.Collections.Generic;
-    
+    using System.ComponentModel.DataAnnotations;
+
     public partial class bahan_baku
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public bahan_baku()
         {
-            this.bahan_baku_Masuk = new HashSet<bahan_baku_Masuk>();
             this.bahan_baku_keluar = new HashSet<bahan_baku_keluar>();
+            this.bahan_baku_Masuk = new HashSet<bahan_baku_Masuk>();
         }
     
         public int id_bahan_baku { get; set; }
+        [Required(ErrorMessage = "Nama bahan baku harus di isi")]
         public string nama_bahan_baku { get; set; }
+        [Required(ErrorMessage = "Satuan harus di isi")]
         public string satuan { get; set; }
         public Nullable<int> stok { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<bahan_baku_Masuk> bahan_baku_Masuk { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<bahan_baku_keluar> bahan_baku_keluar { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<bahan_baku_Masuk> bahan_baku_Masuk { get; set; }
     }
 }

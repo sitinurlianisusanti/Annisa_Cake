@@ -37,8 +37,8 @@ namespace AnnisaCake.Web.Models
         public virtual DbSet<transaksi> transaksis { get; set; }
         public virtual DbSet<ukuran_kue> ukuran_kue { get; set; }
         public virtual DbSet<bahan_baku> bahan_baku { get; set; }
-        public virtual DbSet<bahan_baku_Masuk> bahan_baku_Masuk { get; set; }
         public virtual DbSet<bahan_baku_keluar> bahan_baku_keluar { get; set; }
+        public virtual DbSet<bahan_baku_Masuk> bahan_baku_Masuk { get; set; }
     
         public virtual ObjectResult<GetCategory_Result> GetCategory()
         {

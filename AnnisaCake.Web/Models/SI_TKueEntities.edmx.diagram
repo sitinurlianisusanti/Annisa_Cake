@@ -22,12 +22,12 @@
         <AssociationConnector Association="SI_TKueModel.FK_pesanan_size" />
         <AssociationConnector Association="SI_TKueModel.FK_pesanan_toping" />
         <AssociationConnector Association="SI_TKueModel.FK_transaksi_pesanan" />
-        <EntityTypeShape EntityType="SI_TKueModel.bahan_baku" Width="1.5" PointX="1.125" PointY="8.75" />
-        <EntityTypeShape EntityType="SI_TKueModel.bahan_baku_Masuk" Width="1.5" PointX="3.375" PointY="12.5" />
-        <AssociationConnector Association="SI_TKueModel.FK_bahan_baku_Masuk_bahan_baku" />
-        <EntityTypeShape EntityType="SI_TKueModel.bahan_baku_keluar" Width="1.5" PointX="3.375" PointY="8.625" />
+        <EntityTypeShape EntityType="SI_TKueModel.bahan_baku" Width="1.5" PointX="0.75" PointY="10.75" />
+        <EntityTypeShape EntityType="SI_TKueModel.bahan_baku_keluar" Width="1.5" PointX="3" PointY="12.25" />
+        <EntityTypeShape EntityType="SI_TKueModel.bahan_baku_Masuk" Width="1.5" PointX="3" PointY="9.125" />
         <AssociationConnector Association="SI_TKueModel.FK_bahan_baku_keluar_bahan_baku" />
-      </Diagram>
+        <AssociationConnector Association="SI_TKueModel.FK_bahan_baku_Masuk_bahan_baku" />
+        </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
 </edmx:Edmx>

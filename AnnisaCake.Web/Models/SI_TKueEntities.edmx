@@ -18,7 +18,7 @@
             <PropertyRef Name="id_bahan_baku" />
           </Key>
           <Property Name="id_bahan_baku" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="nama_bahan_baku" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="nama_bahan_baku" Type="nvarchar(max)" />
           <Property Name="satuan" Type="varchar" MaxLength="50" />
           <Property Name="stok" Type="int" />
         </EntityType>
@@ -28,10 +28,10 @@
           </Key>
           <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="tgl_keluar" Type="date" Nullable="false" />
+          <Property Name="id_bahan_baku" Type="int" Nullable="false" />
           <Property Name="jumlah" Type="int" Nullable="false" />
           <Property Name="satuan" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="deskripsi" Type="varchar" MaxLength="50" Nullable="false" />
-          <Property Name="id_bahan_baku" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="bahan_baku_Masuk">
           <Key>
@@ -461,17 +461,17 @@
             <End Role="transaksi" EntitySet="transaksis" />
           </AssociationSet>
           <EntitySet Name="bahan_baku" EntityType="SI_TKueModel.bahan_baku" />
-          <EntitySet Name="bahan_baku_Masuk" EntityType="SI_TKueModel.bahan_baku_Masuk" />
-          <AssociationSet Name="FK_bahan_baku_Masuk_bahan_baku" Association="SI_TKueModel.FK_bahan_baku_Masuk_bahan_baku">
-            <End Role="bahan_baku" EntitySet="bahan_baku" />
-            <End Role="bahan_baku_Masuk" EntitySet="bahan_baku_Masuk" />
-          </AssociationSet>
           <EntitySet Name="bahan_baku_keluar" EntityType="SI_TKueModel.bahan_baku_keluar" />
+          <EntitySet Name="bahan_baku_Masuk" EntityType="SI_TKueModel.bahan_baku_Masuk" />
           <AssociationSet Name="FK_bahan_baku_keluar_bahan_baku" Association="SI_TKueModel.FK_bahan_baku_keluar_bahan_baku">
             <End Role="bahan_baku" EntitySet="bahan_baku" />
             <End Role="bahan_baku_keluar" EntitySet="bahan_baku_keluar" />
           </AssociationSet>
-        </EntityContainer>
+          <AssociationSet Name="FK_bahan_baku_Masuk_bahan_baku" Association="SI_TKueModel.FK_bahan_baku_Masuk_bahan_baku">
+            <End Role="bahan_baku" EntitySet="bahan_baku" />
+            <End Role="bahan_baku_Masuk" EntitySet="bahan_baku_Masuk" />
+          </AssociationSet>
+          </EntityContainer>
         <ComplexType Name="GetCategory_Result">
           <Property Type="Int32" Name="id" Nullable="false" />
           <Property Type="String" Name="nama_kategori" Nullable="false" MaxLength="50" />
@@ -600,11 +600,23 @@
             <PropertyRef Name="id_bahan_baku" />
           </Key>
           <Property Name="id_bahan_baku" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="nama_bahan_baku" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="nama_bahan_baku" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
           <Property Name="satuan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Name="stok" Type="Int32" />
-          <NavigationProperty Name="bahan_baku_Masuk" Relationship="SI_TKueModel.FK_bahan_baku_Masuk_bahan_baku" FromRole="bahan_baku" ToRole="bahan_baku_Masuk" />
           <NavigationProperty Name="bahan_baku_keluar" Relationship="SI_TKueModel.FK_bahan_baku_keluar_bahan_baku" FromRole="bahan_baku" ToRole="bahan_baku_keluar" />
+          <NavigationProperty Name="bahan_baku_Masuk" Relationship="SI_TKueModel.FK_bahan_baku_Masuk_bahan_baku" FromRole="bahan_baku" ToRole="bahan_baku_Masuk" />
+        </EntityType>
+        <EntityType Name="bahan_baku_keluar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="tgl_keluar" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="id_bahan_baku" Type="Int32" Nullable="false" />
+          <Property Name="jumlah" Type="Int32" Nullable="false" />
+          <Property Name="satuan" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="deskripsi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="bahan_baku" Relationship="SI_TKueModel.FK_bahan_baku_keluar_bahan_baku" FromRole="bahan_baku_keluar" ToRole="bahan_baku" />
         </EntityType>
         <EntityType Name="bahan_baku_Masuk">
           <Key>
@@ -618,30 +630,6 @@
           <Property Name="harga" Type="Int32" Nullable="false" />
           <NavigationProperty Name="bahan_baku" Relationship="SI_TKueModel.FK_bahan_baku_Masuk_bahan_baku" FromRole="bahan_baku_Masuk" ToRole="bahan_baku" />
         </EntityType>
-        <Association Name="FK_bahan_baku_Masuk_bahan_baku">
-          <End Type="SI_TKueModel.bahan_baku" Role="bahan_baku" Multiplicity="1" />
-          <End Type="SI_TKueModel.bahan_baku_Masuk" Role="bahan_baku_Masuk" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="bahan_baku">
-              <PropertyRef Name="id_bahan_baku" />
-            </Principal>
-            <Dependent Role="bahan_baku_Masuk">
-              <PropertyRef Name="id_bahan_baku" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <EntityType Name="bahan_baku_keluar">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="tgl_keluar" Type="DateTime" Nullable="false" Precision="0" />
-          <Property Name="jumlah" Type="Int32" Nullable="false" />
-          <Property Name="satuan" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="deskripsi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Name="id_bahan_baku" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="bahan_baku" Relationship="SI_TKueModel.FK_bahan_baku_keluar_bahan_baku" FromRole="bahan_baku_keluar" ToRole="bahan_baku" />
-        </EntityType>
         <Association Name="FK_bahan_baku_keluar_bahan_baku">
           <End Type="SI_TKueModel.bahan_baku" Role="bahan_baku" Multiplicity="1" />
           <End Type="SI_TKueModel.bahan_baku_keluar" Role="bahan_baku_keluar" Multiplicity="*" />
@@ -654,7 +642,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        <Association Name="FK_bahan_baku_Masuk_bahan_baku">
+          <End Type="SI_TKueModel.bahan_baku" Role="bahan_baku" Multiplicity="1" />
+          <End Type="SI_TKueModel.bahan_baku_Masuk" Role="bahan_baku_Masuk" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="bahan_baku">
+              <PropertyRef Name="id_bahan_baku" />
+            </Principal>
+            <Dependent Role="bahan_baku_Masuk">
+              <PropertyRef Name="id_bahan_baku" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -799,6 +799,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="bahan_baku_keluar">
+            <EntityTypeMapping TypeName="SI_TKueModel.bahan_baku_keluar">
+              <MappingFragment StoreEntitySet="bahan_baku_keluar">
+                <ScalarProperty Name="deskripsi" ColumnName="deskripsi" />
+                <ScalarProperty Name="satuan" ColumnName="satuan" />
+                <ScalarProperty Name="jumlah" ColumnName="jumlah" />
+                <ScalarProperty Name="id_bahan_baku" ColumnName="id_bahan_baku" />
+                <ScalarProperty Name="tgl_keluar" ColumnName="tgl_keluar" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="bahan_baku_Masuk">
             <EntityTypeMapping TypeName="SI_TKueModel.bahan_baku_Masuk">
               <MappingFragment StoreEntitySet="bahan_baku_Masuk">
@@ -811,19 +823,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="bahan_baku_keluar">
-            <EntityTypeMapping TypeName="SI_TKueModel.bahan_baku_keluar">
-              <MappingFragment StoreEntitySet="bahan_baku_keluar">
-                <ScalarProperty Name="id_bahan_baku" ColumnName="id_bahan_baku" />
-                <ScalarProperty Name="deskripsi" ColumnName="deskripsi" />
-                <ScalarProperty Name="satuan" ColumnName="satuan" />
-                <ScalarProperty Name="jumlah" ColumnName="jumlah" />
-                <ScalarProperty Name="tgl_keluar" ColumnName="tgl_keluar" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-        </EntityContainerMapping>
+          </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
   </edmx:Runtime>

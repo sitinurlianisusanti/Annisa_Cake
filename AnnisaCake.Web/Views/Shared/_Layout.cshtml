@@ -306,6 +306,30 @@
 
     <!-- Custom Theme Scripts -->
     <script src="~/Content/build/js/custom.min.js"></script>
+    <script>
+        function NotifSucces() {
+            new PNotify({
+                title: 'Success',
+                text: 'Data has been deleted',
+                type: 'success',
+                //notif non block
+                //nonblock: {
+                //    nonblock: true
+                //},
+                delay: '2000',
+                styling: 'bootstrap3'
+            });
+        }
+            function NotifFiled() {
+                new PNotify({
+                    title: 'Filed',
+                    text: 'Some thing wrong',
+                    type: 'error',
+                    delay: '2000',
+                    styling: 'bootstrap3'
+                });
+            }
+    </script>
 
     <script src="~/Content/vendors/pnotify/dist/pnotify.js"></script>
     <script src="~/Content/vendors/pnotify/dist/pnotify.buttons.js"></script>

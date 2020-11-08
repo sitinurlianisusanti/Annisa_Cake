@@ -1840,7 +1840,7 @@ if (typeof NProgress != 'undefined') {
 		function init_PNotify() {
 			
 			if( typeof (PNotify) === 'undefined'){ return; }
-			console.log('init_PNotify');
+			//console.log('init_PNotify');
 			
 			//new PNotify({
 			//  title: "PNotify",

@@ -89,30 +89,31 @@
     <script>
         function showPopUp(e) {
             var id = e.id;
-            debugger
             $('#item-to-delete').val(id);
             $('.bs-example-modal-sm').modal('show');
         }
 
         $('#btnContinueDelete').click(function () {
             var id = parseInt( $('#item-to-delete').val());
-        debugger
          $.ajax({
             type: "POST",
             url: '@Url.Action("Delete")',
             data: JSON.stringify({ id: id }), //use id here
             dataType: "json",
             contentType: "application/json; charset=utf-8",
-
-             success: function () {
-                 table.ajax.reload();
-                 NotifSucces();
-            },
-             error: function () {
-                alert("Error while deleting data");
+            success: function (respons) {
+                 if (respons.message == "succes") {
+                     table.ajax.reload();
+                     NotifSucces();
+                 }
+                 else {
+                     $('.bs-example-modal-sm').modal('hide');
+                     NotifFiled()
+                 }
+             },
+            error: function () {
+                 NotifFiled();
              }
-
-
             });
      });
 

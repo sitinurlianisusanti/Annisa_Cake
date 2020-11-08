@@ -66,9 +66,9 @@ namespace AnnisaCake.Web.Controllers
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "id,tgl_pembelian,id_bahan_baku,jumlah,satuan,harga")] bahan_baku_Masuk bahan_baku_Masuk)
+        public ActionResult Create(bahan_baku_Masuk bahan_baku_Masuk)
         {
+            ViewBag.bahanBaku = db.bahan_baku.ToList();
             try
             {
                 if (ModelState.IsValid)
@@ -90,15 +90,16 @@ namespace AnnisaCake.Web.Controllers
             }
             catch (Exception x)
             {
-                return View(bahan_baku_Masuk);
+                return View();
 
             }
-            return View(bahan_baku_Masuk);
+            return View();
         }
 
         // GET: bahan_baku_Masuk/Edit/5
         public ActionResult Edit(int? id)
         {
+            ViewBag.bahanBaku = db.bahan_baku.ToList();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -116,15 +117,32 @@ namespace AnnisaCake.Web.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "id,tgl_pembelian,bahan_baku,jumlah,satuan,harga")] bahan_baku_Masuk bahan_baku_Masuk)
+        public ActionResult Edit(bahan_baku_Masuk bahanBakuMasukParam)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(bahan_baku_Masuk).State = EntityState.Modified;
+                bahan_baku_Masuk bahanBakuMasuk = (bahan_baku_Masuk)db.bahan_baku_Masuk.AsNoTracking().Where(x => x.id == bahanBakuMasukParam.id).FirstOrDefault();
+
+                //edit bahan_baku_masuk
+                
+                db.Entry(bahanBakuMasukParam).State = EntityState.Modified;
                 db.SaveChanges();
+
+                //Remove stok from bahan_baku 
+                
+                bahan_baku bahanBaku = db.bahan_baku.Find(bahanBakuMasuk.id_bahan_baku);
+                bahanBaku.stok -= bahanBakuMasuk.jumlah;
+                db.Entry(bahanBaku).State = EntityState.Modified;
+                db.SaveChanges();
+                //Add bahan_baku again to bahan_baku from new bahan_baku_Masuk
+                bahan_baku bahanBaku2 = db.bahan_baku.Find(bahanBakuMasukParam.id_bahan_baku);
+                bahanBaku2.stok += bahanBakuMasukParam.jumlah;
+                db.Entry(bahanBaku2).State = EntityState.Modified;
+                db.SaveChanges();
+
                 return RedirectToAction("Index");
             }
-            return View(bahan_baku_Masuk);
+            return View(bahanBakuMasukParam);
         }
 
         [HttpPost]

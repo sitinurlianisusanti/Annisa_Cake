@@ -153,7 +153,6 @@
     <Compile Include="Models\category.cs">
       <DependentUpon>SI_TKueEntities.tt</DependentUpon>
     </Compile>
-    <Compile Include="Models\Column.cs" />
     <Compile Include="Models\GetCategory_Result.cs">
       <DependentUpon>SI_TKueEntities.tt</DependentUpon>
     </Compile>
