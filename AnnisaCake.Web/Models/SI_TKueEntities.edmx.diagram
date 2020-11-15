@@ -13,20 +13,20 @@
         <AssociationConnector Association="SI_TKueModel.FK__kue__id_category__534D60F1" ManuallyRouted="false" />
         <AssociationConnector Association="SI_TKueModel.FK__kranjang__id_kue__52593CB8" ManuallyRouted="false" />
         <AssociationConnector Association="SI_TKueModel.FK__kranjang__id_pel__5165187F" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="SI_TKueModel.pesanan" Width="1.5" PointX="5.875" PointY="3.625" />
-        <EntityTypeShape EntityType="SI_TKueModel.toping" Width="1.5" PointX="8.875" PointY="6.5" />
-        <EntityTypeShape EntityType="SI_TKueModel.transaksi" Width="1.5" PointX="7.875" PointY="3.625" />
         <EntityTypeShape EntityType="SI_TKueModel.ukuran_kue" Width="1.5" PointX="9.75" PointY="3.625" />
-        <AssociationConnector Association="SI_TKueModel.FK_pesanan_kue" />
-        <AssociationConnector Association="SI_TKueModel.FK_pemesan" />
-        <AssociationConnector Association="SI_TKueModel.FK_pesanan_size" />
-        <AssociationConnector Association="SI_TKueModel.FK_pesanan_toping" />
-        <AssociationConnector Association="SI_TKueModel.FK_transaksi_pesanan" />
         <EntityTypeShape EntityType="SI_TKueModel.bahan_baku" Width="1.5" PointX="0.75" PointY="10.75" />
         <EntityTypeShape EntityType="SI_TKueModel.bahan_baku_keluar" Width="1.5" PointX="3" PointY="12.25" />
         <EntityTypeShape EntityType="SI_TKueModel.bahan_baku_Masuk" Width="1.5" PointX="3" PointY="9.125" />
         <AssociationConnector Association="SI_TKueModel.FK_bahan_baku_keluar_bahan_baku" />
         <AssociationConnector Association="SI_TKueModel.FK_bahan_baku_Masuk_bahan_baku" />
+        <EntityTypeShape EntityType="SI_TKueModel.pesanan" Width="1.5" PointX="6.375" PointY="5" />
+        <EntityTypeShape EntityType="SI_TKueModel.toping" Width="1.5" PointX="6.375" PointY="2.875" />
+        <EntityTypeShape EntityType="SI_TKueModel.transaksi" Width="1.5" PointX="8.625" PointY="6.125" />
+        <AssociationConnector Association="SI_TKueModel.FK_pesanan_kue" />
+        <AssociationConnector Association="SI_TKueModel.FK_pemesan" />
+        <AssociationConnector Association="SI_TKueModel.FK_id_pesanan" />
+        <AssociationConnector Association="SI_TKueModel.FK_pesanan_size" />
+        <AssociationConnector Association="SI_TKueModel.FK_toping" />
         </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -20,12 +20,12 @@ namespace AnnisaCake.Web.Models
             this.transaksis = new HashSet<transaksi>();
         }
     
-        public string kode_pesanan { get; set; }
+        public int id_pesanan { get; set; }
         public System.DateTime tgl_pesan { get; set; }
         public int id_pemesan { get; set; }
         public int id_kue { get; set; }
         public int id_size { get; set; }
-        public string kode_toping { get; set; }
+        public int kode_toping { get; set; }
         public string deskripsi_pesanan { get; set; }
         public long jumlah_kue { get; set; }
         public long harga { get; set; }
@@ -35,9 +35,9 @@ namespace AnnisaCake.Web.Models
     
         public virtual kue kue { get; set; }
         public virtual pelanggan pelanggan { get; set; }
-        public virtual ukuran_kue ukuran_kue { get; set; }
-        public virtual toping toping { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<transaksi> transaksis { get; set; }
+        public virtual ukuran_kue ukuran_kue { get; set; }
+        public virtual toping toping { get; set; }
     }
 }

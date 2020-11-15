@@ -135,6 +135,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KueController.cs" />
+    <Compile Include="Controllers\TopingKueController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -8304,6 +8305,9 @@
     <Content Include="Views\BahanBaku\BahanBaku.cshtml" />
     <Content Include="Views\BahanBaku\CreateBahanBaku.cshtml" />
     <Content Include="Views\BahanBaku\EditBahanBaku.cshtml" />
+    <Content Include="Views\TopingKue\CreateToping.cshtml" />
+    <Content Include="Views\TopingKue\TopingKue.cshtml" />
+    <Content Include="Views\TopingKue\EditToping.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

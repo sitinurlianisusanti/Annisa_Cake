@@ -9,14 +9,19 @@ using System.Web.Mvc;
 
 namespace AnnisaCake.Web.Controllers
 {
-    public class Toping_KueController : Controller
+    public class TopingKueController : Controller
     {
-        public SI_TKueEntities si_kue = new SI_TKueEntities();
+        public SI_TKueEntities db = new SI_TKueEntities();
         // GET: Toping_Kue
-        public ActionResult Toping_Kue()
+        public ActionResult TopingKue(int? methode)
         {
-            var data = si_kue.topings.ToList();
-            return View(data);
+            if (methode != null && methode == 2)
+            {
+                var data = db.topings.ToList();
+                return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+            }
+            var dataTopings = db.topings.ToList();
+            return View(dataTopings);
         }
 
         // GET: Toping_Kue/Details/5
@@ -28,6 +33,16 @@ namespace AnnisaCake.Web.Controllers
         // GET: Toping_Kue/Create
         public ActionResult CreateToping()
         {
+            var newKodeToping = 1;
+            try
+            {
+                newKodeToping = db.topings.Max(x => x.kode_toping)+1;
+            }
+            catch (Exception X)
+            {
+
+            }
+            ViewBag.newKodeToping = newKodeToping;
             return View();
         }
 
@@ -41,9 +56,9 @@ namespace AnnisaCake.Web.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    si_kue.topings.Add(toping);
-                    si_kue.SaveChanges();
-                    return RedirectToAction("Toping_Kue");
+                    db.topings.Add(toping);
+                    db.SaveChanges();
+                    return RedirectToAction("TopingKue");
                 }
                 return View(toping);
             }
@@ -54,18 +69,10 @@ namespace AnnisaCake.Web.Controllers
         }
 
         // GET: Toping_Kue/Edit/5
-        public ActionResult EditToping(int?kode_toping)
+        public ActionResult EditToping(int?kodeToping)
         {
-            //if (id == null)
 
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //    toping toping = si_kue.topings.Find(id);
-
-            //if (toping == null)
-            //    return HttpNotFound();
-            //return View(toping);
-
-            toping toping = si_kue.topings.Find(kode_toping);
+            toping toping = db.topings.Find(kodeToping);
             return View(toping);
         }
 
@@ -79,10 +86,10 @@ namespace AnnisaCake.Web.Controllers
 
                 if (ModelState.IsValid)
                 {
-                    si_kue.Entry(toping).State = EntityState.Modified;
-                    si_kue.SaveChanges();
+                    db.Entry(toping).State = EntityState.Modified;
+                    db.SaveChanges();
 
-                    return RedirectToAction("Toping_Kue");
+                    return RedirectToAction("TopingKue");
                 }
                 return View(toping);
             }
@@ -100,17 +107,18 @@ namespace AnnisaCake.Web.Controllers
 
         // POST: Toping_Kue/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public JsonResult DeleteToping(int kodeToping)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                toping toping = db.topings.Find(kodeToping);
+                db.topings.Remove(toping);
+                db.SaveChanges();
+                return Json(new { message = "succes" });
             }
             catch
             {
-                return View();
+                return Json(new { message = "failed" });
             }
         }
     }

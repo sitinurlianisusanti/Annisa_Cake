@@ -14,9 +14,9 @@ namespace AnnisaCake.Web.Models
     
     public partial class transaksi
     {
-        public string id_transaksi { get; set; }
+        public int id_transaksi { get; set; }
         public System.DateTime tgl_transaksi { get; set; }
-        public string id_pesanan { get; set; }
+        public int id_pesanan { get; set; }
         public string status { get; set; }
     
         public virtual pesanan pesanan { get; set; }

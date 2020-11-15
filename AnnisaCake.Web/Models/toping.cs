@@ -20,7 +20,7 @@ namespace AnnisaCake.Web.Models
             this.pesanans = new HashSet<pesanan>();
         }
     
-        public string kode_toping { get; set; }
+        public int kode_toping { get; set; }
         public string jenis_toping { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]

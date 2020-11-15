@@ -32,13 +32,13 @@ namespace AnnisaCake.Web.Models
         public virtual DbSet<kranjang> kranjangs { get; set; }
         public virtual DbSet<kue> kues { get; set; }
         public virtual DbSet<pelanggan> pelanggans { get; set; }
-        public virtual DbSet<pesanan> pesanans { get; set; }
-        public virtual DbSet<toping> topings { get; set; }
-        public virtual DbSet<transaksi> transaksis { get; set; }
         public virtual DbSet<ukuran_kue> ukuran_kue { get; set; }
         public virtual DbSet<bahan_baku> bahan_baku { get; set; }
         public virtual DbSet<bahan_baku_keluar> bahan_baku_keluar { get; set; }
         public virtual DbSet<bahan_baku_Masuk> bahan_baku_Masuk { get; set; }
+        public virtual DbSet<pesanan> pesanans { get; set; }
+        public virtual DbSet<toping> topings { get; set; }
+        public virtual DbSet<transaksi> transaksis { get; set; }
     
         public virtual ObjectResult<GetCategory_Result> GetCategory()
         {
