@@ -41,7 +41,11 @@
     <link href="~/Content/vendors/pnotify/dist/pnotify.buttons.css" rel="stylesheet">
     <link href="~/Content/vendors/pnotify/dist/pnotify.nonblock.css" rel="stylesheet">
 
+    <link href="~/Content/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+    <!-- bootstrap-datetimepicker -->
+    <link href="~/Content/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
 
+    
     @RenderSection("stylesheets", required: false)
 </head>
 
@@ -83,7 +87,7 @@
                                     <ul class="nav child_menu">
                                         <li><a href="~/BahanBaku/BahanBaku">Data Bahan Baku</a></li>
                                         <li><a href="~/bahan_baku_Masuk/Index">Data Bahan Baku Masuk</a></li>
-                                        <li><a href="#">Data Bahan Baku Keluar</a></li>
+                                        <li><a href="~/BahanBakuKeluar/BahanBakuKeluar">Data Bahan Baku Keluar</a></li>
                                     </ul>
                                 </li>
                                 <li>
@@ -238,9 +242,9 @@
                 <!-- top tiles -->
                 <!-- /top tiles -->
                 <!-- /page content -->
-                
-                    @RenderBody()
-                
+
+                @RenderBody()
+
                 <!-- footer content -->
                 <!-- /footer content -->
             </div>
@@ -303,7 +307,8 @@
     <script src="~/Content/vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="~/Content/vendors/pdfmake/build/vfs_fonts.js"></script>
 
-
+    <!-- bootstrap-datetimepicker -->
+    <script src="~/Content/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
     <!-- Custom Theme Scripts -->
     <script src="~/Content/build/js/custom.min.js"></script>
     <script>
@@ -320,20 +325,21 @@
                 styling: 'bootstrap3'
             });
         }
-            function NotifFiled() {
-                new PNotify({
-                    title: 'Filed',
-                    text: 'Some thing wrong',
-                    type: 'error',
-                    delay: '2000',
-                    styling: 'bootstrap3'
-                });
-            }
+        function NotifFiled() {
+            new PNotify({
+                title: 'Filed',
+                text: 'Some thing wrong',
+                type: 'error',
+                delay: '2000',
+                styling: 'bootstrap3'
+            });
+        }
     </script>
 
     <script src="~/Content/vendors/pnotify/dist/pnotify.js"></script>
     <script src="~/Content/vendors/pnotify/dist/pnotify.buttons.js"></script>
     <script src="~/Content/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+
     
 
     @RenderSection("scripts", required: false)
