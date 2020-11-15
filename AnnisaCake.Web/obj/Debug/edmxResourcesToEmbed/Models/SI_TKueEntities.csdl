@@ -42,8 +42,8 @@
     <Property Name="stok" Type="Int32" Nullable="false" />
     <NavigationProperty Name="category" Relationship="Self.FK__kue__id_category__534D60F1" FromRole="kue" ToRole="category" />
     <NavigationProperty Name="kranjangs" Relationship="Self.FK__kranjang__id_kue__52593CB8" FromRole="kue" ToRole="kranjang" />
-    <NavigationProperty Name="pesanans" Relationship="SI_TKueModel.FK_pesanan_kue" FromRole="kue" ToRole="pesanan" />
     <Property Name="id_gambar" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="pesanans" Relationship="SI_TKueModel.FK_pesanan_kue" FromRole="kue" ToRole="pesanan" />
   </EntityType>
   <EntityType Name="pelanggan">
     <Key>
@@ -121,10 +121,21 @@
     <FunctionImport Name="GetCategory" ReturnType="Collection(SI_TKueModel.GetCategory_Result)" />
     <FunctionImport Name="SP_GetAllKue" ReturnType="Collection(SI_TKueModel.SP_GetAllKue_Result)" />
     <FunctionImport Name="SP_SelectCategory" ReturnType="Collection(String)" />
+    <EntitySet Name="ukuran_kue" EntityType="SI_TKueModel.ukuran_kue" />
+    <EntitySet Name="bahan_baku" EntityType="SI_TKueModel.bahan_baku" />
+    <EntitySet Name="bahan_baku_keluar" EntityType="SI_TKueModel.bahan_baku_keluar" />
+    <EntitySet Name="bahan_baku_Masuk" EntityType="SI_TKueModel.bahan_baku_Masuk" />
+    <AssociationSet Name="FK_bahan_baku_keluar_bahan_baku" Association="SI_TKueModel.FK_bahan_baku_keluar_bahan_baku">
+      <End Role="bahan_baku" EntitySet="bahan_baku" />
+      <End Role="bahan_baku_keluar" EntitySet="bahan_baku_keluar" />
+    </AssociationSet>
+    <AssociationSet Name="FK_bahan_baku_Masuk_bahan_baku" Association="SI_TKueModel.FK_bahan_baku_Masuk_bahan_baku">
+      <End Role="bahan_baku" EntitySet="bahan_baku" />
+      <End Role="bahan_baku_Masuk" EntitySet="bahan_baku_Masuk" />
+    </AssociationSet>
     <EntitySet Name="pesanans" EntityType="SI_TKueModel.pesanan" />
     <EntitySet Name="topings" EntityType="SI_TKueModel.toping" />
     <EntitySet Name="transaksis" EntityType="SI_TKueModel.transaksi" />
-    <EntitySet Name="ukuran_kue" EntityType="SI_TKueModel.ukuran_kue" />
     <AssociationSet Name="FK_pesanan_kue" Association="SI_TKueModel.FK_pesanan_kue">
       <End Role="kue" EntitySet="kues" />
       <End Role="pesanan" EntitySet="pesanans" />
@@ -133,28 +144,17 @@
       <End Role="pelanggan" EntitySet="pelanggans" />
       <End Role="pesanan" EntitySet="pesanans" />
     </AssociationSet>
+    <AssociationSet Name="FK_id_pesanan" Association="SI_TKueModel.FK_id_pesanan">
+      <End Role="pesanan" EntitySet="pesanans" />
+      <End Role="transaksi" EntitySet="transaksis" />
+    </AssociationSet>
     <AssociationSet Name="FK_pesanan_size" Association="SI_TKueModel.FK_pesanan_size">
       <End Role="ukuran_kue" EntitySet="ukuran_kue" />
       <End Role="pesanan" EntitySet="pesanans" />
     </AssociationSet>
-    <AssociationSet Name="FK_pesanan_toping" Association="SI_TKueModel.FK_pesanan_toping">
+    <AssociationSet Name="FK_toping" Association="SI_TKueModel.FK_toping">
       <End Role="toping" EntitySet="topings" />
       <End Role="pesanan" EntitySet="pesanans" />
-    </AssociationSet>
-    <AssociationSet Name="FK_transaksi_pesanan" Association="SI_TKueModel.FK_transaksi_pesanan">
-      <End Role="pesanan" EntitySet="pesanans" />
-      <End Role="transaksi" EntitySet="transaksis" />
-    </AssociationSet>
-    <EntitySet Name="bahan_baku" EntityType="SI_TKueModel.bahan_baku" />
-    <EntitySet Name="bahan_baku_Masuk" EntityType="SI_TKueModel.bahan_baku_Masuk" />
-    <AssociationSet Name="FK_bahan_baku_Masuk_bahan_baku" Association="SI_TKueModel.FK_bahan_baku_Masuk_bahan_baku">
-      <End Role="bahan_baku" EntitySet="bahan_baku" />
-      <End Role="bahan_baku_Masuk" EntitySet="bahan_baku_Masuk" />
-    </AssociationSet>
-    <EntitySet Name="bahan_baku_keluar" EntityType="SI_TKueModel.bahan_baku_keluar" />
-    <AssociationSet Name="FK_bahan_baku_keluar_bahan_baku" Association="SI_TKueModel.FK_bahan_baku_keluar_bahan_baku">
-      <End Role="bahan_baku" EntitySet="bahan_baku" />
-      <End Role="bahan_baku_keluar" EntitySet="bahan_baku_keluar" />
     </AssociationSet>
   </EntityContainer>
   <ComplexType Name="GetCategory_Result">
@@ -170,46 +170,6 @@
     <Property Type="Int32" Name="stok" Nullable="false" />
     <Property Type="String" Name="id_gambar" Nullable="true" />
   </ComplexType>
-  <EntityType Name="pesanan">
-    <Key>
-      <PropertyRef Name="kode_pesanan" />
-    </Key>
-    <Property Name="kode_pesanan" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
-    <Property Name="tgl_pesan" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="id_pemesan" Type="Int32" Nullable="false" />
-    <Property Name="id_kue" Type="Int32" Nullable="false" />
-    <Property Name="id_size" Type="Int32" Nullable="false" />
-    <Property Name="kode_toping" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
-    <Property Name="deskripsi_pesanan" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
-    <Property Name="jumlah_kue" Type="Int64" Nullable="false" />
-    <Property Name="harga" Type="Int64" Nullable="false" />
-    <Property Name="jenis_pembayaran" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-    <Property Name="jenis_pesanan" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
-    <Property Name="jenis_pengambilan" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="kue" Relationship="SI_TKueModel.FK_pesanan_kue" FromRole="pesanan" ToRole="kue" />
-    <NavigationProperty Name="pelanggan" Relationship="SI_TKueModel.FK_pemesan" FromRole="pesanan" ToRole="pelanggan" />
-    <NavigationProperty Name="ukuran_kue" Relationship="SI_TKueModel.FK_pesanan_size" FromRole="pesanan" ToRole="ukuran_kue" />
-    <NavigationProperty Name="toping" Relationship="SI_TKueModel.FK_pesanan_toping" FromRole="pesanan" ToRole="toping" />
-    <NavigationProperty Name="transaksis" Relationship="SI_TKueModel.FK_transaksi_pesanan" FromRole="pesanan" ToRole="transaksi" />
-  </EntityType>
-  <EntityType Name="toping">
-    <Key>
-      <PropertyRef Name="kode_toping" />
-    </Key>
-    <Property Name="kode_toping" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
-    <Property Name="jenis_toping" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="pesanans" Relationship="SI_TKueModel.FK_pesanan_toping" FromRole="toping" ToRole="pesanan" />
-  </EntityType>
-  <EntityType Name="transaksi">
-    <Key>
-      <PropertyRef Name="id_transaksi" />
-    </Key>
-    <Property Name="id_transaksi" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
-    <Property Name="tgl_transaksi" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="id_pesanan" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
-    <Property Name="status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <NavigationProperty Name="pesanan" Relationship="SI_TKueModel.FK_transaksi_pesanan" FromRole="transaksi" ToRole="pesanan" />
-  </EntityType>
   <EntityType Name="ukuran_kue">
     <Key>
       <PropertyRef Name="id_ukuran" />
@@ -219,6 +179,105 @@
     <Property Name="id_toping" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="false" />
     <Property Name="harga" Type="Int64" Nullable="false" />
     <NavigationProperty Name="pesanans" Relationship="SI_TKueModel.FK_pesanan_size" FromRole="ukuran_kue" ToRole="pesanan" />
+  </EntityType>
+  <EntityType Name="bahan_baku">
+    <Key>
+      <PropertyRef Name="id_bahan_baku" />
+    </Key>
+    <Property Name="id_bahan_baku" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="nama_bahan_baku" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+    <Property Name="satuan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="stok" Type="Int32" />
+    <NavigationProperty Name="bahan_baku_keluar" Relationship="SI_TKueModel.FK_bahan_baku_keluar_bahan_baku" FromRole="bahan_baku" ToRole="bahan_baku_keluar" />
+    <NavigationProperty Name="bahan_baku_Masuk" Relationship="SI_TKueModel.FK_bahan_baku_Masuk_bahan_baku" FromRole="bahan_baku" ToRole="bahan_baku_Masuk" />
+  </EntityType>
+  <EntityType Name="bahan_baku_keluar">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tgl_keluar" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="id_bahan_baku" Type="Int32" Nullable="false" />
+    <Property Name="jumlah" Type="Int32" Nullable="false" />
+    <Property Name="satuan" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="deskripsi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="bahan_baku" Relationship="SI_TKueModel.FK_bahan_baku_keluar_bahan_baku" FromRole="bahan_baku_keluar" ToRole="bahan_baku" />
+  </EntityType>
+  <EntityType Name="bahan_baku_Masuk">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="tgl_pembelian" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="id_bahan_baku" Type="Int32" Nullable="false" />
+    <Property Name="jumlah" Type="Int32" Nullable="false" />
+    <Property Name="satuan" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="harga" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="bahan_baku" Relationship="SI_TKueModel.FK_bahan_baku_Masuk_bahan_baku" FromRole="bahan_baku_Masuk" ToRole="bahan_baku" />
+  </EntityType>
+  <Association Name="FK_bahan_baku_keluar_bahan_baku">
+    <End Type="SI_TKueModel.bahan_baku" Role="bahan_baku" Multiplicity="1" />
+    <End Type="SI_TKueModel.bahan_baku_keluar" Role="bahan_baku_keluar" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bahan_baku">
+        <PropertyRef Name="id_bahan_baku" />
+      </Principal>
+      <Dependent Role="bahan_baku_keluar">
+        <PropertyRef Name="id_bahan_baku" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_bahan_baku_Masuk_bahan_baku">
+    <End Type="SI_TKueModel.bahan_baku" Role="bahan_baku" Multiplicity="1" />
+    <End Type="SI_TKueModel.bahan_baku_Masuk" Role="bahan_baku_Masuk" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="bahan_baku">
+        <PropertyRef Name="id_bahan_baku" />
+      </Principal>
+      <Dependent Role="bahan_baku_Masuk">
+        <PropertyRef Name="id_bahan_baku" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="pesanan">
+    <Key>
+      <PropertyRef Name="id_pesanan" />
+    </Key>
+    <Property Name="id_pesanan" Type="Int32" Nullable="false" />
+    <Property Name="tgl_pesan" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="id_pemesan" Type="Int32" Nullable="false" />
+    <Property Name="id_kue" Type="Int32" Nullable="false" />
+    <Property Name="id_size" Type="Int32" Nullable="false" />
+    <Property Name="kode_toping" Type="Int32" Nullable="false" />
+    <Property Name="deskripsi_pesanan" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="jumlah_kue" Type="Int64" Nullable="false" />
+    <Property Name="harga" Type="Int64" Nullable="false" />
+    <Property Name="jenis_pembayaran" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <Property Name="jenis_pesanan" Type="String" Nullable="false" MaxLength="15" FixedLength="false" Unicode="false" />
+    <Property Name="jenis_pengambilan" Type="String" Nullable="false" MaxLength="25" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="kue" Relationship="SI_TKueModel.FK_pesanan_kue" FromRole="pesanan" ToRole="kue" />
+    <NavigationProperty Name="pelanggan" Relationship="SI_TKueModel.FK_pemesan" FromRole="pesanan" ToRole="pelanggan" />
+    <NavigationProperty Name="transaksis" Relationship="SI_TKueModel.FK_id_pesanan" FromRole="pesanan" ToRole="transaksi" />
+    <NavigationProperty Name="ukuran_kue" Relationship="SI_TKueModel.FK_pesanan_size" FromRole="pesanan" ToRole="ukuran_kue" />
+    <NavigationProperty Name="toping" Relationship="SI_TKueModel.FK_toping" FromRole="pesanan" ToRole="toping" />
+  </EntityType>
+  <EntityType Name="toping">
+    <Key>
+      <PropertyRef Name="kode_toping" />
+    </Key>
+    <Property Name="kode_toping" Type="Int32" Nullable="false" />
+    <Property Name="jenis_toping" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="pesanans" Relationship="SI_TKueModel.FK_toping" FromRole="toping" ToRole="pesanan" />
+  </EntityType>
+  <EntityType Name="transaksi">
+    <Key>
+      <PropertyRef Name="id_transaksi" />
+    </Key>
+    <Property Name="id_transaksi" Type="Int32" Nullable="false" />
+    <Property Name="tgl_transaksi" Type="DateTime" Nullable="false" Precision="0" />
+    <Property Name="id_pesanan" Type="Int32" Nullable="false" />
+    <Property Name="status" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="pesanan" Relationship="SI_TKueModel.FK_id_pesanan" FromRole="transaksi" ToRole="pesanan" />
   </EntityType>
   <Association Name="FK_pesanan_kue">
     <End Type="SI_TKueModel.kue" Role="kue" Multiplicity="1" />
@@ -244,6 +303,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_id_pesanan">
+    <End Type="SI_TKueModel.pesanan" Role="pesanan" Multiplicity="1" />
+    <End Type="SI_TKueModel.transaksi" Role="transaksi" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="pesanan">
+        <PropertyRef Name="id_pesanan" />
+      </Principal>
+      <Dependent Role="transaksi">
+        <PropertyRef Name="id_pesanan" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_pesanan_size">
     <End Type="SI_TKueModel.ukuran_kue" Role="ukuran_kue" Multiplicity="1" />
     <End Type="SI_TKueModel.pesanan" Role="pesanan" Multiplicity="*" />
@@ -256,7 +327,7 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_pesanan_toping">
+  <Association Name="FK_toping">
     <End Type="SI_TKueModel.toping" Role="toping" Multiplicity="1" />
     <End Type="SI_TKueModel.pesanan" Role="pesanan" Multiplicity="*" />
     <ReferentialConstraint>
@@ -265,77 +336,6 @@
       </Principal>
       <Dependent Role="pesanan">
         <PropertyRef Name="kode_toping" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_transaksi_pesanan">
-    <End Type="SI_TKueModel.pesanan" Role="pesanan" Multiplicity="1" />
-    <End Type="SI_TKueModel.transaksi" Role="transaksi" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="pesanan">
-        <PropertyRef Name="kode_pesanan" />
-      </Principal>
-      <Dependent Role="transaksi">
-        <PropertyRef Name="id_pesanan" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="bahan_baku">
-    <Key>
-      <PropertyRef Name="id_bahan_baku" />
-    </Key>
-    <Property Name="id_bahan_baku" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="nama_bahan_baku" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
-    <Property Name="satuan" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="stok" Type="Int32" />
-    <NavigationProperty Name="bahan_baku_Masuk" Relationship="SI_TKueModel.FK_bahan_baku_Masuk_bahan_baku" FromRole="bahan_baku" ToRole="bahan_baku_Masuk" />
-    <NavigationProperty Name="bahan_baku_keluar" Relationship="SI_TKueModel.FK_bahan_baku_keluar_bahan_baku" FromRole="bahan_baku" ToRole="bahan_baku_keluar" />
-  </EntityType>
-  <EntityType Name="bahan_baku_Masuk">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="tgl_pembelian" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="id_bahan_baku" Type="Int32" Nullable="false" />
-    <Property Name="jumlah" Type="Int32" Nullable="false" />
-    <Property Name="satuan" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="harga" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="bahan_baku" Relationship="SI_TKueModel.FK_bahan_baku_Masuk_bahan_baku" FromRole="bahan_baku_Masuk" ToRole="bahan_baku" />
-  </EntityType>
-  <Association Name="FK_bahan_baku_Masuk_bahan_baku">
-    <End Type="SI_TKueModel.bahan_baku" Role="bahan_baku" Multiplicity="1" />
-    <End Type="SI_TKueModel.bahan_baku_Masuk" Role="bahan_baku_Masuk" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="bahan_baku">
-        <PropertyRef Name="id_bahan_baku" />
-      </Principal>
-      <Dependent Role="bahan_baku_Masuk">
-        <PropertyRef Name="id_bahan_baku" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="bahan_baku_keluar">
-    <Key>
-      <PropertyRef Name="id" />
-    </Key>
-    <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="tgl_keluar" Type="DateTime" Nullable="false" Precision="0" />
-    <Property Name="jumlah" Type="Int32" Nullable="false" />
-    <Property Name="satuan" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="deskripsi" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-    <Property Name="id_bahan_baku" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="bahan_baku" Relationship="SI_TKueModel.FK_bahan_baku_keluar_bahan_baku" FromRole="bahan_baku_keluar" ToRole="bahan_baku" />
-  </EntityType>
-  <Association Name="FK_bahan_baku_keluar_bahan_baku">
-    <End Type="SI_TKueModel.bahan_baku" Role="bahan_baku" Multiplicity="1" />
-    <End Type="SI_TKueModel.bahan_baku_keluar" Role="bahan_baku_keluar" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="bahan_baku">
-        <PropertyRef Name="id_bahan_baku" />
-      </Principal>
-      <Dependent Role="bahan_baku_keluar">
-        <PropertyRef Name="id_bahan_baku" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
