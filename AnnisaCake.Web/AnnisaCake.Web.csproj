@@ -131,6 +131,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BahanBakuController.cs" />
+    <Compile Include="Controllers\BahanBakuKeluarController.cs" />
     <Compile Include="Controllers\bahan_baku_MasukController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -8308,6 +8309,9 @@
     <Content Include="Views\TopingKue\CreateToping.cshtml" />
     <Content Include="Views\TopingKue\TopingKue.cshtml" />
     <Content Include="Views\TopingKue\EditToping.cshtml" />
+	<Content Include="Views\BahanBakuKeluar\BahanBakuKeluar.cshtml" />
+    <Content Include="Views\BahanBakuKeluar\CreateBahanBakuKeluar.cshtml" />
+    <Content Include="Views\BahanBakuKeluar\EditBahanBakuKeluar.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

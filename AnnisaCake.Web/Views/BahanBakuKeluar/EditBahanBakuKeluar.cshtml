@@ -1,0 +1,107 @@
+﻿@model AnnisaCake.Web.Models.bahan_baku_keluar
+
+@{
+    ViewBag.Title = "Edit";
+}
+
+<h2>Edit</h2>
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>bahan_baku_keluar</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.id)
+
+        <div class="form-group">
+            <fieldset>
+                @Html.LabelFor(model => model.tgl_keluar, "Tanggal Keular", htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10 xdisplay_inputx form-group has-feedback">
+
+                    @Html.EditorFor(model => model.tgl_keluar, new { htmlAttributes = new {@class = "form-control date has-feedback-left", @autocomplete = "off" } })
+                    <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                    <span id="inputSuccess2Status2" class="sr-only">(success)</span>
+                    @Html.ValidationMessageFor(model => model.tgl_keluar, "", new { @class = "text-danger" })
+                </div>
+            </fieldset>
+        </div>
+        <div class="form-group">
+            @Html.LabelFor(model => model.id_bahan_baku, "Bahan Baku", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownListFor(model => model.id_bahan_baku,
+                        new SelectList(ViewBag.bahanBaku, "id_bahan_baku", "nama_bahan_baku"),
+                        "Select Bahan Baku",
+                        new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.id_bahan_baku, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.jumlah, "Jumlah", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.jumlah, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.jumlah, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.satuan, "Satuan", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.satuan, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.satuan, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.deskripsi, "Deskripsi", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.deskripsi, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.deskripsi, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "BahanBakuKeluar")
+</div>
+
+
+@section Scripts {
+    <script>
+
+        $("#id_bahan_baku").change(function () {
+            var id = this.value;
+            $.ajax({
+                type: "GET",
+                url: '@Url.Action("GetSatuan")',
+                data: { idBahanBaku:id }, //use id here
+                dataType: "json",
+                success: function (x) {
+                    $("#satuan").val(x.satuan);
+                },
+                error: function (x) {
+                    console.log("Some thin error")
+                 }
+
+            });
+        });
+        
+        $('.date').datetimepicker({
+            locale: {
+                format: 'MM/dd/YYYY'
+            }
+        });
+
+    </script>
+    
+}

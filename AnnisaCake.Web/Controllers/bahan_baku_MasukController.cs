@@ -75,7 +75,7 @@ namespace AnnisaCake.Web.Controllers
                 {
                     bahan_baku bahanBaku = db.bahan_baku.Find(bahan_baku_Masuk.id_bahan_baku);
                     db.Entry(bahan_baku_Masuk).State = EntityState.Added;
-                    db.bahan_baku_Masuk.Add(bahan_baku_Masuk);
+                    //db.bahan_baku_Masuk.Add(bahan_baku_Masuk);
                     db.SaveChanges();
 
                     //Add stok into Bahan baku 
