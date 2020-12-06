@@ -128,7 +128,7 @@ namespace AnnisaCake.Web.Controllers
 
         // POST: BahanBakuKeluar/Delete/5
         [HttpPost]
-        public JsonResult Delete(int id)
+        public JsonResult DeleteBahanBakuKeluar(int id)
         {
             try
             {

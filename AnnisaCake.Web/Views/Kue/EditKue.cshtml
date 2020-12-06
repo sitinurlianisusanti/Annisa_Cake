@@ -64,7 +64,8 @@
         <div class="form-group">
             @Html.LabelFor(model => model.id_category, "Category", htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.DropDownListFor(model => model.id_category, new SelectList(Model.Kategoris, "id", "nama_kategori"), "select")
+                @Html.DropDownListFor(model => model.id_category, new SelectList(Model.Kategoris, "id", "nama_kategori"), "select",
+                new { @class = "form-control" })
                 @Html.ValidationMessageFor(model => model.id_category, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -93,9 +94,9 @@
     </div>
 }
 
-    <div>
-        @Html.ActionLink("Back to List", "Kue","Kue", new { @class = "btn btn-info" }) 
-    </div>
+<div>
+    @Html.ActionLink("Back to List", "Kue", "Kue", new { @class = "btn btn-info" })
+</div>
 
 @section Scripts {
     <script>
