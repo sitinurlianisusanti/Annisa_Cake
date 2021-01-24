@@ -166,3 +166,11 @@ C:\Ta siti\Annisa_Cake\AnnisaCake.Web\obj\Debug\AnnisaCake.Web.csproj.CoreCompil
 C:\Ta siti\Annisa_Cake\AnnisaCake.Web\obj\Debug\AnnisaCake.Web.csproj.CopyComplete
 C:\Ta siti\Annisa_Cake\AnnisaCake.Web\obj\Debug\AnnisaCake.Web.dll
 C:\Ta siti\Annisa_Cake\AnnisaCake.Web\obj\Debug\AnnisaCake.Web.pdb
+C:\Ta siti\Annisa_Cake\AnnisaCake.Web\bin\AutoMapper.dll
+C:\Ta siti\Annisa_Cake\AnnisaCake.Web\bin\SimpleInjector.dll
+C:\Ta siti\Annisa_Cake\AnnisaCake.Web\bin\AutoMapper.xml
+C:\Ta siti\Annisa_Cake\AnnisaCake.Web\bin\SimpleInjector.xml
+C:\Ta siti\Annisa_Cake\AnnisaCake.Web\bin\SimpleInjector.Integration.Web.dll
+C:\Ta siti\Annisa_Cake\AnnisaCake.Web\bin\SimpleInjector.Integration.Web.Mvc.dll
+C:\Ta siti\Annisa_Cake\AnnisaCake.Web\bin\SimpleInjector.Integration.Web.xml
+C:\Ta siti\Annisa_Cake\AnnisaCake.Web\bin\SimpleInjector.Integration.Web.Mvc.xml

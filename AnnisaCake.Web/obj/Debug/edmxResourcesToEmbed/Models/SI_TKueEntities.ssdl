@@ -104,6 +104,18 @@
     <Property Name="jenis_pesanan" Type="varchar" MaxLength="15" Nullable="false" />
     <Property Name="jenis_pengambilan" Type="varchar" MaxLength="25" Nullable="false" />
   </EntityType>
+  <EntityType Name="tb_menu_tree">
+    <Key>
+      <PropertyRef Name="id" />
+    </Key>
+    <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="name" Type="nvarchar" MaxLength="300" />
+    <Property Name="link" Type="nvarchar" MaxLength="300" />
+    <Property Name="icon" Type="varchar" MaxLength="50" />
+    <Property Name="parent" Type="nvarchar" MaxLength="300" />
+    <Property Name="order_by" Type="int" />
+    <Property Name="role" Type="varchar" MaxLength="300" />
+  </EntityType>
   <EntityType Name="toping">
     <Key>
       <PropertyRef Name="kode_toping" />
@@ -251,7 +263,10 @@
   </Association>
   <Function Name="GetCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_GetAllKue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-  <Function Name="SP_SelectCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_GetMenuByRoleUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="parent" Type="int" Mode="In" />
+    <Parameter Name="role" Type="varchar" Mode="In" />
+  </Function>
   <EntityContainer Name="SI_TKueModelStoreContainer">
     <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="bahan_baku" EntityType="Self.bahan_baku" Schema="dbo" store:Type="Tables" />
@@ -262,6 +277,7 @@
     <EntitySet Name="kue" EntityType="Self.kue" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="pelanggan" EntityType="Self.pelanggan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="pesanan" EntityType="Self.pesanan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="tb_menu_tree" EntityType="Self.tb_menu_tree" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="toping" EntityType="Self.toping" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="transaksi" EntityType="Self.transaksi" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ukuran_kue" EntityType="Self.ukuran_kue" Schema="dbo" store:Type="Tables" />

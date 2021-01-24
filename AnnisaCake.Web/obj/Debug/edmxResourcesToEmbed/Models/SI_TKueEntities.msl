@@ -83,7 +83,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <FunctionImportMapping FunctionImportName="SP_SelectCategory" FunctionName="SI_TKueModel.Store.SP_SelectCategory" />
     <EntitySetMapping Name="ukuran_kue">
       <EntityTypeMapping TypeName="SI_TKueModel.ukuran_kue">
         <MappingFragment StoreEntitySet="ukuran_kue">
@@ -164,5 +163,16 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="SP_GetMenuByRoleUser" FunctionName="SI_TKueModel.Store.SP_GetMenuByRoleUser">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SI_TKueModel.SP_GetMenuByRoleUser_Result">
+          <ScalarProperty Name="id" ColumnName="id" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="icon" ColumnName="icon" />
+          <ScalarProperty Name="role" ColumnName="role" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
   </EntityContainerMapping>
 </Mapping>

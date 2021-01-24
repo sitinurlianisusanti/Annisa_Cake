@@ -50,9 +50,17 @@ namespace AnnisaCake.Web.Models
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllKue_Result>("SP_GetAllKue");
         }
     
-        public virtual ObjectResult<string> SP_SelectCategory()
+        public virtual ObjectResult<SP_GetMenuByRoleUser_Result> SP_GetMenuByRoleUser(Nullable<int> parent, string role)
         {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SP_SelectCategory");
+            var parentParameter = parent.HasValue ?
+                new ObjectParameter("parent", parent) :
+                new ObjectParameter("parent", typeof(int));
+    
+            var roleParameter = role != null ?
+                new ObjectParameter("role", role) :
+                new ObjectParameter("role", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetMenuByRoleUser_Result>("SP_GetMenuByRoleUser", parentParameter, roleParameter);
         }
     }
 }

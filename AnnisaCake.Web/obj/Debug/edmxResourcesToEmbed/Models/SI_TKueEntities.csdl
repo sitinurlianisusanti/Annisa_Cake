@@ -120,7 +120,6 @@
     </AssociationSet>
     <FunctionImport Name="GetCategory" ReturnType="Collection(SI_TKueModel.GetCategory_Result)" />
     <FunctionImport Name="SP_GetAllKue" ReturnType="Collection(SI_TKueModel.SP_GetAllKue_Result)" />
-    <FunctionImport Name="SP_SelectCategory" ReturnType="Collection(String)" />
     <EntitySet Name="ukuran_kue" EntityType="SI_TKueModel.ukuran_kue" />
     <EntitySet Name="bahan_baku" EntityType="SI_TKueModel.bahan_baku" />
     <EntitySet Name="bahan_baku_keluar" EntityType="SI_TKueModel.bahan_baku_keluar" />
@@ -156,6 +155,10 @@
       <End Role="toping" EntitySet="topings" />
       <End Role="pesanan" EntitySet="pesanans" />
     </AssociationSet>
+    <FunctionImport Name="SP_GetMenuByRoleUser" ReturnType="Collection(SI_TKueModel.SP_GetMenuByRoleUser_Result)">
+      <Parameter Name="parent" Mode="In" Type="Int32" />
+      <Parameter Name="role" Mode="In" Type="String" />
+    </FunctionImport>
   </EntityContainer>
   <ComplexType Name="GetCategory_Result">
     <Property Type="Int32" Name="id" Nullable="false" />
@@ -339,4 +342,11 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="SP_GetMenuByRoleUser_Result">
+    <Property Type="Int32" Name="id" Nullable="false" />
+    <Property Type="String" Name="name" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="link" Nullable="true" MaxLength="300" />
+    <Property Type="String" Name="icon" Nullable="true" MaxLength="50" />
+    <Property Type="String" Name="role" Nullable="true" MaxLength="300" />
+  </ComplexType>
 </Schema>

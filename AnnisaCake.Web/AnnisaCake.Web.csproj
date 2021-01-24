@@ -48,6 +48,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.10.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
@@ -55,6 +58,15 @@
       <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="SimpleInjector, Version=5.0.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.5.3.0-beta2\lib\net461\SimpleInjector.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Integration.Web, Version=5.0.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.Integration.Web.5.0.0\lib\net45\SimpleInjector.Integration.Web.dll</HintPath>
+    </Reference>
+    <Reference Include="SimpleInjector.Integration.Web.Mvc, Version=5.0.0.0, Culture=neutral, PublicKeyToken=984cb50dea722e99, processorArchitecture=MSIL">
+      <HintPath>..\packages\SimpleInjector.Integration.Web.Mvc.5.0.0\lib\net45\SimpleInjector.Integration.Web.Mvc.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -129,6 +141,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\MappingMenuConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\BahanBakuController.cs" />
     <Compile Include="Controllers\BahanBakuKeluarController.cs" />
@@ -136,8 +149,10 @@
     <Compile Include="Controllers\KategoriController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KueController.cs" />
+    <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\TopingKueController.cs" />
     <Compile Include="Controllers\UkuranController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -165,6 +180,7 @@
     <Compile Include="Models\kue.cs">
       <DependentUpon>SI_TKueEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\MenuTree.cs" />
     <Compile Include="Models\pelanggan.cs">
       <DependentUpon>SI_TKueEntities.tt</DependentUpon>
     </Compile>
@@ -187,6 +203,9 @@
       <DependentUpon>SI_TKueEntities.edmx</DependentUpon>
     </Compile>
     <Compile Include="Models\SP_GetAllKue_Result.cs">
+      <DependentUpon>SI_TKueEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetMenuByRoleUser_Result.cs">
       <DependentUpon>SI_TKueEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\toping.cs">
@@ -350,6 +369,8 @@
     <Content Include="Content\js\admin.js" />
     <Content Include="Content\js\demo.js" />
     <Content Include="Content\js\helpers.js" />
+    <Content Include="Content\js\jquery.ui.menu.js" />
+    <Content Include="Content\js\MenuTree.js" />
     <Content Include="Content\js\pages\cards\basic.js" />
     <Content Include="Content\js\pages\cards\colored.js" />
     <Content Include="Content\js\pages\charts\chartjs.js" />
@@ -8265,6 +8286,7 @@
     <Content Include="Content\vendors\validator\README.md" />
     <Content Include="Content\vendors\validator\validator.jquery.json" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
+    <Content Include="Scripts\helper.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
     <Content Include="Scripts\jquery-3.4.1.slim.js" />
@@ -8313,11 +8335,13 @@
     <Content Include="Views\BahanBakuKeluar\BahanBakuKeluar.cshtml" />
     <Content Include="Views\BahanBakuKeluar\CreateBahanBakuKeluar.cshtml" />
     <Content Include="Views\BahanBakuKeluar\EditBahanBakuKeluar.cshtml" />
+    <Content Include="Views\Ukuran\UkuranKue.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\picCake\" />
-    <Folder Include="Views\Ukuran\" />
+    <Folder Include="Views\Menu\" />
+    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

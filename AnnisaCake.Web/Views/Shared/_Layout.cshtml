@@ -19,6 +19,7 @@
     <!-- iCheck -->
     <link href="~/Content/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
 
+
     <!-- bootstrap-progressbar -->
     <link href="~/Content/vendors/bootstrap-progressbar/css/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet">
     <!-- JQVMap -->
@@ -45,7 +46,7 @@
     <!-- bootstrap-datetimepicker -->
     <link href="~/Content/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
 
-    
+
     @RenderSection("stylesheets", required: false)
 </head>
 
@@ -78,46 +79,47 @@
                     <div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
                         <div class="menu_section">
                             <h3>General</h3>
-                            <ul class="nav side-menu">
-                                <li>
-                                    <a><i class="fa fa-home"></i> Home </a>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-edit"></i> Data Bahan Baku <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="~/BahanBaku/BahanBaku">Data Bahan Baku</a></li>
-                                        <li><a href="~/bahan_baku_Masuk/Index">Data Bahan Baku Masuk</a></li>
-                                        <li><a href="~/BahanBakuKeluar/BahanBakuKeluar">Data Bahan Baku Keluar</a></li>
-                                    </ul>
-                                </li>
-                                <li>
-                                    <a href="~/Kategori/Kategori"><i class="fa fa-desktop"></i> Data Kategori </a>
-                                </li>
-                                <li>
-                                    <a href="~/Kue/Kue"><i class="fa fa-home"></i> Data Kue </a>
+                            <ul id="menu" class="nav side-menu"></ul>
+                            @*<ul class="nav side-menu">
+                                    <li>
+                                        <a><i class="fa fa-home"></i> Home </a>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-edit"></i> Data Bahan Baku <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="~/BahanBaku/BahanBaku">Data Bahan Baku</a></li>
+                                            <li><a href="~/bahan_baku_Masuk/Index">Data Bahan Baku Masuk</a></li>
+                                            <li><a href="~/BahanBakuKeluar/BahanBakuKeluar">Data Bahan Baku Keluar</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="~/Kategori/Kategori"><i class="fa fa-desktop"></i> Data Kategori </a>
+                                    </li>
+                                    <li>
+                                        <a href="~/Kue/Kue"><i class="fa fa-home"></i> Data Kue </a>
 
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-home"></i> Data Pesanan</a>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-home"></i> Data Transaksi </a>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-home"></i> Data Size Kue </a>
-                                </li>
-                                <li>
-                                    <a href="~/TopingKue/TopingKue"><i class="fa fa-home"></i> Data Toping Kue</a>
-                                </li>
-                                <li>
-                                    <a><i class="fa fa-home"></i> Laporan <span class="fa fa-chevron-down"></span></a>
-                                    <ul class="nav child_menu">
-                                        <li><a href="#">Laporan Penjualan</a></li>
-                                        <li><a href="#">Laporan Bahan Baku</a></li>
-                                        <li><a href="#">Laporan Kas</a></li>
-                                    </ul>
-                                </li>
-                            </ul>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-home"></i> Data Pesanan</a>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-home"></i> Data Transaksi </a>
+                                    </li>
+                                    <li>
+                                        <a href="~/Ukuran/UkuranKue"><i class="fa fa-home"></i> Data Size Kue </a>
+                                    </li>
+                                    <li>
+                                        <a href="~/TopingKue/TopingKue"><i class="fa fa-home"></i> Data Toping Kue</a>
+                                    </li>
+                                    <li>
+                                        <a><i class="fa fa-home"></i> Laporan <span class="fa fa-chevron-down"></span></a>
+                                        <ul class="nav child_menu">
+                                            <li><a href="#">Laporan Penjualan</a></li>
+                                            <li><a href="#">Laporan Bahan Baku</a></li>
+                                            <li><a href="#">Laporan Kas</a></li>
+                                        </ul>
+                                    </li>
+                                </ul>*@
                         </div>
 
                     </div>
@@ -306,11 +308,10 @@
     <script src="~/Content/vendors/jszip/dist/jszip.min.js"></script>
     <script src="~/Content/vendors/pdfmake/build/pdfmake.min.js"></script>
     <script src="~/Content/vendors/pdfmake/build/vfs_fonts.js"></script>
-
+    @*<script src="http://ajax.aspnetcdn.com/ajax/jquery.ui/1.9.2/jquery-ui.min.js"></script>*@
     <!-- bootstrap-datetimepicker -->
     <script src="~/Content/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
     <!-- Custom Theme Scripts -->
-    <script src="~/Content/build/js/custom.min.js"></script>
     <script>
         function NotifSucces() {
             new PNotify({
@@ -339,8 +340,63 @@
     <script src="~/Content/vendors/pnotify/dist/pnotify.js"></script>
     <script src="~/Content/vendors/pnotify/dist/pnotify.buttons.js"></script>
     <script src="~/Content/vendors/pnotify/dist/pnotify.nonblock.js"></script>
+    <script src="~/Scripts/helper.js"></script>
+    @*<script src="~/Content/js/MenuTree.js">
+        </script>*@
 
-    
+    @*<script src="~/Content/js/jquery.ui.menu.js"></script>*@F
+    <script>
+        $(document).ready(function () {
+            var getMenuItem = function (itemData) {
+                let item = $("<li>");
+                if (itemData.sub) {
+                    item.append(
+                        $("<a>", {
+                            html: "<i class='" + itemData.icon + "'> </i> " + itemData.name + " <span class='fa fa-chevron-down' ></span> "
+                        }));
+                    var subList = $("<ul class='nav child_menu'>");
+                    $.each(itemData.sub, function () {
+                        subList.append(getMenuItem(this));
+                    });
+                    item.append(subList);
+                }
+                else {
+                    item.append(
+                        $("<a>", {
+                            href: itemData.link,
+                            html: "<i class='" + itemData.icon + "'> </i> " + itemData.name
+                        }));
+                }
+                return item;
+            };
+            let path = new URL(window.location.href).origin.toString() + "/Menu/GetMenuJson";
+            var execute = readSession("execute");
+           // if (!execute) {
+             //   writeSession('execute', true);
+                $.ajax({
+                    url: path,
+                    datatype: "json",
+                    type: "GET",
+                    async: false,
+                    contentType: 'application/json; charset=utf-8',
+                    success: function (d) {
+                        var $menu = $("#menu");
+                        $.each(d, function () {
+                            $menu.append(
+                                getMenuItem(this)
+                            );
+                        });
+                    }
+                });
+            //}
+
+
+        });
+    </script>
+
+    <script src="~/Content/build/js/custom.min.js"></script>
+
+
 
     @RenderSection("scripts", required: false)
 </body>
