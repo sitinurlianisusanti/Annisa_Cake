@@ -28,17 +28,26 @@ namespace AnnisaCake.Web.Models
         }
     
         public virtual DbSet<admin> admins { get; set; }
+        public virtual DbSet<bahan_baku> bahan_baku { get; set; }
+        public virtual DbSet<bahan_baku_keluar> bahan_baku_keluar { get; set; }
+        public virtual DbSet<bahan_baku_Masuk> bahan_baku_Masuk { get; set; }
         public virtual DbSet<category> categories { get; set; }
         public virtual DbSet<kranjang> kranjangs { get; set; }
         public virtual DbSet<kue> kues { get; set; }
         public virtual DbSet<pelanggan> pelanggans { get; set; }
-        public virtual DbSet<ukuran_kue> ukuran_kue { get; set; }
-        public virtual DbSet<bahan_baku> bahan_baku { get; set; }
-        public virtual DbSet<bahan_baku_keluar> bahan_baku_keluar { get; set; }
-        public virtual DbSet<bahan_baku_Masuk> bahan_baku_Masuk { get; set; }
         public virtual DbSet<pesanan> pesanans { get; set; }
+        public virtual DbSet<tb_menu_tree> tb_menu_tree { get; set; }
         public virtual DbSet<toping> topings { get; set; }
         public virtual DbSet<transaksi> transaksis { get; set; }
+        public virtual DbSet<ukuran_kue> ukuran_kue { get; set; }
+        public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<role_user> role_user { get; set; }
+    
+        [DbFunction("SI_TKueEntities", "fn_GetStokBahanBaku")]
+        public virtual IQueryable<fn_GetStokBahanBaku_Result> fn_GetStokBahanBaku()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.CreateQuery<fn_GetStokBahanBaku_Result>("[SI_TKueEntities].[fn_GetStokBahanBaku]()");
+        }
     
         public virtual ObjectResult<GetCategory_Result> GetCategory()
         {
@@ -48,6 +57,15 @@ namespace AnnisaCake.Web.Models
         public virtual ObjectResult<SP_GetAllKue_Result> SP_GetAllKue()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetAllKue_Result>("SP_GetAllKue");
+        }
+    
+        public virtual ObjectResult<sp_GetAllKueById_Result> sp_GetAllKueById(Nullable<int> id)
+        {
+            var idParameter = id.HasValue ?
+                new ObjectParameter("id", id) :
+                new ObjectParameter("id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GetAllKueById_Result>("sp_GetAllKueById", idParameter);
         }
     
         public virtual ObjectResult<SP_GetMenuByRoleUser_Result> SP_GetMenuByRoleUser(Nullable<int> parent, string role)
@@ -61,6 +79,16 @@ namespace AnnisaCake.Web.Models
                 new ObjectParameter("role", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetMenuByRoleUser_Result>("SP_GetMenuByRoleUser", parentParameter, roleParameter);
+        }
+    
+        public virtual ObjectResult<SP_GetStokBahanBaku_Result> SP_GetStokBahanBaku()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<SP_GetStokBahanBaku_Result>("SP_GetStokBahanBaku");
+        }
+    
+        public virtual ObjectResult<string> SP_SelectCategory()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SP_SelectCategory");
         }
     }
 }

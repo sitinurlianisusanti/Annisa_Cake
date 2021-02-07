@@ -104,6 +104,14 @@
     <Property Name="jenis_pesanan" Type="varchar" MaxLength="15" Nullable="false" />
     <Property Name="jenis_pengambilan" Type="varchar" MaxLength="25" Nullable="false" />
   </EntityType>
+  <EntityType Name="role_user">
+    <Key>
+      <PropertyRef Name="id_role" />
+    </Key>
+    <Property Name="id_role" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="role" Type="varchar" MaxLength="100" />
+    <Property Name="deskripsi" Type="varchar" MaxLength="300" />
+  </EntityType>
   <EntityType Name="tb_menu_tree">
     <Key>
       <PropertyRef Name="id" />
@@ -115,6 +123,7 @@
     <Property Name="parent" Type="nvarchar" MaxLength="300" />
     <Property Name="order_by" Type="int" />
     <Property Name="role" Type="varchar" MaxLength="300" />
+    <Property Name="is_active" Type="bit" />
   </EntityType>
   <EntityType Name="toping">
     <Key>
@@ -140,6 +149,18 @@
     <Property Name="jenis_ukuran" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="id_toping" Type="char" MaxLength="10" Nullable="false" />
     <Property Name="harga" Type="bigint" Nullable="false" />
+  </EntityType>
+  <EntityType Name="user">
+    <Key>
+      <PropertyRef Name="id_user" />
+    </Key>
+    <Property Name="id_user" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="nama_user" Type="varchar" MaxLength="100" />
+    <Property Name="alamat" Type="varchar" MaxLength="300" />
+    <Property Name="no_hp" Type="varchar" MaxLength="50" />
+    <Property Name="email" Type="varchar" MaxLength="100" />
+    <Property Name="id_role" Type="int" />
+    <Property Name="sandi" Type="varchar" MaxLength="300" />
   </EntityType>
   <Association Name="FK__kranjang__id_kue__52593CB8">
     <End Role="kue" Type="Self.kue" Multiplicity="1" />
@@ -261,12 +282,29 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="fn_GetStokBahanBaku" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <ReturnType>
+      <CollectionType>
+        <RowType>
+          <Property Name="id_bahan_baku" Type="int" Nullable="false" />
+          <Property Name="nama_bahan_baku" Type="nvarchar(max)" />
+          <Property Name="satuan" Type="varchar" MaxLength="50" />
+          <Property Name="stok" Type="int" />
+        </RowType>
+      </CollectionType>
+    </ReturnType>
+  </Function>
   <Function Name="GetCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <Function Name="SP_GetAllKue" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="sp_GetAllKueById" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="id" Type="int" Mode="In" />
+  </Function>
   <Function Name="SP_GetMenuByRoleUser" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="parent" Type="int" Mode="In" />
     <Parameter Name="role" Type="varchar" Mode="In" />
   </Function>
+  <Function Name="SP_GetStokBahanBaku" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+  <Function Name="SP_SelectCategory" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
   <EntityContainer Name="SI_TKueModelStoreContainer">
     <EntitySet Name="admin" EntityType="Self.admin" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="bahan_baku" EntityType="Self.bahan_baku" Schema="dbo" store:Type="Tables" />
@@ -277,10 +315,12 @@
     <EntitySet Name="kue" EntityType="Self.kue" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="pelanggan" EntityType="Self.pelanggan" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="pesanan" EntityType="Self.pesanan" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="role_user" EntityType="Self.role_user" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="tb_menu_tree" EntityType="Self.tb_menu_tree" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="toping" EntityType="Self.toping" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="transaksi" EntityType="Self.transaksi" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ukuran_kue" EntityType="Self.ukuran_kue" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="user" EntityType="Self.user" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK__kranjang__id_kue__52593CB8" Association="Self.FK__kranjang__id_kue__52593CB8">
       <End Role="kue" EntitySet="kue" />
       <End Role="kranjang" EntitySet="kranjang" />

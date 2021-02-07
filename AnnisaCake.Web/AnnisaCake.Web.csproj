@@ -145,16 +145,19 @@
     <Compile Include="Controllers\BahanBakuController.cs" />
     <Compile Include="Controllers\BahanBakuKeluarController.cs" />
     <Compile Include="Controllers\bahan_baku_MasukController.cs" />
+    <Compile Include="Controllers\ManajemenMenuController.cs" />
     <Compile Include="Controllers\KategoriController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\KueController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
+    <Compile Include="Controllers\RoleUserController.cs" />
     <Compile Include="Controllers\TopingKueController.cs" />
     <Compile Include="Controllers\UkuranController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helper\UserAuditFilter.cs" />
     <Compile Include="Models\admin.cs">
       <DependentUpon>SI_TKueEntities.tt</DependentUpon>
     </Compile>
@@ -168,6 +171,9 @@
       <DependentUpon>SI_TKueEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\category.cs">
+      <DependentUpon>SI_TKueEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\fn_GetStokBahanBaku_Result.cs">
       <DependentUpon>SI_TKueEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\GetCategory_Result.cs">
@@ -186,6 +192,9 @@
     <Compile Include="Models\pesanan.cs">
       <DependentUpon>SI_TKueEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\role_user.cs">
+      <DependentUpon>SI_TKueEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SI_TKueEntities.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -201,10 +210,19 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>SI_TKueEntities.edmx</DependentUpon>
     </Compile>
+    <Compile Include="Models\sp_GetAllKueById_Result.cs">
+      <DependentUpon>SI_TKueEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\SP_GetAllKue_Result.cs">
       <DependentUpon>SI_TKueEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\SP_GetMenuByRoleUser_Result.cs">
+      <DependentUpon>SI_TKueEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\SP_GetStokBahanBaku_Result.cs">
+      <DependentUpon>SI_TKueEntities.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\tb_menu_tree.cs">
       <DependentUpon>SI_TKueEntities.tt</DependentUpon>
     </Compile>
     <Compile Include="Models\toping.cs">
@@ -216,7 +234,11 @@
     <Compile Include="Models\ukuran_kue.cs">
       <DependentUpon>SI_TKueEntities.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\user.cs">
+      <DependentUpon>SI_TKueEntities.tt</DependentUpon>
+    </Compile>
     <Compile Include="Models\ViewKue.cs" />
+    <Compile Include="Models\ViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tools\Tools.cs" />
   </ItemGroup>
@@ -237,6 +259,7 @@
     <Content Include="Content\build\images\loading.gif" />
     <Content Include="Content\build\js\custom.js" />
     <Content Include="Content\build\js\custom.min.js" />
+    <Content Include="Content\css\AddStyleCommon.css" />
     <Content Include="Content\css\materialize.css" />
     <Content Include="Content\css\style.css" />
     <Content Include="Content\css\style.min.css" />
@@ -318,6 +341,8 @@
     <Content Include="Content\documentation\templates\plugins.html" />
     <Content Include="Content\gulpfile.js" />
     <Content Include="Content\images\animation-bg.jpg" />
+    <Content Include="Content\images\details_close.png" />
+    <Content Include="Content\images\details_open.png" />
     <Content Include="Content\images\image-gallery\1.jpg" />
     <Content Include="Content\images\image-gallery\10.jpg" />
     <Content Include="Content\images\image-gallery\11.jpg" />
@@ -7415,13 +7440,6 @@
     <Content Include="Content\scss\_tooltippopovers.scss" />
     <Content Include="Content\scss\_variables.scss" />
     <Content Include="Content\scss\_waveseffect.scss" />
-    <EntityDeploy Include="Models\SI_TKueEntities.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>SI_TKueEntities.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="Models\SI_TKueEntities.edmx.diagram">
-      <DependentUpon>SI_TKueEntities.edmx</DependentUpon>
-    </Content>
     <Content Include="Content\.bowerrc" />
     <Content Include="Content\bower.json" />
     <Content Include="Content\changelog.md" />
@@ -8284,6 +8302,13 @@
     <Content Include="Content\vendors\validator\.bower.json" />
     <Content Include="Content\vendors\validator\README.md" />
     <Content Include="Content\vendors\validator\validator.jquery.json" />
+    <EntityDeploy Include="Models\SI_TKueEntities.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>SI_TKueEntities.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\SI_TKueEntities.edmx.diagram">
+      <DependentUpon>SI_TKueEntities.edmx</DependentUpon>
+    </Content>
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\helper.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
@@ -8335,12 +8360,20 @@
     <Content Include="Views\BahanBakuKeluar\CreateBahanBakuKeluar.cshtml" />
     <Content Include="Views\BahanBakuKeluar\EditBahanBakuKeluar.cshtml" />
     <Content Include="Views\Ukuran\UkuranKue.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\CreateUser.cshtml" />
+    <Content Include="Views\User\EditUser.cshtml" />
+    <Content Include="Views\RoleUser\Index.cshtml" />
+    <Content Include="Views\RoleUser\Create.cshtml" />
+    <Content Include="Views\RoleUser\CreateRoleUser.cshtml" />
+    <Content Include="Views\RoleUser\EditRoleUser.cshtml" />
+    <Content Include="Views\ManajemenMenu\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Content\picCake\" />
+    <Folder Include="Views\Default\" />
     <Folder Include="Views\Menu\" />
-    <Folder Include="Views\User\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

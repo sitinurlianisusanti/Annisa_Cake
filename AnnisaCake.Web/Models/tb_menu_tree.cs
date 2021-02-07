@@ -10,15 +10,17 @@
 namespace AnnisaCake.Web.Models
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class SP_GetAllKue_Result
+    public partial class tb_menu_tree
     {
         public int id { get; set; }
-        public string gambar { get; set; }
-        public string id_gambar { get; set; }
-        public string nama_kategori { get; set; }
-        public string nama_kue { get; set; }
-        public int harga { get; set; }
-        public int stok { get; set; }
+        public string name { get; set; }
+        public string link { get; set; }
+        public string icon { get; set; }
+        public string parent { get; set; }
+        public Nullable<int> order_by { get; set; }
+        public string role { get; set; }
+        public Nullable<bool> is_active { get; set; }
     }
 }

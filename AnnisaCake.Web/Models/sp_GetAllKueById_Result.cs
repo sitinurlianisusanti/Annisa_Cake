@@ -11,11 +11,9 @@ namespace AnnisaCake.Web.Models
 {
     using System;
     
-    public partial class SP_GetAllKue_Result
+    public partial class sp_GetAllKueById_Result
     {
         public int id { get; set; }
-        public string gambar { get; set; }
-        public string id_gambar { get; set; }
         public string nama_kategori { get; set; }
         public string nama_kue { get; set; }
         public int harga { get; set; }

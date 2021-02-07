@@ -46,6 +46,9 @@
     <!-- bootstrap-datetimepicker -->
     <link href="~/Content/vendors/bootstrap-datetimepicker/build/css/bootstrap-datetimepicker.css" rel="stylesheet">
 
+    <!-- Switchery -->
+    <link href="~/Content/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+
 
     @RenderSection("stylesheets", required: false)
 </head>
@@ -312,11 +315,13 @@
     <!-- bootstrap-datetimepicker -->
     <script src="~/Content/vendors/bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
     <!-- Custom Theme Scripts -->
+
+    <script src="~/Content/vendors/switchery/dist/switchery.min.js"></script>
     <script>
         function NotifSucces() {
             new PNotify({
                 title: 'Success',
-                text: 'Data has been deleted',
+                text: 'Procces Success',
                 type: 'success',
                 //notif non block
                 //nonblock: {
@@ -369,30 +374,33 @@
                 }
                 return item;
             };
-            let path = new URL(window.location.href).origin.toString() + "/Menu/GetMenuJson";
+            let path = new URL(window.location.href).origin.toString() + "/Menu/GetMenuJsonLogin";
             var execute = readSession("execute");
-           // if (!execute) {
-             //   writeSession('execute', true);
-                $.ajax({
-                    url: path,
-                    datatype: "json",
-                    type: "GET",
-                    async: false,
-                    contentType: 'application/json; charset=utf-8',
-                    success: function (d) {
-                        var $menu = $("#menu");
-                        $.each(d, function () {
-                            $menu.append(
-                                getMenuItem(this)
-                            );
-                        });
-                    }
-                });
+            // if (!execute) {
+            //   writeSession('execute', true);
+            $.ajax({
+                url: path,
+                datatype: "json",
+                type: "GET",
+                async: false,
+                contentType: 'application/json; charset=utf-8',
+                success: function (d) {
+                    var $menu = $("#menu");
+                    $.each(d, function () {
+                        $menu.append(
+                            getMenuItem(this)
+                        );
+                    });
+                }
+            });
             //}
 
 
         });
+
     </script>
+
+
 
     <script src="~/Content/build/js/custom.min.js"></script>
 

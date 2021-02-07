@@ -16,17 +16,17 @@ namespace AnnisaCake.Web.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Login(admin objUser)
+        public ActionResult Login(user objUser)
         {
             if (ModelState.IsValid)
             {
                 using (SI_TKueEntities db = new SI_TKueEntities())
                 {
-                    var obj = db.admins.Where(a => a.username.Equals(objUser.username) && a.pass.Equals(objUser.pass)).FirstOrDefault();
+                    var obj = db.users.Where(a => a.nama_user.Equals(objUser.nama_user) && a.sandi.Equals(objUser.sandi)).FirstOrDefault();
                     if (obj != null)
                     {
-                        Session["id"] = obj.id.ToString();
-                        Session["username"] = obj.username.ToString();
+                        Session["role"] = obj.id_role.ToString();
+                        Session["username"] = obj.nama_user.ToString();
                         return RedirectToAction("Index");
                     }
                 }
@@ -36,7 +36,7 @@ namespace AnnisaCake.Web.Controllers
 
         public ActionResult Index()
         {
-            if (Session["id"] != null)
+            if (Session["username"] != null)
             {
                 return View();
             }

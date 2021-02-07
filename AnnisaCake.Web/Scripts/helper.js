@@ -1,4 +1,5 @@
-﻿
+﻿const pathMenu = new URL(window.location.href).origin.toString() + "/Menu/GetMenuJson";
+const bashPath = new URL(window.location.href).origin.toString();
 
 function writeSession(name, value) {
     if (typeof (Storage) !== "undefined")

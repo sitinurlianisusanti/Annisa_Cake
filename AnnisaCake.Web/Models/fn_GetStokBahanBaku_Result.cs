@@ -11,14 +11,11 @@ namespace AnnisaCake.Web.Models
 {
     using System;
     
-    public partial class SP_GetAllKue_Result
+    public partial class fn_GetStokBahanBaku_Result
     {
-        public int id { get; set; }
-        public string gambar { get; set; }
-        public string id_gambar { get; set; }
-        public string nama_kategori { get; set; }
-        public string nama_kue { get; set; }
-        public int harga { get; set; }
-        public int stok { get; set; }
+        public int id_bahan_baku { get; set; }
+        public string nama_bahan_baku { get; set; }
+        public string satuan { get; set; }
+        public Nullable<int> stok { get; set; }
     }
 }
