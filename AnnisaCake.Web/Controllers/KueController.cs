@@ -1,4 +1,5 @@
-﻿using AnnisaCake.Web.Models;
+﻿using AnnisaCake.Web.Helper;
+using AnnisaCake.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -16,6 +17,7 @@ namespace AnnisaCake.Web.Controllers
     {
         public SI_TKueEntities si_kue = new SI_TKueEntities();
         // GET: Kue
+        [UserAuditFilter]
         public ActionResult Kue()
         {
             var data = si_kue.SP_GetAllKue().ToList();
@@ -41,6 +43,8 @@ namespace AnnisaCake.Web.Controllers
         {
             kue kue = new kue();
             kue.Kategoris = si_kue.categories.ToList<category>();
+            ViewBag.ukuran_kue = si_kue.ukuran_kue.ToList();
+            ViewBag.jenis_toping = si_kue.topings.ToList();
             return View(kue);
         }
 
@@ -72,6 +76,7 @@ namespace AnnisaCake.Web.Controllers
                         k.id_gambar = kue.id_gambar;
                         k.nama_kue = kue.nama_kue;
                         k.id_category = kue.id_category;
+                        k.id_toping = kue.id_toping;
                         k.harga = kue.harga;
                         k.stok = kue.stok;
                         si_kue.kues.Add(k);
@@ -95,7 +100,8 @@ namespace AnnisaCake.Web.Controllers
         public ActionResult EditKue(int? id)
         {
             //kue kue = new kue();
-
+            ViewBag.ukuran_kue = si_kue.ukuran_kue.ToList();
+            ViewBag.jenis_toping = si_kue.topings.ToList();
 
             if (id == null)
 
@@ -148,6 +154,8 @@ namespace AnnisaCake.Web.Controllers
                     kue2.id_gambar = kue.UploadFile != null ? kue.id_gambar : kue2.id_gambar;
                     kue2.nama_kue = kue.nama_kue;
                     kue2.id_category = kue.id_category;
+                    kue2.id_ukuran = kue.id_ukuran;
+                    kue2.id_toping = kue.id_toping;
                     kue2.harga = kue.harga;
                     kue2.stok = kue.stok;
                     si_kue.Entry(kue2).State = EntityState.Modified;

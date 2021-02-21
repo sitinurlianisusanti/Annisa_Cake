@@ -11,20 +11,14 @@ namespace AnnisaCake.Web.Models
 {
     using System;
     using System.Collections.Generic;
-    using System.ComponentModel.DataAnnotations;
-
+    
     public partial class bahan_baku_Masuk
     {
         public int id { get; set; }
-        [Required(ErrorMessage = "Tanggal harus di isi")]
         public System.DateTime tgl_pembelian { get; set; }
-        [Required(ErrorMessage = "Bahan baku harus di isi")]
         public int id_bahan_baku { get; set; }
-        [Required(ErrorMessage = "Jumlah harus di isi")]
         public int jumlah { get; set; }
-        [Required(ErrorMessage = "Satuan harus di isi")]
         public string satuan { get; set; }
-        [Required(ErrorMessage = "Harga harus di isi")]
         public int harga { get; set; }
     
         public virtual bahan_baku bahan_baku { get; set; }

@@ -15,6 +15,7 @@ using SimpleInjector.Integration.Web.Mvc;
 using System.Reflection;
 using System.Web.UI;
 using AnnisaCake.Web.Controllers;
+using AnnisaCake.Web.Models.ModelView;
 
 namespace AnnisaCake.Web
 {
@@ -22,14 +23,6 @@ namespace AnnisaCake.Web
     {
         protected void Application_Start()
         {
-            
-            var configuration = new MapperConfiguration(cfg =>
-            {
-                cfg.CreateMap<SP_GetMenuByRoleUser_Result, MenuTree>();
-            });
-
-            var mapper = configuration.CreateMapper();
-
             var container = new Container();
             container.Options.DefaultScopedLifestyle = new WebRequestLifestyle();
             //container.GetInstance<ThemeProvider>();
@@ -89,6 +82,9 @@ namespace AnnisaCake.Web
             public SomeProfile()
             {
                 CreateMap<SP_GetMenuByRoleUser_Result, MenuTree>();
+                CreateMap<ViewModel.pelanggan, pelanggan_tamp>();
+                CreateMap<pelanggan_tamp, pelanggan>();
+                CreateMap<role_user, role_user_view>();
             }
         }
     }

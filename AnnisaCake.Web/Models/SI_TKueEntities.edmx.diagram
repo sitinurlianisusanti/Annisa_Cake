@@ -4,32 +4,36 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="3f3bc044b83944129fde3f46c8be8c2f" Name="Diagram1">
-        <EntityTypeShape EntityType="SI_TKueModel.admin" Width="1.5" PointX="8.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SI_TKueModel.bahan_baku" Width="1.5" PointX="5.75" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SI_TKueModel.bahan_baku_keluar" Width="1.5" PointX="8" PointY="11.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SI_TKueModel.bahan_baku_Masuk" Width="1.5" PointX="8" PointY="14.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SI_TKueModel.category" Width="1.5" PointX="1.5" PointY="10.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="SI_TKueModel.kranjang" Width="1.5" PointX="3" PointY="5.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SI_TKueModel.kue" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="SI_TKueModel.pelanggan" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SI_TKueModel.pesanan" Width="1.5" PointX="6" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="SI_TKueModel.tb_menu_tree" Width="1.5" PointX="10.75" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="SI_TKueModel.toping" Width="1.5" PointX="3.75" PointY="3" IsExpanded="true" />
-        <EntityTypeShape EntityType="SI_TKueModel.transaksi" Width="1.5" PointX="8.25" PointY="6.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="SI_TKueModel.ukuran_kue" Width="1.5" PointX="3.75" PointY="9.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="SI_TKueModel.user" Width="1.5" PointX="10.75" PointY="6.875" IsExpanded="true" />
-        <AssociationConnector Association="SI_TKueModel.FK_bahan_baku_keluar_bahan_baku" ManuallyRouted="false" />
-        <AssociationConnector Association="SI_TKueModel.FK_bahan_baku_Masuk_bahan_baku" ManuallyRouted="false" />
-        <AssociationConnector Association="SI_TKueModel.FK__kue__id_category__534D60F1" ManuallyRouted="false" />
-        <AssociationConnector Association="SI_TKueModel.FK__kranjang__id_kue__52593CB8" ManuallyRouted="false" />
-        <AssociationConnector Association="SI_TKueModel.FK__kranjang__id_pel__52593CB8" ManuallyRouted="false" />
-        <AssociationConnector Association="SI_TKueModel.FK_pesanan_kue" ManuallyRouted="false" />
-        <AssociationConnector Association="SI_TKueModel.FK_pemesan" ManuallyRouted="false" />
-        <AssociationConnector Association="SI_TKueModel.FK_id_pesanan" ManuallyRouted="false" />
-        <AssociationConnector Association="SI_TKueModel.FK_pesanan_size" ManuallyRouted="false" />
-        <AssociationConnector Association="SI_TKueModel.FK_toping" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="SI_TKueModel.role_user" Width="1.5" PointX="10.375" PointY="10.75" />
+      <Diagram DiagramId="3f3bc044b83944129fde3f46c8be8c2f" Name="Diagram1" ZoomLevel="64">
+        <EntityTypeShape EntityType="SI_TKueModel.admin" Width="1.5" PointX="9.75" PointY="7.75" />
+        <EntityTypeShape EntityType="SI_TKueModel.bahan_baku" Width="1.5" PointX="9.75" PointY="2.75" />
+        <EntityTypeShape EntityType="SI_TKueModel.bahan_baku_keluar" Width="1.5" PointX="12" PointY="4.25" />
+        <EntityTypeShape EntityType="SI_TKueModel.bahan_baku_Masuk" Width="1.5" PointX="12" PointY="1.125" />
+        <EntityTypeShape EntityType="SI_TKueModel.category" Width="1.5" PointX="0.75" PointY="7.875" />
+        <EntityTypeShape EntityType="SI_TKueModel.kranjang" Width="1.5" PointX="5.25" PointY="1.375" />
+        <EntityTypeShape EntityType="SI_TKueModel.pelanggan" Width="1.5" PointX="3" PointY="5.875" />
+        <EntityTypeShape EntityType="SI_TKueModel.pesanan" Width="1.5" PointX="5.25" PointY="5.625" />
+        <EntityTypeShape EntityType="SI_TKueModel.status_pesanan" Width="1.5" PointX="3" PointY="10.875" />
+        <EntityTypeShape EntityType="SI_TKueModel.tb_menu_tree" Width="1.5" PointX="7.75" PointY="10.75" />
+        <EntityTypeShape EntityType="SI_TKueModel.toping" Width="1.5" PointX="0.75" PointY="2" />
+        <EntityTypeShape EntityType="SI_TKueModel.transaksi" Width="1.5" PointX="7.5" PointY="6.75" />
+        <EntityTypeShape EntityType="SI_TKueModel.ukuran_kue" Width="1.5" PointX="0.75" PointY="5.25" />
+        <AssociationConnector Association="SI_TKueModel.FK_bahan_baku_keluar_bahan_baku" />
+        <AssociationConnector Association="SI_TKueModel.FK_bahan_baku_Masuk_bahan_baku" />
+        <AssociationConnector Association="SI_TKueModel.FK_kranjang_pelangan" />
+        <AssociationConnector Association="SI_TKueModel.FK__pesanan__id_pela__7849DB76" />
+        <AssociationConnector Association="SI_TKueModel.FK_id_pesanan" />
+        <AssociationConnector Association="SI_TKueModel.FK_pesanan_status" />
+        <EntityTypeShape EntityType="SI_TKueModel.kue" Width="1.5" PointX="3" PointY="0.875" />
+        <AssociationConnector Association="SI_TKueModel.FK__kue__id_category__534D60F1" />
+        <AssociationConnector Association="SI_TKueModel.FK__kranjang__id_kue__52593CB8" />
+        <AssociationConnector Association="SI_TKueModel.FK_kue_toping1" />
+        <AssociationConnector Association="SI_TKueModel.FK_kue_ukuran" />
+        <AssociationConnector Association="SI_TKueModel.FK_pesanan_kue" />
+        <EntityTypeShape EntityType="SI_TKueModel.pelanggan_tamp" Width="1.5" PointX="12.375" PointY="7.75" />
+        <EntityTypeShape EntityType="SI_TKueModel.role_user" Width="1.5" PointX="10.375" PointY="13.375" />
+        <EntityTypeShape EntityType="SI_TKueModel.user" Width="1.5" PointX="12.625" PointY="13" />
+        <AssociationConnector Association="SI_TKueModel.FK_user_role" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

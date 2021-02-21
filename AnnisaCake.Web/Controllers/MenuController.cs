@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AnnisaCake.Web.Helper;
 using AnnisaCake.Web.Models;
 using AutoMapper;
 
@@ -17,6 +18,7 @@ namespace AnnisaCake.Web.Controllers
             this.mapper = mapper;
         }
         // GET: Menu
+        [UserAuditFilter]
         public ActionResult GetMenuJson(string idrole)
         {
 

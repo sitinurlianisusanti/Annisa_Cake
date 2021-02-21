@@ -1,174 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
   <EntityContainerMapping StorageEntityContainer="SI_TKueModelStoreContainer" CdmEntityContainer="SI_TKueEntities">
-    <EntitySetMapping Name="admins">
-      <EntityTypeMapping TypeName="SI_TKueModel.admin">
-        <MappingFragment StoreEntitySet="admin">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="username" ColumnName="username" />
-          <ScalarProperty Name="pass" ColumnName="pass" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="bahan_baku">
-      <EntityTypeMapping TypeName="SI_TKueModel.bahan_baku">
-        <MappingFragment StoreEntitySet="bahan_baku">
-          <ScalarProperty Name="id_bahan_baku" ColumnName="id_bahan_baku" />
-          <ScalarProperty Name="nama_bahan_baku" ColumnName="nama_bahan_baku" />
-          <ScalarProperty Name="satuan" ColumnName="satuan" />
-          <ScalarProperty Name="stok" ColumnName="stok" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="bahan_baku_keluar">
-      <EntityTypeMapping TypeName="SI_TKueModel.bahan_baku_keluar">
-        <MappingFragment StoreEntitySet="bahan_baku_keluar">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="tgl_keluar" ColumnName="tgl_keluar" />
-          <ScalarProperty Name="id_bahan_baku" ColumnName="id_bahan_baku" />
-          <ScalarProperty Name="jumlah" ColumnName="jumlah" />
-          <ScalarProperty Name="satuan" ColumnName="satuan" />
-          <ScalarProperty Name="deskripsi" ColumnName="deskripsi" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="bahan_baku_Masuk">
-      <EntityTypeMapping TypeName="SI_TKueModel.bahan_baku_Masuk">
-        <MappingFragment StoreEntitySet="bahan_baku_Masuk">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="tgl_pembelian" ColumnName="tgl_pembelian" />
-          <ScalarProperty Name="id_bahan_baku" ColumnName="id_bahan_baku" />
-          <ScalarProperty Name="jumlah" ColumnName="jumlah" />
-          <ScalarProperty Name="satuan" ColumnName="satuan" />
-          <ScalarProperty Name="harga" ColumnName="harga" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="categories">
-      <EntityTypeMapping TypeName="SI_TKueModel.category">
-        <MappingFragment StoreEntitySet="category">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="nama_kategori" ColumnName="nama_kategori" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="kranjangs">
-      <EntityTypeMapping TypeName="SI_TKueModel.kranjang">
-        <MappingFragment StoreEntitySet="kranjang">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="id_pelanggan" ColumnName="id_pelanggan" />
-          <ScalarProperty Name="id_kue" ColumnName="id_kue" />
-          <ScalarProperty Name="qty" ColumnName="qty" />
-          <ScalarProperty Name="harga" ColumnName="harga" />
-          <ScalarProperty Name="total_harga" ColumnName="total_harga" />
-          <ScalarProperty Name="total_bayar" ColumnName="total_bayar" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="kues">
-      <EntityTypeMapping TypeName="SI_TKueModel.kue">
-        <MappingFragment StoreEntitySet="kue">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="gambar" ColumnName="gambar" />
-          <ScalarProperty Name="nama_kue" ColumnName="nama_kue" />
-          <ScalarProperty Name="id_category" ColumnName="id_category" />
-          <ScalarProperty Name="harga" ColumnName="harga" />
-          <ScalarProperty Name="stok" ColumnName="stok" />
-          <ScalarProperty Name="id_gambar" ColumnName="id_gambar" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="pelanggans">
-      <EntityTypeMapping TypeName="SI_TKueModel.pelanggan">
-        <MappingFragment StoreEntitySet="pelanggan">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="nama" ColumnName="nama" />
-          <ScalarProperty Name="alamat" ColumnName="alamat" />
-          <ScalarProperty Name="rt" ColumnName="rt" />
-          <ScalarProperty Name="rw" ColumnName="rw" />
-          <ScalarProperty Name="desa" ColumnName="desa" />
-          <ScalarProperty Name="kec" ColumnName="kec" />
-          <ScalarProperty Name="kab" ColumnName="kab" />
-          <ScalarProperty Name="provinsi" ColumnName="provinsi" />
-          <ScalarProperty Name="no_hp" ColumnName="no_hp" />
-          <ScalarProperty Name="username" ColumnName="username" />
-          <ScalarProperty Name="pass" ColumnName="pass" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="pesanans">
-      <EntityTypeMapping TypeName="SI_TKueModel.pesanan">
-        <MappingFragment StoreEntitySet="pesanan">
-          <ScalarProperty Name="id_pesanan" ColumnName="id_pesanan" />
-          <ScalarProperty Name="tgl_pesan" ColumnName="tgl_pesan" />
-          <ScalarProperty Name="id_pemesan" ColumnName="id_pemesan" />
-          <ScalarProperty Name="id_kue" ColumnName="id_kue" />
-          <ScalarProperty Name="id_size" ColumnName="id_size" />
-          <ScalarProperty Name="kode_toping" ColumnName="kode_toping" />
-          <ScalarProperty Name="deskripsi_pesanan" ColumnName="deskripsi_pesanan" />
-          <ScalarProperty Name="jumlah_kue" ColumnName="jumlah_kue" />
-          <ScalarProperty Name="harga" ColumnName="harga" />
-          <ScalarProperty Name="jenis_pembayaran" ColumnName="jenis_pembayaran" />
-          <ScalarProperty Name="jenis_pesanan" ColumnName="jenis_pesanan" />
-          <ScalarProperty Name="jenis_pengambilan" ColumnName="jenis_pengambilan" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="tb_menu_tree">
-      <EntityTypeMapping TypeName="SI_TKueModel.tb_menu_tree">
-        <MappingFragment StoreEntitySet="tb_menu_tree">
-          <ScalarProperty Name="id" ColumnName="id" />
-          <ScalarProperty Name="name" ColumnName="name" />
-          <ScalarProperty Name="link" ColumnName="link" />
-          <ScalarProperty Name="icon" ColumnName="icon" />
-          <ScalarProperty Name="parent" ColumnName="parent" />
-          <ScalarProperty Name="order_by" ColumnName="order_by" />
-          <ScalarProperty Name="role" ColumnName="role" />
-          <ScalarProperty Name="is_active" ColumnName="is_active" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="topings">
-      <EntityTypeMapping TypeName="SI_TKueModel.toping">
-        <MappingFragment StoreEntitySet="toping">
-          <ScalarProperty Name="kode_toping" ColumnName="kode_toping" />
-          <ScalarProperty Name="jenis_toping" ColumnName="jenis_toping" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="transaksis">
-      <EntityTypeMapping TypeName="SI_TKueModel.transaksi">
-        <MappingFragment StoreEntitySet="transaksi">
-          <ScalarProperty Name="id_transaksi" ColumnName="id_transaksi" />
-          <ScalarProperty Name="tgl_transaksi" ColumnName="tgl_transaksi" />
-          <ScalarProperty Name="id_pesanan" ColumnName="id_pesanan" />
-          <ScalarProperty Name="status" ColumnName="status" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="ukuran_kue">
-      <EntityTypeMapping TypeName="SI_TKueModel.ukuran_kue">
-        <MappingFragment StoreEntitySet="ukuran_kue">
-          <ScalarProperty Name="id_ukuran" ColumnName="id_ukuran" />
-          <ScalarProperty Name="jenis_ukuran" ColumnName="jenis_ukuran" />
-          <ScalarProperty Name="id_toping" ColumnName="id_toping" />
-          <ScalarProperty Name="harga" ColumnName="harga" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
-    <EntitySetMapping Name="users">
-      <EntityTypeMapping TypeName="SI_TKueModel.user">
-        <MappingFragment StoreEntitySet="user">
-          <ScalarProperty Name="sandi" ColumnName="sandi" />
-          <ScalarProperty Name="id_user" ColumnName="id_user" />
-          <ScalarProperty Name="nama_user" ColumnName="nama_user" />
-          <ScalarProperty Name="alamat" ColumnName="alamat" />
-          <ScalarProperty Name="no_hp" ColumnName="no_hp" />
-          <ScalarProperty Name="email" ColumnName="email" />
-          <ScalarProperty Name="id_role" ColumnName="id_role" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <FunctionImportMapping FunctionName="SI_TKueModel.Store.fn_GetStokBahanBaku" FunctionImportName="fn_GetStokBahanBaku">
       <ResultMapping>
         <ComplexTypeMapping TypeName="SI_TKueModel.fn_GetStokBahanBaku_Result">
@@ -197,6 +29,8 @@
           <ScalarProperty Name="nama_kue" ColumnName="nama_kue" />
           <ScalarProperty Name="harga" ColumnName="harga" />
           <ScalarProperty Name="stok" ColumnName="stok" />
+          <ScalarProperty Name="ukuran" ColumnName="ukuran" />
+          <ScalarProperty Name="jenis_toping" ColumnName="jenis_toping" />
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
@@ -233,12 +67,231 @@
       </ResultMapping>
     </FunctionImportMapping>
     <FunctionImportMapping FunctionImportName="SP_SelectCategory" FunctionName="SI_TKueModel.Store.SP_SelectCategory" />
+    <FunctionImportMapping FunctionImportName="get_pesanan" FunctionName="SI_TKueModel.Store.get_pesanan">
+      <ResultMapping>
+        <ComplexTypeMapping TypeName="SI_TKueModel.get_pesanan_Result">
+          <ScalarProperty Name="id_pesanan" ColumnName="id_pesanan" />
+          <ScalarProperty Name="tgl_pesan" ColumnName="tgl_pesan" />
+          <ScalarProperty Name="nama_kue" ColumnName="nama_kue" />
+          <ScalarProperty Name="deskripsi_pesanan" ColumnName="deskripsi_pesanan" />
+          <ScalarProperty Name="jumlah_kue" ColumnName="jumlah_kue" />
+          <ScalarProperty Name="jenis_pembayaran" ColumnName="jenis_pembayaran" />
+          <ScalarProperty Name="jenis_pesanan" ColumnName="jenis_pesanan" />
+          <ScalarProperty Name="jenis_pengambilan" ColumnName="jenis_pengambilan" />
+          <ScalarProperty Name="no_hp" ColumnName="no_hp" />
+          <ScalarProperty Name="alamat" ColumnName="alamat" />
+          <ScalarProperty Name="pemesan" ColumnName="pemesan" />
+          <ScalarProperty Name="total_harga" ColumnName="total_harga" />
+          <ScalarProperty Name="id_status" ColumnName="id_status" />
+        </ComplexTypeMapping>
+      </ResultMapping>
+    </FunctionImportMapping>
+    <EntitySetMapping Name="admins">
+      <EntityTypeMapping TypeName="SI_TKueModel.admin">
+        <MappingFragment StoreEntitySet="admin">
+          <ScalarProperty Name="pass" ColumnName="pass" />
+          <ScalarProperty Name="username" ColumnName="username" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bahan_baku">
+      <EntityTypeMapping TypeName="SI_TKueModel.bahan_baku">
+        <MappingFragment StoreEntitySet="bahan_baku">
+          <ScalarProperty Name="stok" ColumnName="stok" />
+          <ScalarProperty Name="satuan" ColumnName="satuan" />
+          <ScalarProperty Name="nama_bahan_baku" ColumnName="nama_bahan_baku" />
+          <ScalarProperty Name="id_bahan_baku" ColumnName="id_bahan_baku" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bahan_baku_keluar">
+      <EntityTypeMapping TypeName="SI_TKueModel.bahan_baku_keluar">
+        <MappingFragment StoreEntitySet="bahan_baku_keluar">
+          <ScalarProperty Name="deskripsi" ColumnName="deskripsi" />
+          <ScalarProperty Name="satuan" ColumnName="satuan" />
+          <ScalarProperty Name="jumlah" ColumnName="jumlah" />
+          <ScalarProperty Name="id_bahan_baku" ColumnName="id_bahan_baku" />
+          <ScalarProperty Name="tgl_keluar" ColumnName="tgl_keluar" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="bahan_baku_Masuk">
+      <EntityTypeMapping TypeName="SI_TKueModel.bahan_baku_Masuk">
+        <MappingFragment StoreEntitySet="bahan_baku_Masuk">
+          <ScalarProperty Name="harga" ColumnName="harga" />
+          <ScalarProperty Name="satuan" ColumnName="satuan" />
+          <ScalarProperty Name="jumlah" ColumnName="jumlah" />
+          <ScalarProperty Name="id_bahan_baku" ColumnName="id_bahan_baku" />
+          <ScalarProperty Name="tgl_pembelian" ColumnName="tgl_pembelian" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="categories">
+      <EntityTypeMapping TypeName="SI_TKueModel.category">
+        <MappingFragment StoreEntitySet="category">
+          <ScalarProperty Name="nama_kategori" ColumnName="nama_kategori" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kranjangs">
+      <EntityTypeMapping TypeName="SI_TKueModel.kranjang">
+        <MappingFragment StoreEntitySet="kranjang">
+          <ScalarProperty Name="total_bayar" ColumnName="total_bayar" />
+          <ScalarProperty Name="total_harga" ColumnName="total_harga" />
+          <ScalarProperty Name="harga" ColumnName="harga" />
+          <ScalarProperty Name="qty" ColumnName="qty" />
+          <ScalarProperty Name="id_kue" ColumnName="id_kue" />
+          <ScalarProperty Name="id_pelanggan" ColumnName="id_pelanggan" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pelanggans">
+      <EntityTypeMapping TypeName="SI_TKueModel.pelanggan">
+        <MappingFragment StoreEntitySet="pelanggan">
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="no_hp" ColumnName="no_hp" />
+          <ScalarProperty Name="provinsi" ColumnName="provinsi" />
+          <ScalarProperty Name="kab" ColumnName="kab" />
+          <ScalarProperty Name="kec" ColumnName="kec" />
+          <ScalarProperty Name="desa" ColumnName="desa" />
+          <ScalarProperty Name="rw" ColumnName="rw" />
+          <ScalarProperty Name="rt" ColumnName="rt" />
+          <ScalarProperty Name="alamat" ColumnName="alamat" />
+          <ScalarProperty Name="sandi" ColumnName="sandi" />
+          <ScalarProperty Name="nama_pelanggan" ColumnName="nama_pelanggan" />
+          <ScalarProperty Name="id_pelanggan" ColumnName="id_pelanggan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pesanans">
+      <EntityTypeMapping TypeName="SI_TKueModel.pesanan">
+        <MappingFragment StoreEntitySet="pesanan">
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="id_status" ColumnName="id_status" />
+          <ScalarProperty Name="alamat" ColumnName="alamat" />
+          <ScalarProperty Name="no_hp" ColumnName="no_hp" />
+          <ScalarProperty Name="jenis_pengambilan" ColumnName="jenis_pengambilan" />
+          <ScalarProperty Name="jenis_pesanan" ColumnName="jenis_pesanan" />
+          <ScalarProperty Name="jenis_pembayaran" ColumnName="jenis_pembayaran" />
+          <ScalarProperty Name="total_harga" ColumnName="total_harga" />
+          <ScalarProperty Name="jumlah_kue" ColumnName="jumlah_kue" />
+          <ScalarProperty Name="deskripsi_pesanan" ColumnName="deskripsi_pesanan" />
+          <ScalarProperty Name="id_kue" ColumnName="id_kue" />
+          <ScalarProperty Name="id_pelanggan" ColumnName="id_pelanggan" />
+          <ScalarProperty Name="tgl_pesan" ColumnName="tgl_pesan" />
+          <ScalarProperty Name="id_pesanan" ColumnName="id_pesanan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="status_pesanan">
+      <EntityTypeMapping TypeName="SI_TKueModel.status_pesanan">
+        <MappingFragment StoreEntitySet="status_pesanan">
+          <ScalarProperty Name="deskripsi" ColumnName="deskripsi" />
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="id_status" ColumnName="id_status" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="tb_menu_tree">
+      <EntityTypeMapping TypeName="SI_TKueModel.tb_menu_tree">
+        <MappingFragment StoreEntitySet="tb_menu_tree">
+          <ScalarProperty Name="is_active" ColumnName="is_active" />
+          <ScalarProperty Name="role" ColumnName="role" />
+          <ScalarProperty Name="order_by" ColumnName="order_by" />
+          <ScalarProperty Name="parent" ColumnName="parent" />
+          <ScalarProperty Name="icon" ColumnName="icon" />
+          <ScalarProperty Name="link" ColumnName="link" />
+          <ScalarProperty Name="name" ColumnName="name" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="topings">
+      <EntityTypeMapping TypeName="SI_TKueModel.toping">
+        <MappingFragment StoreEntitySet="toping">
+          <ScalarProperty Name="jenis_toping" ColumnName="jenis_toping" />
+          <ScalarProperty Name="id_toping" ColumnName="id_toping" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="transaksis">
+      <EntityTypeMapping TypeName="SI_TKueModel.transaksi">
+        <MappingFragment StoreEntitySet="transaksi">
+          <ScalarProperty Name="status" ColumnName="status" />
+          <ScalarProperty Name="id_pesanan" ColumnName="id_pesanan" />
+          <ScalarProperty Name="tgl_transaksi" ColumnName="tgl_transaksi" />
+          <ScalarProperty Name="id_transaksi" ColumnName="id_transaksi" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ukuran_kue">
+      <EntityTypeMapping TypeName="SI_TKueModel.ukuran_kue">
+        <MappingFragment StoreEntitySet="ukuran_kue">
+          <ScalarProperty Name="deskripsi" ColumnName="deskripsi" />
+          <ScalarProperty Name="ukuran" ColumnName="ukuran" />
+          <ScalarProperty Name="id_ukuran" ColumnName="id_ukuran" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="kues">
+      <EntityTypeMapping TypeName="SI_TKueModel.kue">
+        <MappingFragment StoreEntitySet="kue">
+          <ScalarProperty Name="id_toping" ColumnName="id_toping" />
+          <ScalarProperty Name="id_ukuran" ColumnName="id_ukuran" />
+          <ScalarProperty Name="id_gambar" ColumnName="id_gambar" />
+          <ScalarProperty Name="stok" ColumnName="stok" />
+          <ScalarProperty Name="harga" ColumnName="harga" />
+          <ScalarProperty Name="id_category" ColumnName="id_category" />
+          <ScalarProperty Name="nama_kue" ColumnName="nama_kue" />
+          <ScalarProperty Name="gambar" ColumnName="gambar" />
+          <ScalarProperty Name="id" ColumnName="id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="pelanggan_tamp">
+      <EntityTypeMapping TypeName="SI_TKueModel.pelanggan_tamp">
+        <MappingFragment StoreEntitySet="pelanggan_tamp">
+          <ScalarProperty Name="kode_konfirmasi" ColumnName="kode_konfirmasi" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="no_hp" ColumnName="no_hp" />
+          <ScalarProperty Name="provinsi" ColumnName="provinsi" />
+          <ScalarProperty Name="kab" ColumnName="kab" />
+          <ScalarProperty Name="kec" ColumnName="kec" />
+          <ScalarProperty Name="desa" ColumnName="desa" />
+          <ScalarProperty Name="rw" ColumnName="rw" />
+          <ScalarProperty Name="rt" ColumnName="rt" />
+          <ScalarProperty Name="alamat" ColumnName="alamat" />
+          <ScalarProperty Name="sandi" ColumnName="sandi" />
+          <ScalarProperty Name="nama_pelanggan" ColumnName="nama_pelanggan" />
+          <ScalarProperty Name="id_pelanggan" ColumnName="id_pelanggan" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <FunctionImportMapping FunctionImportName="fil_pelanggan_from_tamp" FunctionName="SI_TKueModel.Store.fil_pelanggan_from_tamp" />
     <EntitySetMapping Name="role_user">
       <EntityTypeMapping TypeName="SI_TKueModel.role_user">
         <MappingFragment StoreEntitySet="role_user">
           <ScalarProperty Name="deskripsi" ColumnName="deskripsi" />
           <ScalarProperty Name="role" ColumnName="role" />
           <ScalarProperty Name="id_role" ColumnName="id_role" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="users">
+      <EntityTypeMapping TypeName="SI_TKueModel.user">
+        <MappingFragment StoreEntitySet="user">
+          <ScalarProperty Name="sandi" ColumnName="sandi" />
+          <ScalarProperty Name="id_role" ColumnName="id_role" />
+          <ScalarProperty Name="email" ColumnName="email" />
+          <ScalarProperty Name="no_hp" ColumnName="no_hp" />
+          <ScalarProperty Name="alamat" ColumnName="alamat" />
+          <ScalarProperty Name="nama_user" ColumnName="nama_user" />
+          <ScalarProperty Name="id_user" ColumnName="id_user" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

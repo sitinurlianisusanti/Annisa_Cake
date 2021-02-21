@@ -33,15 +33,17 @@ namespace AnnisaCake.Web.Models
         public virtual DbSet<bahan_baku_Masuk> bahan_baku_Masuk { get; set; }
         public virtual DbSet<category> categories { get; set; }
         public virtual DbSet<kranjang> kranjangs { get; set; }
-        public virtual DbSet<kue> kues { get; set; }
         public virtual DbSet<pelanggan> pelanggans { get; set; }
         public virtual DbSet<pesanan> pesanans { get; set; }
+        public virtual DbSet<status_pesanan> status_pesanan { get; set; }
         public virtual DbSet<tb_menu_tree> tb_menu_tree { get; set; }
         public virtual DbSet<toping> topings { get; set; }
         public virtual DbSet<transaksi> transaksis { get; set; }
         public virtual DbSet<ukuran_kue> ukuran_kue { get; set; }
-        public virtual DbSet<user> users { get; set; }
+        public virtual DbSet<kue> kues { get; set; }
+        public virtual DbSet<pelanggan_tamp> pelanggan_tamp { get; set; }
         public virtual DbSet<role_user> role_user { get; set; }
+        public virtual DbSet<user> users { get; set; }
     
         [DbFunction("SI_TKueEntities", "fn_GetStokBahanBaku")]
         public virtual IQueryable<fn_GetStokBahanBaku_Result> fn_GetStokBahanBaku()
@@ -89,6 +91,20 @@ namespace AnnisaCake.Web.Models
         public virtual ObjectResult<string> SP_SelectCategory()
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<string>("SP_SelectCategory");
+        }
+    
+        public virtual ObjectResult<get_pesanan_Result> get_pesanan()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<get_pesanan_Result>("get_pesanan");
+        }
+    
+        public virtual int fil_pelanggan_from_tamp(Nullable<System.Guid> id_pelanggan)
+        {
+            var id_pelangganParameter = id_pelanggan.HasValue ?
+                new ObjectParameter("id_pelanggan", id_pelanggan) :
+                new ObjectParameter("id_pelanggan", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("fil_pelanggan_from_tamp", id_pelangganParameter);
         }
     }
 }

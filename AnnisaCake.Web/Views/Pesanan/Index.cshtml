@@ -1,0 +1,189 @@
+﻿@model IEnumerable<AnnisaCake.Web.Models.pesanan>
+
+@{
+    /**/
+
+    ViewBag.Title = "BahanBaku";
+}
+
+
+<style>
+    .action {
+        width: 100px;
+    }
+</style>
+<h2>Pesanan</h2>
+
+<div class="body">
+    <div class="table-responsive">
+        <table id="datatable2" class="table table-striped table-bordered dataTable no-footer" style="width:100%">
+            <thead>
+                <tr>
+                    <th>
+                        Tanggal Pemesanan
+                    </th>
+                    <th>
+                        Pemesan
+                    </th>
+                    <th>
+                        Nama Kue
+                    </th>
+                    <th>
+                        Deskripsi Pesanan
+                    </th>
+                    <th>
+                        Jumlah Kue
+                    </th>
+                    <th>
+                        Total Harga
+                    </th>
+                    <th>
+                        Jenis Pembelian
+                    </th>
+                    <th>
+                        Jenis Pesanan
+                    </th>
+                    <th>
+                        jensi Pengembalian
+                    </th>
+                    <th>
+                        No Hp
+                    </th>
+                    <th>
+                        Alamat
+                    </th>
+                    <th>
+                        Status
+                    </th>
+                    <th>
+                        Aksi
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr></tr>
+            </tbody>
+
+        </table>
+    </div>
+</div>
+
+
+@Html.Hidden("item-to-cancle", "", new { @id = "item-to-cancle" })
+@section Scripts {
+    <script>
+        let dataStatus=@Html.Raw(Json.Encode(ViewBag.DataStatus));
+        var table;
+        $(document).ready(function () {
+            table = $('#datatable2').DataTable({
+                ajax: {
+                    type: "GET",
+                    url: '@Url.Action("GetPesanan")',
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8"
+                },
+                columns: [
+                    {
+                        "data": "tgl_pesan", "autoWidth": true, "render": function (data) {
+                            return convertToJavaScriptDate(data);
+                        }
+                    },
+                    { "data": "pemesan", "autoWidth": true },
+                    { "data": "nama_kue", "autoWidth": true },
+                    { "data": "deskripsi_pesanan", "autoWidth": true },
+                    { "data": "jumlah_kue", "autoWidth": true },
+                    { "data": "total_harga", "autoWidth": true },
+                    { "data": "jenis_pembayaran", "autoWidth": true },
+                    { "data": "jenis_pesanan", "autoWidth": true },
+                    { "data": "jenis_pengambilan", "autoWidth": true },
+                    { "data": "no_hp", "autoWidth": true },
+                    { "data": "alamat", "autoWidth": true },
+                    {
+                        "data": "id_status", "autoWidth": true,
+                        "render": function (d, t, r) {
+                            let $select = $("<select></select>", {
+                                "id": r["id_pesanan"] + "dr_status",
+                                "value": d,
+                                "class": "form-control",
+                                "disabled":"disabled"
+                            });
+                            $.each(dataStatus, function (k, v) {
+                                let $option = $("<option></option>", {
+                                    "text": v.status,
+                                    "value": v.id_status
+                                });
+                                if (d === v.id_status) {
+                                    $option.attr("selected","selected")
+                                }
+                                $select.append($option)
+                            });
+
+                            return $select.prop("outerHTML");
+                        }
+                    },
+                    {
+                        "data": "id_pesanan", "render": function (data,t,r) {
+                            return '  <center> <button class="btn btn-primary action" id=e' + data +
+                                ' value = ' + data +' onclick = "EditStatus(this)" > Edit Status </button > ' +
+                                '<button class="delete_kue btn btn-danger action" style="display:none" id=c' + data +
+                                ' value=' + data +' onclick="CancleEdit(this)">Cancle</button>  </center>';
+                        }
+                    },
+                ]
+            })
+        })
+    </script>
+    <script>
+
+        function EditStatus(e) {
+            var id = parseInt(e.value);
+            let idDr = "#" + id.toString() + "dr_status";
+            let btnEdit = "#" + id.toString() + "dr_status";
+            let idStatus = $(idDr).val();
+            let btnCancle = "#c" + e.value;
+            if (e.innerText === "Edit Status") {
+                $(btnCancle).prop("style", "display:block");
+                $(idDr).prop("disabled", false);
+                e.innerText = "Save Data";
+            }
+            else {
+                 $.ajax({
+                    type: "POST",
+                    url: '@Url.Action("EditStatus")',
+                    data: JSON.stringify({ idPesanan: id, idStatus: idStatus }), //use id here
+                    dataType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (respons) {
+                        if (respons.message == "success") {
+                            e.innerText = "Edit Status";
+                            $(idDr).prop("disabled", true);
+                            $(btnCancle).prop("style", "display:none");
+                            NotifSucces();
+                        }
+                        else {
+                             NotifFiled();
+                        }
+                    }
+                 });
+
+            }
+        }
+        function CancleEdit(e) {
+            var id = parseInt(e.value);
+             $.ajax({
+                 type: "GET",
+                 url: "CancleEdit?idPesanan=" + id.toString(),
+                 dataType: "json",
+                 contentType: "application/json; charset=utf-8",
+                 success: function (val) {
+                     let idDr = "#" + id.toString() + "dr_status";
+                     $(idDr).val(val.idStatus);
+                     let btnEdit = "e" + e.value;
+                     document.getElementById(btnEdit).innerHTML = "Edit Status";
+                     e.style = "display:none";
+                     $(idDr).prop("disabled", true);
+                }
+             });
+        }
+    </script>
+}

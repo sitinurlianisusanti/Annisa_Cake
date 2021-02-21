@@ -1,13 +1,4 @@
 ﻿
-/*Css for table menu */
-body {
-    font: 90%/1.45em "Helvetica Neue", HelveticaNeue, Verdana, Arial, Helvetica, sans-serif;
-    margin: 0;
-    padding: 0;
-    color: #333;
-    background-color: #fff;
-}
-
 td.details-control {
     background: url('../images/details_open.png') no-repeat center center;
     /*    background-image: url('../images/details_open.png');*/

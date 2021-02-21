@@ -20,5 +20,7 @@ namespace AnnisaCake.Web.Models
         public string nama_kue { get; set; }
         public int harga { get; set; }
         public int stok { get; set; }
+        public string ukuran { get; set; }
+        public string jenis_toping { get; set; }
     }
 }

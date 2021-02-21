@@ -14,8 +14,17 @@ namespace AnnisaCake.Web.Models
     
     public partial class role_user
     {
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public role_user()
+        {
+            this.users = new HashSet<user>();
+        }
+    
         public int id_role { get; set; }
         public string role { get; set; }
         public string deskripsi { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<user> users { get; set; }
     }
 }

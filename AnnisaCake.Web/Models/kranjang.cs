@@ -15,14 +15,14 @@ namespace AnnisaCake.Web.Models
     public partial class kranjang
     {
         public int id { get; set; }
-        public int id_pelanggan { get; set; }
+        public Nullable<int> id_pelanggan { get; set; }
         public int id_kue { get; set; }
         public int qty { get; set; }
         public int harga { get; set; }
         public int total_harga { get; set; }
         public int total_bayar { get; set; }
     
-        public virtual kue kue { get; set; }
         public virtual pelanggan pelanggan { get; set; }
+        public virtual kue kue { get; set; }
     }
 }

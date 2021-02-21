@@ -10,6 +10,7 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Script.Services;
 using System.Web.Services;
+using AnnisaCake.Web.Helper;
 using AnnisaCake.Web.Models;
 using AnnisaCake.Web.Tools;
 
@@ -19,6 +20,7 @@ namespace AnnisaCake.Web.Controllers
     {
         private SI_TKueEntities db = new SI_TKueEntities();
 
+        [UserAuditFilter]
         // GET: bahan_baku_Masuk
         public ActionResult Index(int ?methode)
         {

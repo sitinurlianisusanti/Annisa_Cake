@@ -5,11 +5,7 @@
     ViewBag.Title = "Index";
 }
 
-<style>
-    .action {
-        width: 30%
-    }
-</style>
+
 <h2>Index</h2>
 <link href="~/Content/css/AddStyleCommon.css" rel="stylesheet" />
 <div class="row">
@@ -280,7 +276,7 @@
         }
         function getMenuByuser() {
             let path = (pathMenu + "?idRole=" + $('#drop_down_role').val().toString());
-            console.log(path);
+            //console.log(path);
             $.ajax({
                 url: path,
                 datatype: "json",
@@ -313,19 +309,17 @@
                 type: "GET",
                 async: false,
                 contentType: 'application/json; charset=utf-8',
-                success: function (d) {
+                success: function (data) {
+
                     var $user = $("#drop_down_role");
-                    $.each(d, function () {
+                    $.each(data, function () {
                         $user.append('<option value="' + this.id_role + '">' + this.role + '</option>');
                     });
                 }
             });
         }
 
-        //function updateRole(menu) {
-        //    debugger
-        //    NotifFiled('gagal');
-        //}
+       
         function updateRole(menu) {
             let idRole = $('#drop_down_role').val().toString();
             let idMenu = menu.parentElement.parentElement.parentElement.cells[1].innerHTML;
@@ -351,10 +345,6 @@
                  }
             });
         }
-
-
-
-
 
     </script>
 }

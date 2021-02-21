@@ -17,15 +17,14 @@ namespace AnnisaCake.Web.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public ukuran_kue()
         {
-            this.pesanans = new HashSet<pesanan>();
+            this.kues = new HashSet<kue>();
         }
     
         public int id_ukuran { get; set; }
-        public string jenis_ukuran { get; set; }
-        public string id_toping { get; set; }
-        public long harga { get; set; }
+        public string ukuran { get; set; }
+        public string deskripsi { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<pesanan> pesanans { get; set; }
+        public virtual ICollection<kue> kues { get; set; }
     }
 }

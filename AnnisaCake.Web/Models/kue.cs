@@ -34,9 +34,14 @@ namespace AnnisaCake.Web.Models
         [NotMapped]
         public List<category> Kategoris { get; set; }
 
+        public Nullable<int> id_ukuran { get; set; }
+        public Nullable<int> id_toping { get; set; }
+    
         public virtual category category { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<kranjang> kranjangs { get; set; }
+        public virtual toping toping { get; set; }
+        public virtual ukuran_kue ukuran_kue { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<pesanan> pesanans { get; set; }
     }

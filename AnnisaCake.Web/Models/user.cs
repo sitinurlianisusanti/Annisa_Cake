@@ -21,5 +21,7 @@ namespace AnnisaCake.Web.Models
         public string email { get; set; }
         public Nullable<int> id_role { get; set; }
         public string sandi { get; set; }
+    
+        public virtual role_user role_user { get; set; }
     }
 }

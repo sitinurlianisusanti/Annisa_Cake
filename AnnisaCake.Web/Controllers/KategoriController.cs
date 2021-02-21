@@ -1,4 +1,5 @@
-﻿using AnnisaCake.Web.Models;
+﻿using AnnisaCake.Web.Helper;
+using AnnisaCake.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -13,6 +14,7 @@ namespace AnnisaCake.Web.Controllers
     {
         public SI_TKueEntities db = new SI_TKueEntities();
         // GET: Category
+        [UserAuditFilter]
         public ActionResult Kategori(int? methode)
         {
             var data = db.categories.ToList();

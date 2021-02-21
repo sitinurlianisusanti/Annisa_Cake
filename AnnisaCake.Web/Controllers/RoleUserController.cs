@@ -4,14 +4,23 @@ using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AnnisaCake.Web.Helper;
 using AnnisaCake.Web.Models;
+using AnnisaCake.Web.Models.ModelView;
+using AutoMapper;
 
 namespace AnnisaCake.Web.Controllers
 {
     public class RoleUserController : Controller
     {
         private SI_TKueEntities db = new SI_TKueEntities();
+        private readonly IMapper mapper;
+        public RoleUserController(IMapper mapper)
+        {
+            this.mapper = mapper;
+        }
         // GET: RoleUser
+        [UserAuditFilter]
         public ActionResult Index()
         {
             return View();
@@ -20,14 +29,16 @@ namespace AnnisaCake.Web.Controllers
         public ActionResult GetRoleUser()
         {
             List<role_user> role = db.role_user.ToList();
-            return Json(role, JsonRequestBehavior.AllowGet);
+            List<role_user_view> role_view = mapper.Map<List<role_user_view>>(role);
+            return Json( role_view , JsonRequestBehavior.AllowGet);
         }
 
 
         public ActionResult GetRoleUserIndex()
         {
             List<role_user> role = db.role_user.ToList();
-            return Json(new { data = role }, JsonRequestBehavior.AllowGet);
+            List<role_user_view> role_view = mapper.Map<List<role_user_view>>(role);
+            return Json(new { data = role_view }, JsonRequestBehavior.AllowGet);
         }
 
         // GET: RoleUser/Create

@@ -6,6 +6,7 @@ using System.Data.Entity;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using AnnisaCake.Web.Helper;
 
 namespace AnnisaCake.Web.Controllers
 {
@@ -13,6 +14,7 @@ namespace AnnisaCake.Web.Controllers
     {
         public SI_TKueEntities db = new SI_TKueEntities();
         // GET: Toping_Kue
+        [UserAuditFilter]
         public ActionResult TopingKue(int? methode)
         {
             if (methode != null && methode == 2)
@@ -36,7 +38,7 @@ namespace AnnisaCake.Web.Controllers
             var newKodeToping = 1;
             try
             {
-                newKodeToping = db.topings.Max(x => x.kode_toping)+1;
+                newKodeToping = db.topings.Max(x => x.id_toping)+1;
             }
             catch (Exception X)
             {
@@ -69,10 +71,10 @@ namespace AnnisaCake.Web.Controllers
         }
 
         // GET: Toping_Kue/Edit/5
-        public ActionResult EditToping(int?kodeToping)
+        public ActionResult EditToping(int? idToping)
         {
 
-            toping toping = db.topings.Find(kodeToping);
+            toping toping = db.topings.Find(idToping);
             return View(toping);
         }
 
@@ -107,11 +109,11 @@ namespace AnnisaCake.Web.Controllers
 
         // POST: Toping_Kue/Delete/5
         [HttpPost]
-        public JsonResult DeleteToping(int kodeToping)
+        public JsonResult DeleteToping(int idToping)
         {
             try
             {
-                toping toping = db.topings.Find(kodeToping);
+                toping toping = db.topings.Find(idToping);
                 db.topings.Remove(toping);
                 db.SaveChanges();
                 return Json(new { message = "succes" });

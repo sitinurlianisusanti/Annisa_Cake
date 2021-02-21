@@ -1,0 +1,32 @@
+﻿
+@{
+    ViewBag.Title = "Konfirmasi Page";
+    Layout = "~/Views/Shared/_Login.cshtml";
+}
+
+<section class="sign-in">
+    <div class="container">
+        <div class="signin-content">
+            <div class="signin-image">
+                <figure><img src="/Content/Pelanggan/images/signin-image.jpg" alt="sing up image"></figure>
+            </div>
+
+            <div class="signin-form">
+                <br />
+                <br />
+                <br />
+                <h2 class="form-title">Konfirmasi</h2>
+                <form method="POST" class="register-form" id="login-form">
+                    <input type="hidden" name="id_pelanggan" value="@ViewBag.idPelanggan" />
+                    <div class="form-group">
+                        <label for="kode_konfirmasi"><i class="zmdi zmdi-lock"></i></label>
+                        <input type="text" name="kode_konfirmasi" id="kode_konfirmasi" placeholder="Masukan Kode anda" />
+                    </div>
+                    <div class="form-group form-button">
+                        <input type="submit" name="signin" id="signin" class="form-submit" value="Submit" />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

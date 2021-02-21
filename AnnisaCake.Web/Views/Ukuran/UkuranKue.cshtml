@@ -5,12 +5,6 @@
 
 <h2>Ukuran Kue</h2>
 
-<style>
-    .action {
-        width: 30%
-    }
-</style>
-
 <p>
     @Html.ActionLink("Create New", "CreateUkuran")
 </p>
@@ -24,10 +18,7 @@
                         Jenis Ukuran
                     </th>
                     <th>
-                        Toping
-                    </th>
-                    <th>
-                        Harga
+                        Deskripsi
                     </th>
                     <th>
 
@@ -51,17 +42,16 @@
             table=$('#datatable2').DataTable({
                 ajax: {
                     type: "GET",
-                    url: '@Url.Action("UkuanKue", new { methode = '2' })',
+                    url: '@Url.Action("GetUkuranKue")',
                     dataType: "json",
                     contentType: "application/json; charset=utf-8"
                 },
                 columns: [
-                    { "data": "jenis_ukura", "autoWidth": true },
-                    { "data": "toping", "autoWidth": true },
-                    { "data": "harga", "autoWidth": true },
+                    { "data": "ukuran", "autoWidth": true },
+                    { "data": "deskripsi", "autoWidth": true },
                     {
                         "data": "id_ukuran", "autoWidth": true, "render": function (data) {
-                            return '<a class="btn btn-primary action" id=' + data + ' href="EditBahanBakuKeluar?idUkuran='+parseInt(data)+'" >Edit</a>' +
+                            return '<a class="btn btn-primary action" id=' + data + ' href="EditUkuran?idUkuran='+parseInt(data)+'" >Edit</a>' +
                                 '<a class="delete_kue btn btn-danger action" id=' + data + '" onclick="showPopUp(this)">Delete</a>';
                         }
                     },

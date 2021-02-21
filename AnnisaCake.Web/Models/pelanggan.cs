@@ -21,8 +21,9 @@ namespace AnnisaCake.Web.Models
             this.pesanans = new HashSet<pesanan>();
         }
     
-        public int id { get; set; }
-        public string nama { get; set; }
+        public int id_pelanggan { get; set; }
+        public string nama_pelanggan { get; set; }
+        public string sandi { get; set; }
         public string alamat { get; set; }
         public string rt { get; set; }
         public string rw { get; set; }
@@ -31,8 +32,7 @@ namespace AnnisaCake.Web.Models
         public string kab { get; set; }
         public string provinsi { get; set; }
         public string no_hp { get; set; }
-        public string username { get; set; }
-        public string pass { get; set; }
+        public string email { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<kranjang> kranjangs { get; set; }

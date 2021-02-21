@@ -22,22 +22,23 @@ namespace AnnisaCake.Web.Models
     
         public int id_pesanan { get; set; }
         public System.DateTime tgl_pesan { get; set; }
-        public int id_pemesan { get; set; }
+        public int id_pelanggan { get; set; }
         public int id_kue { get; set; }
-        public int id_size { get; set; }
-        public int kode_toping { get; set; }
         public string deskripsi_pesanan { get; set; }
         public long jumlah_kue { get; set; }
-        public long harga { get; set; }
+        public long total_harga { get; set; }
         public string jenis_pembayaran { get; set; }
         public string jenis_pesanan { get; set; }
         public string jenis_pengambilan { get; set; }
+        public string no_hp { get; set; }
+        public string alamat { get; set; }
+        public Nullable<int> id_status { get; set; }
+        public string email { get; set; }
     
-        public virtual kue kue { get; set; }
         public virtual pelanggan pelanggan { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<transaksi> transaksis { get; set; }
-        public virtual ukuran_kue ukuran_kue { get; set; }
-        public virtual toping toping { get; set; }
+        public virtual status_pesanan status_pesanan { get; set; }
+        public virtual kue kue { get; set; }
     }
 }

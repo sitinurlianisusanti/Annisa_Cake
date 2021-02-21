@@ -1,4 +1,5 @@
-﻿using AnnisaCake.Web.Models;
+﻿using AnnisaCake.Web.Helper;
+using AnnisaCake.Web.Models;
 using AutoMapper;
 using System;
 using System.Collections.Generic;
@@ -19,12 +20,14 @@ namespace AnnisaCake.Web.Controllers
         }
 
         // GET: User
+        [UserAuditFilter]
         public ActionResult GetUser(int? methode)
         {
             return View(db.users.ToList());
         }
 
         // GET: Default
+        [UserAuditFilter]
         public ActionResult Index()
         {
             return View();

@@ -1,4 +1,5 @@
-﻿using AnnisaCake.Web.Models;
+﻿using AnnisaCake.Web.Helper;
+using AnnisaCake.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -12,6 +13,7 @@ namespace AnnisaCake.Web.Controllers
     {
         private SI_TKueEntities db = new SI_TKueEntities();
         // GET: BahanBaku
+        [UserAuditFilter]
         public ActionResult BahanBaku(int ?methode)
         {
             if(methode !=null && methode == 2)

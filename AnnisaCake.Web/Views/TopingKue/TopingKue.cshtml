@@ -49,11 +49,11 @@
                     contentType: "application/json; charset=utf-8"
                 },
                 columns: [
-                    { "data": "kode_toping", "autoWidth": true },
+                    { "data": "id_toping", "autoWidth": true },
                     { "data": "jenis_toping", "autoWidth": true },
                     {
-                        "data": "kode_toping", "autoWidth": true, "render": function (data) {
-                            return '<a class="btn btn-primary action" id=' + data + ' href="EditToping?kodeToping='+parseInt(data)+'" >Edit</a>' +
+                        "data": "id_toping", "autoWidth": true, "render": function (data) {
+                            return '<a class="btn btn-primary action" id=' + data + ' href="EditToping?idToping='+parseInt(data)+'" >Edit</a>' +
                                 '<a class="delete_kue btn btn-danger action" id=' + data + '" onclick="showPopUp(this)">Delete</a>';
                         }
                     },
@@ -73,7 +73,7 @@
          $.ajax({
             type: "POST",
             url: '@Url.Action("DeleteToping")',
-            data: JSON.stringify({ kodeToping: id }), //use id here
+            data: JSON.stringify({ idToping: id }), //use id here
             dataType: "json",
             contentType: "application/json; charset=utf-8",
              success: function (respons) {

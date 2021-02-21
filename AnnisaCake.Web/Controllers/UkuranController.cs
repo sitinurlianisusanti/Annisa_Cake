@@ -1,9 +1,11 @@
-﻿using AnnisaCake.Web.Models;
+﻿using AnnisaCake.Web.Helper;
+using AnnisaCake.Web.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Data.Entity;
 
 namespace AnnisaCake.Web.Controllers
 {
@@ -11,29 +13,23 @@ namespace AnnisaCake.Web.Controllers
     {
         // GET: Ukuran
         public SI_TKueEntities db = new SI_TKueEntities();
-        public ActionResult UkuranKue(int? methode)
+
+        [UserAuditFilter]
+        public ActionResult UkuranKue()
         {
-            //if(methode!=null && methode == 2)
-            //{
-            //    var toping =db.to
-            //    var data = db.ukuran_kue.ToList();
-            //    var data2 = data.Select(x => new
-            //    {
-            //        id_ukuran = x.id_ukuran,
-            //        jenis_ukuran=x.jenis_ukuran,
-            //        toping=db.topings.
-            //        nama_kategori = x.nama_kategori
-            //    });
-
-            //    return Json(new { data = data2 }, JsonRequestBehavior.AllowGet);
-
-          //  }
             return View();
         }
 
-       
+        public ActionResult GetUkuranKue()
+        {
+                var data = db.ukuran_kue.ToList();
+                return Json(new { data = data }, JsonRequestBehavior.AllowGet);
+        }
+
+
 
         // GET: Ukuran/Create
+        [UserAuditFilter]
         public ActionResult CreateUkuran()
         {
             return View();
@@ -41,13 +37,13 @@ namespace AnnisaCake.Web.Controllers
 
         // POST: Ukuran/Create
         [HttpPost]
-        public ActionResult Create(FormCollection collection)
+        public ActionResult CreateUkuran(ukuran_kue ukuranKue)
         {
             try
             {
-                // TODO: Add insert logic here
-
-                return RedirectToAction("Index");
+                db.Entry(ukuranKue).State = EntityState.Added;
+                db.SaveChanges();
+                return RedirectToAction("UkuranKue");
             }
             catch
             {
@@ -56,20 +52,22 @@ namespace AnnisaCake.Web.Controllers
         }
 
         // GET: Ukuran/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult EditUkuran(int idUkuran)
         {
-            return View();
+            ukuran_kue ukuraKue = db.ukuran_kue.Find(idUkuran);
+            return View(ukuraKue);
         }
 
         // POST: Ukuran/Edit/5
         [HttpPost]
-        public ActionResult Edit(int id, FormCollection collection)
+        public ActionResult EditUkuran(ukuran_kue ukuraKue)
         {
             try
             {
                 // TODO: Add update logic here
-
-                return RedirectToAction("Index");
+                db.Entry(ukuraKue).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("UkuranKue");
             }
             catch
             {
@@ -77,26 +75,21 @@ namespace AnnisaCake.Web.Controllers
             }
         }
 
-        // GET: Ukuran/Delete/5
-        public ActionResult Delete(int id)
-        {
-            return View();
-        }
-
-        // POST: Ukuran/Delete/5
         [HttpPost]
-        public ActionResult Delete(int id, FormCollection collection)
+        public JsonResult DeleteUkuran(int? idUkuran)
         {
             try
             {
-                // TODO: Add delete logic here
-
-                return RedirectToAction("Index");
+                ukuran_kue ukuranKue = db.ukuran_kue.Find(idUkuran);
+                db.ukuran_kue.Remove(ukuranKue);
+                db.SaveChanges();
+                return Json(new { message = "succes" });
             }
             catch
             {
-                return View();
+                return Json(new { message = "succes" });
             }
+
         }
     }
 }
